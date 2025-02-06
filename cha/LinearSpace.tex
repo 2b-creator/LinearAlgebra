@@ -316,3 +316,14 @@
 	\tcblower
 	\textcolor{purple}{\textbf{解}}：设$P_1,P_2$点坐标分别为$(x_1,y_1,z_1),(x_2,y_2,z_2)$，则$a\in \mathbb{R}^3,a=\overrightarrow{P_1P_2}$为其一个方向向量，令$x_1=1$则$\displaystyle y_1=1,z_1=1$，$\displaystyle \overrightarrow{OP_1}=\left( 1,1,1 \right)$，令$x_2=0$则$\displaystyle y_2=3,z_2=0$，$\displaystyle \overrightarrow{OP_2}=\left(0,3,0\right)$，$\overrightarrow{P_1P_2}=\overrightarrow{OP_2}-\overrightarrow{OP_1}$所以该直线的一个方向向量为$\displaystyle \left( -1,2,-1 \right) $
 \end{example}
+
+同样的，根据两条相交直线可以确定平面，如果我们使用向量来考虑$\mathbb{R}^3$上的平面的话，通过两个不互相平行的非零向量和一点也能确定一个平面，如图\ref{tikz:space.face}所示。
+
+\begin{figure}[htbp]
+	\centering
+	\include{figure/tikz/3dpreface}
+	\caption{$P$在平面上}
+	\label{tikz:space.face}
+\end{figure}
+
+类比于直线的向量表示，设向量$x,x_1,a,b\in \mathbb{R}^3$，$P,P_1,P_2,P_3$点在平面上，令$x=\overrightarrow{OP},a=\overrightarrow{P_1P_2},b=\overrightarrow{P_1P_3},x_1=\overrightarrow{OP_1}$，设$t,s\in \mathbb{R}$，对于任意处于平面上的$P$点，总存在$t,s$使得$x=\overrightarrow{OP}$满足$$x=x_1+ta+sb$$
