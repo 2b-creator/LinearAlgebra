@@ -79,10 +79,11 @@
 接下来我们慢慢引入向量的概念，在讲向量之前，笔者想和大家谈一谈如何生成这样的空间来容纳我们向量的概念，这里有一个定义叫做笛卡尔积(Cartesian product)。
 
 \begin{definition}{笛卡尔积}
+	\label{def:dicar}
 	两个集合${\displaystyle X}$和${\displaystyle Y}$的笛卡尔积是所有可能的有序对组成的集合，其中有序对的第一个对象是$X$的成员，第二个对象是$Y$的成员，记作：$${\displaystyle X\times Y := \footnote{符号$:=$表示定义为，用来明确地给某个符号或概念赋予一个新的定义，例如：妈妈$:=$养育与教养子女成长的女性} \left\{\left(x,y\right)\mid x\in X \text{且} y\in Y\right\}}$$
 \end{definition}
 
-举个很常见的例子，如果集合$X$是13个元素的点数集合${\displaystyle \left\{A,K,Q,J,10,9,8,7,6,5,4,3,2\right\}}$而集合$Y$是四种花色$\{\spadesuit, \heartsuit, \diamondsuit, \clubsuit\}$，则这两个集合的笛卡儿积是有52个元素的标准扑克牌的集合：$$X\times Y = \left\lbrace (A,\spadesuit),(K,\spadesuit),(Q,\spadesuit)\cdots (2,\spadesuit),\cdots,(3,\clubsuit),(2,\clubsuit)\right\rbrace $$
+举个很常见的例子，如果集合$X$是13个元素的点数集合${\displaystyle \left\{A,K,Q,J,10,9,8,7,6,5,4,3,2\right\}}$而集合$Y$是四种花色$\{\spadesuit, \heartsuit, \diamondsuit, \clubsuit\}$，则这两个集合的笛卡尔积是有52个元素的标准扑克牌的集合：$$X\times Y = \left\lbrace (A,\spadesuit),(K,\spadesuit),(Q,\spadesuit)\cdots (2,\spadesuit),\cdots,(3,\clubsuit),(2,\clubsuit)\right\rbrace $$
 
 \subsection{空间 $\mathrm{S}^n$}
 
@@ -339,6 +340,112 @@
 	\end{itemize}
 \end{definition}
 
-\begin{example}
-	验证$\mathbb{C}^6$是线性空间。
-\end{example}
+除此之外，还有多项式空间也是线性空间，下面给出定义。
+
+\begin{definition}
+	所有次数不超过$n$的实系数多项式的集合，记作$P_n$。
+\end{definition}
+
+$P_n$ 中的元素是形如 $p(x) = a_0 + a_1 x + a_2 x^2 + \cdots + a_n x^n$ 的多项式，其中 $a_0, a_1, \dots, a_n \in \mathbb{R}$，接下来我们来验证$P_n$是线性空间。
+
+\begin{corollary}
+	$P_n$是$\mathbb{R}$或$\mathbb{C}$上线性空间。
+\end{corollary}
+
+下面给出证明(读者并不要求)
+
+\begin{proof}
+	验证加法，两个多项式相加是按系数相加，例如：$$p(x) + q(x) = (a_0 + b_0) + (a_1 + b_1)x + \cdots + (a_n + b_n)x^n$$可以得到他们的和依然是多项式。其次验证标量乘法，标量 $c \in \mathbb{R}$ 与多项式 $p(x)$ 的乘积是$$c p(x) = c a_0 + c a_1 x + \cdots + c a_n x^n$$所得的结果依然是多项式，若$P(x)=0$，代表的是该线性空间的零向量，满足线性空间的所有公理。$\square$
+\end{proof}
+
+\begin{ascolorbox1}{思考}
+	你能不能举出其他的一些例子表示线性空间？
+\end{ascolorbox1}
+
+\section{子空间}
+
+\subsection{子空间(subspace)的定义}
+
+\begin{definition}
+	如果$V$的子集$U$也是线性空间，则称$U$是$V$的子空间。
+\end{definition}
+
+例如$U=\left\{ (x_1,x_2,0) \mid x_1,x_2 \in \mathbb{R} \right\}$是$\mathbb{R}^3$的子空间。需要要注意的是，线性空间的子集也得是线性空间所以才能是子空间，所以请读者思考下面的一个问题。
+
+\begin{ascolorbox1}{思考}
+	$U=\left\{ (x_1,x_2,1) \mid x_1,x_2 \in \mathbb{R} \right\}$是否是$\mathbb{R}^3$的子空间？
+\end{ascolorbox1}
+
+答案为不是，因为它不满足$\boldsymbol{0}\in U$，根本就不是线性空间，所以不是$\mathbb{R}^3$的子空间。除此之外，子空间需要满足下面的情况(也就是说，也需要满足作为线性空间的条件)。
+
+\begin{corollary}
+	当且仅当 $V$ 的子集 $U$ 满足以下三个条件时，$U$ 是 $V$ 的子空间。
+	\begin{itemize}
+		\item 存在加法单位元$\boldsymbol{0}\in U$；
+		\item 对于加法封闭，即$v,w\in U$满足$v+w\in U$；
+		\item 对于标量乘法封闭，即$\lambda \in \mathrm{S},v\in U$满足$\lambda v\in \mathrm{S}$。
+	\end{itemize}
+\end{corollary}
+
+\begin{ascolorbox1}{思考}
+	若集合$U=\left\{ (x_1,x_2,0) \mid x_1,x_2 \in \mathbb{R} \right\}$，集合$T=\left\{ (0,0,x_3) \mid x_3 \in \mathbb{R} \right\}$，$T\cup U$是否是$\mathbb{R}^3$的子空间？
+\end{ascolorbox1}
+
+答案为不是，因为它不满足对于加法封闭，取$u\in U,u=(1,1,0),t \in T,t=(0,0,1)$，$u+t=(1,1,1) \notin U\cup T$，所以不是$\mathbb{R}^3$的子空间。
+
+\subsection{子空间之和}
+
+为了更深入了解线性空间以及知识完整性，下面讲解子空间和的概念。
+
+\begin{definition}{子空间的和}
+	子空间的和是有其所有元素可能的和所构成的集合，其结果仍是子空间。若$V_1,V_2,V_3,\cdots,V_m$是$V$的子空间，则子空间的和$V_s$记作$$V_s=V_1+V_2+V_3+\cdots+V_m=\sum_{i=1}^{m}V_i $$或者说来$$V_s=\sum_{i=1}^{m}V_i =\left\{ \sum_{i=1}^{m}v_i \mid i\in \mathbb{N}^+,v_i \in V_i \right\}$$
+\end{definition}
+
+不要被定义上的Sigma符号吓跑了，实际上就是分别任意两个属于不同子空间的元素相加后的新元素所构成的空间，例如子空间$V_1=\left\{ (x_1,x_2,0)\mid x_1,x_2\in \mathbb{R} \right\}$和$V_2=\left\{ (0,x_3,x_4)\mid x_3,x_4\in \mathbb{R} \right\}$，则$V_1,V_2$子空间的和是$\mathbb{R}^3$，即$\mathbb{R}^3$中所有的元素$r$均存在$t,s\in \mathbb{R}$使得$v_1\in V_1$，$v_2\in V_2$满足$$r=tv_1+sv_2$$
+
+所以可以记作$\mathbb{R}^3=V_1+V_2$。
+
+上面讲了子空间的和，请读者先思考子空间的和与子空间的并的区别。
+
+\begin{ascolorbox1}{思考}
+	子空间的并是否一定是子空间？在什么情况下子空间的并是子空间？
+\end{ascolorbox1}
+
+首先回答第一个，子空间的并不一定是子空间，如上面的一个思考$T\cup U$一样，$U,T$均为$\mathbb{R}^3$的子空间，但是我们证明了它们的并集不是子空间。对于第二个问题，首先我们考虑$V$子空间$T$和$U$，如果$T$是$U$的非空子集(思考为什么非空？)，那么$T \cup U=U$是子空间显然成立，若$T$不是$U$的非空子集，设$t\in T,u\in U$由子空间的性质应有$t+u$属于$V$，即$t+u$可能属于$T$也可能属于$U$。但是若$t+u$属于$T$，而根据封闭性$u=(t+u)-t$也应当属于$T$，$t+u$和$u$都是子空间$T$的元素，所以与``若$T$不是$U$的非空子集''的设定不符。
+
+\begin{corollary}
+	两个子空间的并集是子空间，当且仅当其中一个包含于另一个。
+\end{corollary}
+
+\subsection{直和}
+
+首先我们回顾一下笛卡尔积\footnote{笛卡尔积的另一个名称叫做直积，和本部分的直和的运算方式有关联。}，如果读者已经忘记了的话请阅读定义\ref{def:dicar}，我们了解到$\mathbb{R}^3$空间由$\mathbb{R}\times\mathbb{R}\times\mathbb{R}$通过笛卡尔积生成。而直和也是生成生成空间的一种方式，是一种特殊的子空间之和。
+
+\begin{definition}{直和(direct sum)}
+	设$V_1,V_2,V_3,\cdots,V_m$是$V$的子空间，如果$V_1+V_2+V_3+\cdots+V_3$中的每个元素都能用$\sum_{i=1}^{m}v_i ,v_i\in V_i$唯一地表示出来，则称子空间之和$\sum_{i=1}^{m}V_i $为直和，可写作$$V=V_1\oplus V_2\oplus V_3\oplus \cdots \oplus V_m$$
+\end{definition}
+
+例如$A=\left\{ (x,y,0)\mid x,y \in \mathbb{R} \right\},B=\left\{ (0,0,z)\mid z\in \mathbb{R} \right\}$，则$\mathbb{R}^3=A \oplus B$；而$A=\left\{ (x,y,z)\mid x,y,z \in \mathbb{R} \right\},B=\left\{ (0,0,z)\mid z\in \mathbb{R} \right\}$，则$\mathbb{R}^3\neq A \oplus B$。
+
+\begin{corollary}
+	$U$ 和 $W$ 是 $V$ 的子空间且$V=U\oplus W$，当且仅当$W\cap U=\left\{ 0 \right\}$。
+\end{corollary}
+
+接下来我们继续研究构建线性代数的基本内容，即向量与空间的关系。
+
+\section{张成空间与线性相关性}
+
+\subsection{线性组合与张成空间}
+
+一组向量进行标量乘法后相加形成的一个向量，称作该向量的线性组合。
+
+\begin{definition}{线性组合(linear combination)}
+	给定向量集合 $\{v_1, v_2, \dots, v_k\}$ 和标量集合 $\{c_1, c_2, \dots, c_k\}$，向量 $v$ 的线性组合表示为：$$v = c_1 v_1 + c_2 v_2 + \dots + c_k v_k$$其中，$c_1, c_2, \dots, c_k$ 称为组合系数。
+\end{definition}
+
+通过一组向量的线性组合所产生的向量能表示的空间是这个向量的张成空间，下面给出定义。
+
+\begin{definition}{张成空间(span)}
+	给定向量集合 $ S = \{v_1, v_2, \dots, v_k\} $（其中 $ v_i $ 是向量空间 $ V $ 中的向量），这些向量的张成空间是所有可能的线性组合构成的集合，记作：$$\text{Span}(S) = \{ c_1 v_1 + c_2 v_2 + \dots + c_k v_k \mid c_1, c_2, \dots, c_k \in \mathrm{S} \}$$
+\end{definition}
+
