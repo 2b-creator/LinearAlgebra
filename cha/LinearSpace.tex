@@ -40,7 +40,7 @@
 	\end{enumerate}
 \end{axiom}
 
-如果一个数域$\mathrm{S}$和$\mathbb{C}$一样满足上述性质，我们称$\mathrm{S}$中的元素为标量(scalar)，当然$\mathbb{C}$和$\mathbb{R}$的所有元素也是标量。
+如果一个数域$\mathbb{F}$和$\mathbb{C}$一样满足上述性质，我们称$\mathbb{F}$中的元素为标量(scalar)，当然$\mathbb{C}$和$\mathbb{R}$的所有元素也是标量。
 
 \subsection{标量}
 
@@ -85,11 +85,11 @@
 
 举个很常见的例子，如果集合$X$是13个元素的点数集合${\displaystyle \left\{A,K,Q,J,10,9,8,7,6,5,4,3,2\right\}}$而集合$Y$是四种花色$\{\spadesuit, \heartsuit, \diamondsuit, \clubsuit\}$，则这两个集合的笛卡尔积是有52个元素的标准扑克牌的集合：$$X\times Y = \left\lbrace (A,\spadesuit),(K,\spadesuit),(Q,\spadesuit)\cdots (2,\spadesuit),\cdots,(3,\clubsuit),(2,\clubsuit)\right\rbrace $$
 
-\subsection{空间 $\mathrm{S}^n$}
+\subsection{空间 $\mathbb{F}^n$}
 
 我们定义$\mathbb{R}^2=\mathbb{R} \times \mathbb{R}$，根据笛卡尔积的运算规则，集合$\mathbb{R}^2$为所有有序实数2元组构成，即$$\mathbb{R}^2=\{(x,y)\mid x,y \in \mathbb{R}\}$$在现实生活中，我们可以将它看成是一个二维平面，而$\mathbb{R}^3$在现实生活中，我们可以将它看成是一个三维空间。
 
-我们上述提到集合$\mathrm{S}$内的元素是一个标量，那么$\mathrm{S}^n$则由无数个的$n$元组构成，例如$\mathbb{C}^6$就是含有6个有序元素构成的一个空间，虽然当$n>3$的时候在实际生活中想象它们绝非易事，但是数学就是一门由具体到抽象的科目，我们可以使用类比的手法，让它们和在$\mathbb{R}^2$与$\mathbb{R}^3$上运算一样有自己的实际意义。
+我们上述提到集合$\mathbb{F}$内的元素是一个标量，那么$\mathbb{F}^n$则由无数个的$n$元组构成，例如$\mathbb{C}^6$就是含有6个有序元素构成的一个空间，虽然当$n>3$的时候在实际生活中想象它们绝非易事，但是数学就是一门由具体到抽象的科目，我们可以使用类比的手法，让它们和在$\mathbb{R}^2$与$\mathbb{R}^3$上运算一样有自己的实际意义。
 
 \subsection{向量}
 
@@ -123,7 +123,7 @@
 \subsection{加法}
 
 \begin{definition}{向量的加法}
-	若$x,y\in \mathrm{S}^n,x=(x_1,x_2,x_3,\cdots,x_n),y=(y_1,y_2,y_3,\cdots,y_n)$则$x+y$定义为$$x+y=(x_1+y_1,x_2+y_2,x_3+y_3,\cdots x_n+y_n)$$
+	若$x,y\in \mathbb{F}^n,x=(x_1,x_2,x_3,\cdots,x_n),y=(y_1,y_2,y_3,\cdots,y_n)$则$x+y$定义为$$x+y=(x_1+y_1,x_2+y_2,x_3+y_3,\cdots x_n+y_n)$$
 \end{definition}
 
 实际上两个向量相加，就是将它们元组里面的所有元素依次相加得到一个新的元组。
@@ -136,13 +136,13 @@
 
 同样，向量的加法也满足交换律：
 \begin{corollary}
-	若$x,y\in \mathrm{S}^n$，则$x+y=y+x$。
+	若$x,y\in \mathbb{F}^n$，则$x+y=y+x$。
 \end{corollary}
 
 下面是简单的对此性质的证明(读者不作要求)。
 
 \begin{proof}
-	若$x,y\in \mathrm{S}^n,x=(x_1,x_2,x_3,\cdots,x_n),y=(y_1,y_2,y_3,\cdots,y_n)$则$$x+y=(x_1+y_1,x_2+y_2,x_3+y_3,\cdots x_n+y_n)$$根据标量加法的交换律可知
+	若$x,y\in \mathbb{F}^n,x=(x_1,x_2,x_3,\cdots,x_n),y=(y_1,y_2,y_3,\cdots,y_n)$则$$x+y=(x_1+y_1,x_2+y_2,x_3+y_3,\cdots x_n+y_n)$$根据标量加法的交换律可知
 	\begin{equation*}
 	x+y=(y_1+x_1,y_2+x_2,y_3+x_3,\cdots y_n+x_n)=y+x \teoe
 	\end{equation*}
@@ -159,24 +159,24 @@
 
 \subsection{0 向量}
 
-我们之前说过，向量与标量无法相加，所以在$\mathrm{S}^n$内我们定义$n$维0向量作为加法的单位元，即若$x,y\in \mathrm{S}^n$，$x+y=x$，那么$y$就是0 向量。
+我们之前说过，向量与标量无法相加，所以在$\mathbb{F}^n$内我们定义$n$维0向量作为加法的单位元，即若$x,y\in \mathbb{F}^n$，$x+y=x$，那么$y$就是0 向量。
 
 \begin{definition}{0 向量}
-	若$\alpha,\beta \in \mathrm{S}^n$且$\alpha+\beta = \alpha$，那么$\beta$为空间$\mathrm{S}^n$的单位元，我们将其称为0向量，显然0向量就是一个全是由0组成的$n$元组，记作$\boldsymbol{0}$\footnote{实际上是以粗体形式出现的0}，那么$$\boldsymbol{0}=(0,0,0,\cdots,0)$$
+	若$\alpha,\beta \in \mathbb{F}^n$且$\alpha+\beta = \alpha$，那么$\beta$为空间$\mathbb{F}^n$的单位元，我们将其称为0向量，显然0向量就是一个全是由0组成的$n$元组，记作$\boldsymbol{0}$\footnote{实际上是以粗体形式出现的0}，那么$$\boldsymbol{0}=(0,0,0,\cdots,0)$$
 \end{definition}
 
 \subsection{加法逆元}
 
-类似于标量加法的$x,y\in \mathbb{C},x+y=0$，其中标量0表示标量加法的单位元，其中$y=-x$，那么在空间$\mathrm{S}^n$中同样表示若$\alpha,\beta \in \mathrm{S}^n,\alpha+\beta=\boldsymbol{0}$，$\beta=-\alpha$表示$\alpha$的加法逆元。
+类似于标量加法的$x,y\in \mathbb{C},x+y=0$，其中标量0表示标量加法的单位元，其中$y=-x$，那么在空间$\mathbb{F}^n$中同样表示若$\alpha,\beta \in \mathbb{F}^n,\alpha+\beta=\boldsymbol{0}$，$\beta=-\alpha$表示$\alpha$的加法逆元。
 
 \begin{definition}{加法逆元}
-	对于$\alpha \in \mathrm{S}^n$，$\alpha$的加法逆元表示满足下面条件的向量$-\alpha\in \mathrm{S}^n$有$$\alpha+(-\alpha)=\boldsymbol{0}$$换而言之当$\alpha=(a,b,c,d,\cdots)$时，$-\alpha=(-a,-b,-c,-d,\cdots)$
+	对于$\alpha \in \mathbb{F}^n$，$\alpha$的加法逆元表示满足下面条件的向量$-\alpha\in \mathbb{F}^n$有$$\alpha+(-\alpha)=\boldsymbol{0}$$换而言之当$\alpha=(a,b,c,d,\cdots)$时，$-\alpha=(-a,-b,-c,-d,\cdots)$
 \end{definition}
 
 \subsection{标量乘法}
 
 \begin{definition}{向量的标量乘法}
-	若标量$\lambda \in \mathrm{S}$，其对一个向量$x=(x_1,x_2,x_3,\cdots,x_n)$的乘积满足以下的运算法则$$\lambda(x_1,x_2,x_3,\cdots,x_n)=(\lambda x_1,\lambda x_2,\lambda x_3,\cdots,\lambda x_n)$$
+	若标量$\lambda \in \mathbb{F}$，其对一个向量$x=(x_1,x_2,x_3,\cdots,x_n)$的乘积满足以下的运算法则$$\lambda(x_1,x_2,x_3,\cdots,x_n)=(\lambda x_1,\lambda x_2,\lambda x_3,\cdots,\lambda x_n)$$
 \end{definition}
 
 实际上如图\ref{fig:mulfsn}所示，向量的标样乘法从$\mathbb{R}^2$的几何意义来看表示的是向量长度的缩放倍率。例如$x=(1,2)$那么$2x=(2,4)$.
@@ -190,7 +190,7 @@
 
 同时，向量的标量乘法满足标量结合律。
 \begin{corollary}
-	若$a,b\in \mathrm{S},x\in \mathrm{S}^n$，满足$(ab)x=a(bx)$。
+	若$a,b\in \mathbb{F},x\in \mathbb{F}^n$，满足$(ab)x=a(bx)$。
 \end{corollary}
 
 至此，我们对向量的运算法则做一个总结，我们目前只定义了2种运算法则，一种是向量和，另一种是标量积，下面我们会用这两种运算讲解一个特殊的集合，使得这个集合由这两部分构成。
@@ -213,7 +213,7 @@
 
 如果要刻画线性空间，我们先从空间说起。
 
-前文我们提到了``空间$\mathrm{S}^n$''，那么我们可以在此断章取义地说，空间就是一个集合，而线性空间是一个特殊的集合，我们给它一个符号$V$来表示。
+前文我们提到了``空间$\mathbb{F}^n$''，那么我们可以在此断章取义地说，空间就是一个集合，而线性空间是一个特殊的集合，我们给它一个符号$V$来表示。
 
 下面给出定义来描述线性空间特殊的地方，线性空间$V$是一个带有加法和标量乘法的集合，下面我们将前面的向量的运算法则抽象化来定义它们。不过在此之前，我希望和大家来聊一聊一些你可能不是很了解的名词，例如函数(function)。
 \begin{definition}{函数(一元)}
@@ -226,15 +226,15 @@
 	两个可以相加的元素进行加法运算，这是一种函数吗？
 \end{ascolorbox1}
 
-回答是肯定的，只不过这就不是一元函数了，这是二元函数，即``输入两个元素并输出一个元素''，翻译成数学的符号语言可以是：若$a,b\in A$则$f(a,b):=a+b$。同理，如果我们将集合内的元素特殊化为一种向量，那就是若$a,b\in \mathrm{S}^n$则$f(a,b):=a+b$。
+回答是肯定的，只不过这就不是一元函数了，这是二元函数，即``输入两个元素并输出一个元素''，翻译成数学的符号语言可以是：若$a,b\in A$则$f(a,b):=a+b$。同理，如果我们将集合内的元素特殊化为一种向量，那就是若$a,b\in \mathbb{F}^n$则$f(a,b):=a+b$。
 
 那我们回到线性空间上来，如果一个集合$V$满足下面这一些条件的我们称其为线性空间\footnote{有些教材会叫做向量空间}。
 
 \begin{definition}{线性空间上的加法与标量乘法}
-	若集合$V$与数集$\mathrm{S}$满足以下的性质，则称$V$为$\mathrm{S}$上的线性空间:
+	若集合$V$与数集$\mathbb{F}$满足以下的性质，则称$V$为$\mathbb{F}$上的线性空间:
 	\begin{enumerate}
 		\item $V$上的加法是一个函数使得任意一对$u,v \in V$经过法则$f(u,v)=u+v$转变为$V$中的另一个元素，这说明了$u+v\in V$。
-		\item $V$上的标量乘法是一个函数使得任意一个$\alpha \in \mathrm{S}$和$u\in V$经过法则$f(u)=\alpha u$转变为$V$中的另一个元素，这说明了$\alpha u \in V$。
+		\item $V$上的标量乘法是一个函数使得任意一个$\alpha \in \mathbb{F}$和$u\in V$经过法则$f(u)=\alpha u$转变为$V$中的另一个元素，这说明了$\alpha u \in V$。
 	\end{enumerate}
 \end{definition}
 
@@ -245,11 +245,11 @@
 	线性空间就是带有加法和标量乘法的集合$V$，满足如下的性质：
 	\begin{itemize}
 		\item 交换性(commutativity)：对于所有的$u,v\in V$都有$u+v=v+u$;
-		\item 结合性(associativity)：对于所有的$u,v,w \in V$和$a,b\in \mathrm{S}$都有$(u+v)+w=u+(v+w)$和$(ab)v=a(bv)$;
+		\item 结合性(associativity)：对于所有的$u,v,w \in V$和$a,b\in \mathbb{F}$都有$(u+v)+w=u+(v+w)$和$(ab)v=a(bv)$;
 		\item 加法单位元(additive identity)：存在$\boldsymbol{0}\in V$使得对于所有的$v\in V$都有$v+\boldsymbol{0}=v$;
 		\item 加法逆元(additive inverse)：对于每一个$v\in V$都存在$w\in V$使得$v+w=\boldsymbol{0}$;
 		\item 乘法单位元(multiplicative identity)：对于所有的$v\in V$都存在$w\in V$使得$v+w=0$;
-		\item 分配性质(distributive properties)：对于所有的$a,b \in \mathrm{S}$和$u,v \in V$都有$a(u+v)=au+av$和$(a+b)v=av+bv$。
+		\item 分配性质(distributive properties)：对于所有的$a,b \in \mathbb{F}$和$u,v \in V$都有$a(u+v)=au+av$和$(a+b)v=av+bv$。
 	\end{itemize}
 \end{definition}
 
@@ -257,7 +257,7 @@
 	空集可以是线性空间吗？
 \end{ascolorbox1}
 
-答案为不是，因为空集$A$它不存在单位元$\boldsymbol{0}\in A$所以并不能是线性空间，此外，需要注意的是我们一般会说$V$是$\mathrm{S}$上的线性空间而不会直接说$V$是线性空间，因为我们在定义线性空间的时候，依赖了$\mathrm{S}$这个标量数集。
+答案为不是，因为空集$A$它不存在单位元$\boldsymbol{0}\in A$所以并不能是线性空间，此外，需要注意的是我们一般会说$V$是$\mathbb{F}$上的线性空间而不会直接说$V$是线性空间，因为我们在定义线性空间的时候，依赖了$\mathbb{F}$这个标量数集。
 
 如之前所承诺的，下面给出向量的定义。
 
@@ -383,7 +383,7 @@ $P_n$ 中的元素是形如 $p(x) = a_0 + a_1 x + a_2 x^2 + \cdots + a_n x^n$ �
 	\begin{itemize}
 		\item 存在加法单位元$\boldsymbol{0}\in U$；
 		\item 对于加法封闭，即$v,w\in U$满足$v+w\in U$；
-		\item 对于标量乘法封闭，即$\lambda \in \mathrm{S},v\in U$满足$\lambda v\in \mathrm{S}$。
+		\item 对于标量乘法封闭，即$\lambda \in \mathbb{F},v\in U$满足$\lambda v\in \mathbb{F}$。
 	\end{itemize}
 \end{corollary}
 
@@ -446,6 +446,60 @@ $P_n$ 中的元素是形如 $p(x) = a_0 + a_1 x + a_2 x^2 + \cdots + a_n x^n$ �
 通过一组向量的线性组合所产生的向量能表示的空间是这个向量的张成空间，下面给出定义。
 
 \begin{definition}{张成空间(span)}
-	给定向量集合 $ S = \{v_1, v_2, \dots, v_k\} $（其中 $ v_i $ 是向量空间 $ V $ 中的向量），这些向量的张成空间是所有可能的线性组合构成的集合，记作：$$\text{Span}(S) = \{ c_1 v_1 + c_2 v_2 + \dots + c_k v_k \mid c_1, c_2, \dots, c_k \in \mathrm{S} \}$$
+	给定向量集合 $ S = \{v_1, v_2, \dots, v_k\} $（其中 $ v_i $ 是向量空间 $ V $ 中的向量），这些向量的张成空间是所有可能的线性组合构成的集合，记作：$$\text{Span}(S) = \{ c_1 v_1 + c_2 v_2 + \dots + c_k v_k \mid c_1, c_2, \dots, c_k \in \mathbb{F} \}$$如果$V=\text{Span}(S)$，则称向量集合$S$张成\footnote{这里的张成是动词。}空间$V$。
 \end{definition}
 
+例如$(1,2,4) \in \text{Span}(\left\{ (1,0,0),(0,1,2) \right\})$因为存在线性组合使得$(1,2,4)=(1,0,0)+2(0,1,2)$，而$(1,2,5) \notin \text{Span}(\left\{ (1,0,0),(0,1,2) \right\})$因为不存在线性组合使得$(1,2,5)=\lambda (1,0,0)+\beta (0,1,2)$。
+
+再有例子$\mathbb{R}^3=\text{Span}(\left\{ (1,0,0),(0,1,0),(0,0,1) \right\})$，因为任何一个$v\in \mathbb{R}^3$都可以由$\left\{ (1,0,0),(0,1,0),(0,0,1) \right\}$的线性组合构成。
+
+\begin{corollary}
+	张成空间$\text{Span}(S)$是包含向量$S$空间的子空间。
+\end{corollary}
+
+不要笑！可能这个概念对读者来说就像$2+2=4$一样简单，这个推论是显然的，张成空间是子空间，但是我们还是来证明它。
+
+\begin{proof}
+	对于$V=\text{Span}(S),S=\left\{ v_1,v_2,v_3,\cdots,v_n \right\}$，有加法单位元$\boldsymbol{0}\in V$，在此空间$V$中$$\boldsymbol{0}=\sum_{i=1}^{n}(0v_i) $$在空间$V$中满足在加法封闭$$\sum_{i=1}^{n}a_iv_i+ \sum_{i=1}^{n}c_iv_i=\sum_{i=1}^{n}(a_i+c_i)v_i$$也满足在标量乘法下封闭$$\lambda \sum_{i=1}^{n}a_iv_i= \sum_{i=1}^{n}\lambda a_iv_i$$所以张成空间$\text{Span}(S)$是包含向量$S$空间的子空间。$\square$
+\end{proof}
+
+\subsection{线性相关性}
+
+下面我们给出线性代数的一个关键定义，从此往后，我们线性代数研究的内容就是有限维的线性空间。
+
+\begin{definition}{有限维线性空间}
+	线性空间如果可以由其空间内的有限个向量张成，则这个线性空间是有限维的。
+\end{definition}
+
+同时，我们在此基础上研究线性相关性；设$v_1,v_2,v_3,\cdots,v_n \in V$且$v \in \text{Span}(V)$，根据张成空间的定义我们有$a_1,a_2,a_3,\cdots,a_n \in \mathbb{F}$使得$$v = \sum_{i=1}^{n}a_iv_i =a_1v_1+a_2v_2+a_3v_3+\cdots+a_nv_n$$若$v=\boldsymbol{0}$，我们有一组显然的结果，即当$a_1=a_2=a_3=\cdots=a_n=0$的时候，$v=\boldsymbol{0}$，然而通常来说，我们可能还会遇到其他的$a_i$组合也可以使得$v=\boldsymbol{0}$，于是我们做出如下定义：
+
+\begin{definition}{线性无关\footnote{有些书中会写成线性独立}(linearly independent)}
+	对于向量$v_1,v_2,v_3,\cdots,v_n$如果使得其线性组合$a_1v_1+a_2v_2+a_3v_3+\cdots+a_nv_n=\boldsymbol{0}$的情况只有$a_1=a_2=a_3=\cdots=a_n=0$，则称向量$v_1,v_2,v_3,\cdots,v_n$线性无关。
+\end{definition}
+
+\begin{definition}{线性相关(linearly dependent)}
+	若一些向量不是线性无关的，就称为线性相关。
+\end{definition}
+
+给出例子，向量$(1,0,0),(2,0,0),(0,0,3)$是线性相关的，因为存在$\boldsymbol{0}=2(1,0,0)+(-1)(2,0,0)+0(0,0,3)$而$(1,0,0),(0,2,0),(0,0,3)$是线性无关的，因为只有$a_1=a_2=a_3=0$使得$\boldsymbol{0}=0(1,0,0)+0(0,2,0)+0(0,0,3)$。
+
+\begin{example}
+	向量$(2,3,1),(1,-1,2),(7,3,c)$线性相关，求$c$的值。
+	\tcblower
+	\textcolor{purple}{\textbf{解}}：若三个向量线性相关，则有$\alpha,\beta,\gamma \in \mathbb{R},\alpha (2,3,1)+\beta (1,-1,2)+\gamma (7,3,c)=0$，可得线性方程$$\left\{\begin{matrix} 
+		2\alpha +1\beta+7\gamma = 0 \\  
+		3\alpha +(-1)\beta+3\gamma=0 \\
+		1\alpha +2\beta+c\gamma=0
+	  \end{matrix}\right.$$若使得线性方程组有非全为0解，我们任意取$\alpha = 1$，则根据前两个式子可得$$\left\{\begin{matrix} 
+		1\beta+7\gamma = -2 \\
+		(-1)\beta+3\gamma= -3 
+		\end{matrix}\right.$$解其可得$\beta=1.5,\gamma=-0.5$而$\alpha=1$，带入第三式，$1+2\times 1.5-0.5c=0$最终结果为$$c=8$$
+\end{example}
+
+\begin{corollary}
+	如果一组向量线性相关，那么其中一个向量均可以由其他向量的线性组合表示。
+\end{corollary}
+
+\begin{proof}
+	一组向量 $v_1, v_2, \dots, v_n$ 是线性相关的，当且仅当存在不全为零的标量 $c_1, c_2, \dots, c_n$，使得：$$c_1 v_1 + c_2 v_2 + \dots + c_n v_n = \mathbf{0}$$由于向量组线性相关，至少存在一个标量 $c_k \neq 0$($1 \leq k \leq n$)而将上述等式中的 $v_k$ 单独移到等式一侧：$$c_k v_k = -c_1 v_1 - c_2 v_2 - \dots - c_{k-1} v_{k-1} - c_{k+1} v_{k+1} - \dots - c_n v_n$$两边同除$c_k$可得$$v_k = -\frac{c_1}{c_k} v_1 - \frac{c_2}{c_k} v_2 - \dots - \frac{c_{k-1}}{c_k} v_{k-1} - \frac{c_{k+1}}{c_k} v_{k+1} - \dots - \frac{c_n}{c_k} v_n$$本题得证。$\square$
+\end{proof}
