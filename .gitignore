@@ -43,5 +43,8 @@
 *.tmproj.*
 *.sublime-workspace
 *.sublime-project
+.DS_Store
 vscode/
 idea/
+venv/
+.venv/
