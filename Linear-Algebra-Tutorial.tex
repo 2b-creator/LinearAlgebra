@@ -7,7 +7,10 @@
 \usepackage{tikz,times,amsmath} %%分别是绘图宏包, 字体宏包, 数学公式宏包
 %\usepackage{pgfplots} %% 这个宏包可以不加
 \usepackage{tikz-3dplot} %%三维图形绘制需要的宏包 
+\usepackage[table]{xcolor}
+\usetikzlibrary {angles}
 \usetikzlibrary {arrows.meta}
+\usetikzlibrary {quotes}
 \title{线性代数}
 \subtitle{与我的思考}
 
@@ -47,13 +50,14 @@
 \mainmatter
 %\partsimage{cov18.png}
 %\part{模板概述}
-\chapterimage{chapters/1.jpg}
+\chapterimage{chapters/1.png}
 \input{cha/LinearSpace.tex}
 
 
 \chapterimage{chapters/2.jpg}
 \input{cha/LinearlyMap.tex}
 
-
+\chapterimage{chapters/3.jpg}
+\input{cha/InnerProduct.tex}
 
 \end{document}

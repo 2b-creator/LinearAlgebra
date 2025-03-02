@@ -1,6 +1,7 @@
 \chapter{线性空间}
 \begin{center}
-	\textcolor[RGB]{255, 0, 0}{\faHeart}越想贴近事实，不明白的事情就越多.\textcolor[RGB]{255, 0, 0}{\faHeart}
+	% \textcolor[RGB]{255, 0, 0}{\faHeart}越想贴近事实，不明白的事情就越多.\textcolor[RGB]{255, 0, 0}{\faHeart}
+	「越想贴近事实，不明白的事情就越多」
 \end{center}
 \rightline{——《宝石之国》}
 \vspace{-5pt}
@@ -119,11 +120,12 @@
 \end{figure}
 
 \section{向量的运算法则}
-
+\label{sec:vector.operator}
 \subsection{加法}
 
 \begin{definition}{向量的加法}
-	若$x,y\in \mathbb{F}^n,x=(x_1,x_2,x_3,\cdots,x_n),y=(y_1,y_2,y_3,\cdots,y_n)$则$x+y$定义为$$x+y=(x_1+y_1,x_2+y_2,x_3+y_3,\cdots x_n+y_n)$$
+	\label{def:vectoraddition}
+	若$x,y\in \mathbb{F}^n,x=(x_1,x_2,x_3,\cdots,x_n),y=(y_1,y_2,y_3,\cdots,y_n)$则$x+y$定义为$$x+y:=(x_1+y_1,x_2+y_2,x_3+y_3,\cdots x_n+y_n)$$
 \end{definition}
 
 实际上两个向量相加，就是将它们元组里面的所有元素依次相加得到一个新的元组。
@@ -133,6 +135,10 @@
 \end{ascolorbox1}
 
 要解答这个问题，我们需要返回到定义中，我们只定义了维度相同都为$n$的向量相加，并没有定义维度不同的向量相加的情况，所以这是一个未定义的行为；所以下面的对向量的运算均是在同一维度下进行。同理，向量与标量无法相加。
+
+\begin{postulate}
+	只有维度相同的向量才能互相相加。
+\end{postulate}
 
 同样，向量的加法也满足交换律：
 \begin{corollary}
@@ -176,7 +182,8 @@
 \subsection{标量乘法}
 
 \begin{definition}{向量的标量乘法}
-	若标量$\lambda \in \mathbb{F}$，其对一个向量$x=(x_1,x_2,x_3,\cdots,x_n)$的乘积满足以下的运算法则$$\lambda(x_1,x_2,x_3,\cdots,x_n)=(\lambda x_1,\lambda x_2,\lambda x_3,\cdots,\lambda x_n)$$
+	\label{def:facmul}
+	若标量$\lambda \in \mathbb{F}$，其对一个向量$x=(x_1,x_2,x_3,\cdots,x_n)$的乘积满足以下的运算法则$$\lambda(x_1,x_2,x_3,\cdots,x_n):=(\lambda x_1,\lambda x_2,\lambda x_3,\cdots,\lambda x_n)$$
 \end{definition}
 
 实际上如图\ref{fig:mulfsn}所示，向量的标样乘法从$\mathbb{R}^2$的几何意义来看表示的是向量长度的缩放倍率。例如$x=(1,2)$那么$2x=(2,4)$.
@@ -210,14 +217,14 @@
 
 \section{线性空间$\mathbb{R}^2$与$\mathbb{R}^3$}
 \subsection{线性空间}
-
+\label{subsec:linearSpace}
 如果要刻画线性空间，我们先从空间说起。
 
 前文我们提到了``空间$\mathbb{F}^n$''，那么我们可以在此断章取义地说，空间就是一个集合，而线性空间是一个特殊的集合，我们给它一个符号$V$来表示。
 
 下面给出定义来描述线性空间特殊的地方，线性空间$V$是一个带有加法和标量乘法的集合，下面我们将前面的向量的运算法则抽象化来定义它们。不过在此之前，我希望和大家来聊一聊一些你可能不是很了解的名词，例如函数(function)。
 \begin{definition}{函数(一元)}
-	对于任意的非空集合$A,B$，对集合$A$施加一个法则$f$使得$A$中的元素$x$可以转变为集合$B$中的元素$y$，记作$f(x)$，即$y=f(x)$。
+	对于任意的非空集合$A,B$，对集合$A$施加一个法则$f$使得$A$中的元素$x$可以转变为集合$B$中的元素$y$，记作$f(x)$或$f: A\rightarrow B$，即$y=f(x)$。
 \end{definition}
 
 上面讲述了函数的一般情形，那就是一元函数；一元函数有一个显著的特点，就是``输入一个元素并输出一个元素''，当然还有多元函数，下面请读者思考。
@@ -272,6 +279,7 @@
 向量同时具有长度和方向两种特性，如果我们在$\mathbb{R}^2$上绘制平面直角坐标系来图像化向量这一个概念的话，向量就是一个有向箭头，由起点和终点构成，若一个有向箭头的起点为$P$，终点为$Q$，我们将此有向箭头\footnote{向量与有向箭头的区别在于，长度相同且方向相同的有向箭头，可以有很多个表示，如图\ref{fig:same.vector}所示，而这两个有向箭头表示的向量是同一个。不过，通常而言，该有向线段也可直接称为向量}记为$\overrightarrow{PQ}$。若$a\in \mathbb{R}^2,a=\overrightarrow{PQ}$，则向量$a$的长度为线段$PQ$的长度，记作$\left \| a \right \| $。
 
 \begin{definition}{$\mathbb{R}^2$上向量的长度}
+	\label{def:lengthOfVec}
 	若$x\in \mathbb{R}^2$且$x=(x_1,x_2)$，则$x$的长度$\left \| x \right \| $为$$\left \| x \right \| := \sqrt{x_1^2+x_2^2}$$
 \end{definition}
 
