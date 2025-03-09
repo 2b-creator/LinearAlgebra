@@ -1,0 +1,103 @@
+\contentsline {part}{ \@mptof {1}{理论部分} }{1}{part.1}%
+\ttl@starttoc {default@1}
+\contentsline {chapter}{\numberline {1}线性空间}{2}{chapter.1}%
+\contentsline {section}{\numberline {1.1}标量与向量}{2}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}数的运算}{2}{subsection.1.1.1}%
+\contentsline {subsection}{\numberline {1.1.2}标量}{3}{subsection.1.1.2}%
+\contentsline {subsection}{\numberline {1.1.3}元组}{3}{subsection.1.1.3}%
+\contentsline {subsection}{\numberline {1.1.4}笛卡尔积}{3}{subsection.1.1.4}%
+\contentsline {subsection}{\numberline {1.1.5}空间 $\mathbb {F}^n$}{4}{subsection.1.1.5}%
+\contentsline {subsection}{\numberline {1.1.6}向量}{4}{subsection.1.1.6}%
+\contentsline {section}{\numberline {1.2}向量的运算法则}{5}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}加法}{5}{subsection.1.2.1}%
+\contentsline {subsection}{\numberline {1.2.2}0 向量}{6}{subsection.1.2.2}%
+\contentsline {subsection}{\numberline {1.2.3}加法逆元}{6}{subsection.1.2.3}%
+\contentsline {subsection}{\numberline {1.2.4}标量乘法}{6}{subsection.1.2.4}%
+\contentsline {section}{\numberline {1.3}线性空间$\mathbb {R}^2$与$\mathbb {R}^3$}{7}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}线性空间}{7}{subsection.1.3.1}%
+\contentsline {subsection}{\numberline {1.3.2}直线，平面与三维空间上的向量}{8}{subsection.1.3.2}%
+\contentsline {subsection}{\numberline {1.3.3}其他线性空间}{11}{subsection.1.3.3}%
+\contentsline {section}{\numberline {1.4}子空间}{12}{section.1.4}%
+\contentsline {subsection}{\numberline {1.4.1}子空间(subspace)的定义}{12}{subsection.1.4.1}%
+\contentsline {subsection}{\numberline {1.4.2}子空间之和}{12}{subsection.1.4.2}%
+\contentsline {subsection}{\numberline {1.4.3}直和}{13}{subsection.1.4.3}%
+\contentsline {section}{\numberline {1.5}张成空间与线性相关性}{13}{section.1.5}%
+\contentsline {subsection}{\numberline {1.5.1}线性组合与张成空间}{13}{subsection.1.5.1}%
+\contentsline {subsection}{\numberline {1.5.2}线性相关性}{14}{subsection.1.5.2}%
+\contentsline {subsection}{\numberline {1.5.3}基与维数}{15}{subsection.1.5.3}%
+\contentsline {section}{\numberline {1.6}章节练习}{16}{section.1.6}%
+\contentsline {subsection}{\numberline {1.6.1}A组}{16}{subsection.1.6.1}%
+\contentsline {subsection}{\numberline {1.6.2}B组}{17}{subsection.1.6.2}%
+\contentsline {chapter}{\numberline {2}矩阵与线性映射}{18}{chapter.2}%
+\contentsline {section}{\numberline {2.1}线性方程组与矩阵}{18}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}向量的矩阵表示}{18}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}线性方程组与平面上的线性变换}{19}{subsection.2.1.2}%
+\contentsline {subsection}{\numberline {2.1.3}矩阵表示线性方程组}{22}{subsection.2.1.3}%
+\contentsline {subsection}{\numberline {2.1.4}矩阵的定义}{22}{subsection.2.1.4}%
+\contentsline {section}{\numberline {2.2}矩阵的运算法则}{23}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}矩阵和}{23}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}0 矩阵}{23}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}加法逆元}{24}{subsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.2.4}标量乘法}{24}{subsection.2.2.4}%
+\contentsline {subsection}{\numberline {2.2.5}矩阵乘法}{24}{subsection.2.2.5}%
+\contentsline {subsection}{\numberline {2.2.6}平面上的线性变换}{26}{subsection.2.2.6}%
+\contentsline {section}{\numberline {2.3}线性映射}{27}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}从平面走向更高维度}{27}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}线性空间中的线性映射}{27}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.3}零空间}{28}{subsection.2.3.3}%
+\contentsline {subsection}{\numberline {2.3.4}值域空间}{29}{subsection.2.3.4}%
+\contentsline {subsection}{\numberline {2.3.5}线性映射基本定理}{29}{subsection.2.3.5}%
+\contentsline {section}{\numberline {2.4}矩阵表示线性映射}{30}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}线性映射的运算法则}{30}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.2}矩阵描述线性映射}{30}{subsection.2.4.2}%
+\contentsline {section}{\numberline {2.5}章节练习}{32}{section.2.5}%
+\contentsline {subsection}{\numberline {2.5.1}A组}{32}{subsection.2.5.1}%
+\contentsline {subsection}{\numberline {2.5.2}B组}{32}{subsection.2.5.2}%
+\contentsline {chapter}{\numberline {3}内积空间}{34}{chapter.3}%
+\contentsline {section}{\numberline {3.1}内积}{34}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}向量的点积与长度表示}{34}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}内积的定义}{35}{subsection.3.1.2}%
+\contentsline {subsection}{\numberline {3.1.3}范数}{36}{subsection.3.1.3}%
+\contentsline {subsection}{\numberline {3.1.4}内积空间}{37}{subsection.3.1.4}%
+\contentsline {subsection}{\numberline {3.1.5}Cauchy-Schwarz 不等式}{37}{subsection.3.1.5}%
+\contentsline {subsection}{\numberline {3.1.6}余弦定理}{38}{subsection.3.1.6}%
+\contentsline {subsection}{\numberline {3.1.7}三角不等式}{39}{subsection.3.1.7}%
+\contentsline {section}{\numberline {3.2}正交}{40}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}正交的定义}{40}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}正交基}{41}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}Gram-Schmidt 正交化}{41}{subsection.3.2.3}%
+\contentsline {subsection}{\numberline {3.2.4}正交投影}{43}{subsection.3.2.4}%
+\contentsline {section}{\numberline {3.3}极小化问题}{44}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}到子空间的最短距离}{44}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}多项式与最小化}{44}{subsection.3.3.2}%
+\contentsline {section}{\numberline {3.4}章节练习}{46}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}A组}{46}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.4.2}B组}{47}{subsection.3.4.2}%
+\contentsline {part}{ \@mptof {2}{基础部分} }{48}{part.2}%
+\ttl@stoptoc {default@1}
+\ttl@starttoc {default@2}
+\contentsline {chapter}{\numberline {4}行列式}{49}{chapter.4}%
+\contentsline {section}{\numberline {4.1}面积与体积}{49}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}面积}{49}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}体积}{51}{subsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.1.3}2或3阶行列式的性质}{51}{subsection.4.1.3}%
+\contentsline {section}{\numberline {4.2}$n$阶行列式}{52}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}$n$阶行列式的定义}{52}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}2阶与3阶行列式的运算}{52}{subsection.4.2.2}%
+\contentsline {section}{\numberline {4.3}行列式按行展开}{52}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}代数余子式}{52}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}行列式按行展开}{53}{subsection.4.3.2}%
+\contentsline {section}{\numberline {4.4}行列式的性质}{55}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}转置}{55}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}其他性质}{55}{subsection.4.4.2}%
+\contentsline {subsection}{\numberline {4.4.3}初等变换计算行列式}{57}{subsection.4.4.3}%
+\contentsline {section}{\numberline {4.5}置换\FN@sf@gobble@opt {本节选学} }{59}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}全排列与置换}{59}{subsection.4.5.1}%
+\contentsline {subsection}{\numberline {4.5.2}有向的$n$维测度}{59}{subsection.4.5.2}%
+\contentsline {subsection}{\numberline {4.5.3}最少置换次数与$\text {sign} (\sigma )$}{59}{subsection.4.5.3}%
+\contentsline {subsection}{\numberline {4.5.4}行列式的排列定义}{60}{subsection.4.5.4}%
+\contentsline {section}{\numberline {4.6}章节练习}{61}{section.4.6}%
+\contentsline {subsection}{\numberline {4.6.1}A组}{61}{subsection.4.6.1}%
+\contentsline {subsection}{\numberline {4.6.2}B组}{61}{subsection.4.6.2}%
+\contentsline {chapter}{\numberline {5}矩阵与线性方程组}{62}{chapter.5}%
+\contentsfinish 

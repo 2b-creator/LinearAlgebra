@@ -1,0 +1,623 @@
+\chapter{行列式}
+\begin{center}
+	% \textcolor[RGB]{255, 0, 0}{\faHeart}所以生命啊，它苦涩如歌.\textcolor[RGB]{255, 0, 0}{\faHeart}
+	「鸟下绿芜秦苑夕，蝉鸣黄叶汉宫秋」
+\end{center}
+\rightline{——《咸阳城东楼》}
+\vspace{-5pt}
+\begin{center}
+	\pgfornament[width=0.36\linewidth,color=lsp]{88}
+\end{center}
+
+\section{面积与体积}
+
+\subsection{面积}
+
+考虑在如图\ref{tikz:areaDet}所示平面直角坐标系中$u,v\in \mathbb{R}^2$，有向箭头$\overrightarrow{OA}=v=(v_1,v_2),\overrightarrow{OB}=u=(u_1,u_2),\overrightarrow{OC}=u+v$，求平行四边形$OACB$的面积。
+
+\begin{figure}[htbp]
+	\centering
+	\include{figure/tikz/areaDet}
+	\caption{平行四边形}
+	\label{tikz:areaDet}
+\end{figure}
+
+在小时候我们没有学习过高级方法的时候，我们通常会使用割补法来计算它们的面积，通常会如下作图
+
+\begin{figure}[htbp]
+	\centering
+	\include{figure/tikz/areaDetDashed}
+	\caption{割补法求面积}
+	\label{tikz:areaDetDashed}
+\end{figure}
+
+设平行四边形面积为$S$那么$$S=(v_1+u_1)(v_2+u_2)-2u_2v_1-u_1u_2-v_1v_2=u_1v_2-u_2v_1\footnote{向量$u$在向量$v$的顺时针方向上时为正否则为负}$$所以我们可以快速地写出它们围成的平行四边形面积，即在平面直角坐标系内两个向量$u=(u_1,u_2)$和向量$v=(v_1,v_2)$围成的平行四边形面积$S$为$$S=\left| u_1v_2-u_2v_1 \right|$$
+
+\begin{example}
+	求向量$u=(3,1)$和向量$v=(1,2)$围成的平行四边形面积$S$。
+	\tcblower
+	\textcolor{purple}{\textbf{解}}：$S=3\times 2-1\times 1=5$
+\end{example}
+
+我们引入一个记号来表达这两个向量围成的平行四边形面积，即$$\begin{vmatrix}
+	u_1&u_2 \\
+	v_1&v_2
+\end{vmatrix}:=u_1v_2-u_2v_1$$也称为$2\times 2$矩阵的行列式，该行列式的值的绝对值为平行四边形面积。
+
+我们注意到该行列式由两个向量构成，如果我们尝试交换行列式的第一行和第二行，也就是交换一下围成这个四边形的向量的顺序，我们可以得到$$\begin{vmatrix}
+	v_1&v_2 \\
+	u_1&u_2
+\end{vmatrix}:=u_2v_1-u_1v_2=-\begin{vmatrix}
+	u_1&u_2 \\
+	v_1&v_2
+\end{vmatrix}$$读者可以将其理解为这个面积是一个带符号的面积，这个符号和两个向量顺序有关。通过观察发现，如果第二个向量在第一个向量的顺时针方向上的话，其值为正。
+
+如果我们将某个向量放缩$\lambda$倍那么面积也会进行相对应的伸缩，即$$\lambda\begin{vmatrix}
+	v_1&v_2 \\
+	u_1&u_2
+\end{vmatrix}=\begin{vmatrix}
+	\lambda v_1& \lambda v_2 \\
+	u_1&u_2
+\end{vmatrix}=\begin{vmatrix}
+	v_1&v_2 \\
+	\lambda u_1&\lambda u_2
+\end{vmatrix}$$
+
+\subsection{体积}
+
+考虑在三维空间$\mathbb{R}^3$中，一个直的四棱柱的面积计算公式为$S_{\text{底面积}}\times h$，考虑由图\ref{tikz:areaDet}作为空间直角坐标系的底面，从原点长出一个$z$轴后如图\ref{tikz:areaDet3d}所示。
+
+\begin{figure}[htbp]
+	\centering
+	\include{figure/tikz/areaDet3d}
+	\caption{三维体积行列式表示}
+	\label{tikz:areaDet3d}
+\end{figure}
+
+所以如果我们在$z$上取一个向量围成一个四棱柱，那么它的体积就是$S_{\text{底面积}}\times h$计算如图\ref{tikz:areaDet3d}的四棱柱体积为$w_3(u_1v_2-u_2v_1)$；下面引入三阶行列式，分别写三个向量来表示这个体积，即$$\begin{vmatrix}
+	u_1&u_2  &0 \\
+	v_1&v_2  &0 \\
+	0&0  &w_3 
+  \end{vmatrix}=w_3(u_1v_2-u_2v_1)$$经过割补法验证，对于$u=(u_1,u_2,u_3),v=(v_1,v_2,v_3),w=(w_1,w_2,w_3) \in \mathbb{R}^3$其张成的四棱柱体积计算公式为$$S=|u_1(v_2w_3 - v_3w_2) - u_2(v_1w_3 - v_3w_1) + u_3(v_1w_2 - v_2w_1)|$$故我们定义一个三阶行列式，表示由这三个向量构成的立方体的体积，即$$\begin{vmatrix}
+	u_1& u_2 &u_3 \\
+	v_1& v_2 &v_3 \\
+	w_1& w_2 &w_3
+  \end{vmatrix}:=u_1(v_2w_3 - v_3w_2) - u_2(v_1w_3 - v_3w_1) + u_3(v_1w_2 - v_2w_1)$$
+
+\subsection{2或3阶行列式的性质}
+
+前面我们定义了2，3阶的行列式，通过几何意义我们不难发现如下性质。
+
+\begin{corollary}
+	2阶，3阶行列式有如下性质
+	\begin{enumerate}
+		\item 行列式某几行所表示的向量线性相关，行列式值为0。
+		\item 行列式某行向量乘以标量$\lambda$，行列式值也乘$\lambda$。
+	\end{enumerate}
+\end{corollary}
+
+%cite 测度
+
+我们通过图形的角度证明两个性质，第一个如果某几行向量线性相关说明三维图形会坍缩为一个平面，平面会坍缩为直线，所以它们对应的体积或面积均为0。第二个如果某行向量乘以标量$\lambda$那么它们的测度\footnote{这里的测度指的是，当描述的是一维空间其测度就是长度，二维测度为面积，三维测度为体积}也会放缩为$\lambda$倍。
+
+\section{$n$阶行列式}
+
+\subsection{$n$阶行列式的定义}
+
+首先我们定义一下什么叫作$n$阶方阵。
+
+\begin{definition}{$n$阶方阵}
+	若矩阵$\mathbf{A}$是一个$m\times n$矩阵，当$m=n$时，我们称$\mathbf{A}$是$n$阶方阵
+\end{definition}
+
+例如$\mathbf{A}=\begin{pmatrix}  
+	a_{11} & \cdots & a_{1n} \\  
+	\vdots & \ddots & \vdots \\  
+	a_{n1} & \cdots & a_{nn}  
+\end{pmatrix} $表示为$n$阶方阵，我们以此定义一个数表示该方阵的行列式。
+
+\begin{definition}{$n$阶行列式}
+	定义$n$阶方阵$\mathbf{A}$的行列式为$n$阶行列式，记作$\det \mathbf{A}$，也可以记作$$\det \mathbf{A}=\begin{vmatrix}  
+		a_{11} & \cdots & a_{1n} \\  
+		\vdots & \ddots & \vdots \\  
+		a_{n1} & \cdots & a_{nn}  
+	\end{vmatrix}$$
+\end{definition}
+
+前面说到了2阶，3阶行列式，我们来讨论更一般的情况，在$n$维空间上的测度。如果我们把$\mathbb{R}^n$空间上的标准正交基$\left\{ (1,0,0,\cdots,0),(0,1,0,\cdots,0),(0,0,1,\cdots,0),\cdots,(0,0,0,\cdots,1) \right\}$放入行列式内，我们就可以得到$$\begin{vmatrix}
+	1 & 0 & \cdots & 0 \\
+	0 & 1 & \cdots & 0 \\
+	\vdots & \vdots & \ddots & \vdots\\
+	0 & 0 & \cdots & 1
+\end{vmatrix}=1$$实际上，行列式的几何意义就是$n$向量张成的一个$n$维``图形''的测度。后面我们会以行展开的方式，来讲解它的运算\footnote{注意，这本书不会使用逆序排列法详细讲行列式的计算，虽然我们定义它的运算是这样的，但是这不会让我们更加理解行列式，且前面用几何法定义了它的含义，所以我们在后面的讲解中会直接讲运算方法}。
+
+\subsection{2阶与3阶行列式的运算}
+
+首先对于2阶行列式，计算方式肯定是：主对角线的乘积减去副对角线的乘积；对于三阶行列式，我们有如图\ref{tikz:SarrusRule}的计算记忆方法，这种方法称为 Sarrus\footnote{一般译作：萨鲁法} 法。
+
+\begin{figure}[htbp]
+	\centering
+	\include{figure/tikz/3dDetMem}
+	\caption{Sarrus 法求3阶行列式}
+	\label{tikz:SarrusRule}
+\end{figure}
+
+需要注意的是只有二阶和三阶行列式具有Sarrus法则，四阶及以上的行列式不存在Sarrus法。
+
+\section{行列式按行展开}
+
+\subsection{代数余子式}
+
+对于更高维度的行列式，我们通常使用按行展开的方式定义它们的运算；在此之前，我们先了解一下什么是代数余子式。
+
+\begin{definition}{余子式与代数余子式}
+	若$n$阶行列式的第$i$行第$j$列的余子式为$M_{ij}$，表示将该行与该列所有元素去除后剩下的元素将其合成为$n-1$阶行列式。而代数余子式$A_{ij}$定义为$$A_{ij}:=\left( -1 \right)^{i+j}M_{ij}$$
+\end{definition}
+
+我们用一张图来说明什么是代数余子式，若$n$阶行列式$\mathbf{D}$有$$\mathbf{D}=\begin{vmatrix}
+	1 & 3 & 4 & 10\\
+	2 & 5 & 9 & 11\\
+	6 & 8 & 12 & 15\\
+	7 & 13 & 14 & 16
+\end{vmatrix}$$则它的$a_{23}$的余子式$M_{23}$为去除第二行和第三列的所有元素，留下来的成为一个3阶行列式，即$$\begin{vmatrix}
+	1 & 3 & \textcolor{red}{4} & 10\\
+	\textcolor{red}{2} & \textcolor{red}{5} & \textcolor{red}{9} & \textcolor{red}{11}\\
+	6 & 8 & \textcolor{red}{12} & 15\\
+	7 & 13 & \textcolor{red}{14} & 16
+\end{vmatrix} \Longrightarrow M_{23}=\begin{vmatrix}
+	1 & 3 & 10\\
+	6 & 8 & 15\\
+	7 & 13 & 16
+\end{vmatrix},A_{23}=\left( -1 \right)^{2+3}M_{23}=-M_{23}$$
+
+\subsection{行列式按行展开}
+
+介绍完余子式后，我们使用 Laplace\footnote{一般译作拉普拉斯} 定理来计算行列式，在此之前我们先观察几何定义的三阶行列式，如果使用割补法来计算相关体积，我们有一个重要的推论，即$$\text{体积}=\text{底面积}\times \text{高}$$按照行列式的几何定义，$n$阶行列式的值定义为在$n$维空间上这些向量围成的$n$维测度，所以我们把式子抽象化，即$$n\text{维测度}=(n-1)\text{维测度}\times \text{高}$$仿照体积的算法$$\begin{vmatrix}
+	u_1& u_2 &u_3 \\
+	v_1& v_2 &v_3 \\
+	w_1& w_2 &w_3
+\end{vmatrix}:=u_1(v_2w_3 - v_3w_2) - u_2(v_1w_3 - v_3w_1) + u_3(v_1w_2 - v_2w_1)$$我们逐步建立高维空间，有 Laplace 定理如下
+
+\begin{theorem}{Laplace 定理(第一行)}
+	设行列式$\mathbf{D}$取第一行\footnote{由于我们没有讲到行列式的性质，这里暂时取第一行，实际上按照后面的行列式的性质，我们可以取任意一行或任意一列，此外，Laplace定理允许我们选择多行多列展开}所有元素$a_{11},a_{12},a_{13},\cdots,a_{1n}$以及它们的代数余子式$A_{11},A_{12},A_{13},\cdots,A_{1n}$，有$$\mathbf{D}=a_{11}A_{11}+a_{12}A_{12}+\cdots+a_{1n}A_{1n}$$写成求和符号为$$\mathbf{D}=\sum_{i=1}^{n} a_{1i}A_{1i}$$
+\end{theorem}
+
+下面我们来看一些例子。
+
+\begin{example}
+	使用Laplace定理计算行列式$$\mathbf{D}=\begin{vmatrix}
+		1 & 2 & 0 & 3\\
+		2 & 0 & 1 & 1\\
+		1 & 5 & 3 & 6\\
+		0 & -1 & 2 & 4
+	\end{vmatrix}$$
+	\tcblower
+	\textcolor{purple}{\textbf{解}}：按第一行展开行列式为$$\mathbf{D}=a_{11}A_{11}+a_{12}A_{12}+a_{13}A_{13}+a_{14}A_{14}$$其中$a_{11}=1,a_{12}=2,a_{13}=0,a_{14}=3$代数余子式分别为\begin{align}
+		A_{11}&=\begin{vmatrix}
+			0 & 1 & 1\\
+			5 & 3 & 6\\
+			-1 & 2 & 4
+		   \end{vmatrix}=-13\\
+		A_{12}&=-\begin{vmatrix}
+			2 & 1 & 1\\
+			1 & 3 & 6\\
+			0 & 2 & 4
+		   \end{vmatrix}=2\\
+		A_{13}&=\begin{vmatrix}
+			2 & 0 & 1\\
+			1 & 5 & 6\\
+			0 & -1 & 4
+		   \end{vmatrix}=51\\
+		A_{14}&=-\begin{vmatrix}
+			2 & 0 & 1\\
+			1 & 5 & 3\\
+			0 & -1 & 2
+		   \end{vmatrix}=-25
+	\end{align}
+	其中三阶行列式可使用Sarrus法解决，也可以继续按行展开，我们得到$$\mathbf{D}=-13\times 1+2\times 2+51\times 0+(-25)\times 3=-84$$
+\end{example}
+
+不过在实际的做题中还有比这种方法更加简洁的方法，这里仅作演示，运算技巧会在后续的行列式的性质详细讲述。
+
+\section{行列式的性质}
+
+\subsection{转置}
+
+行列式转置表示把行列进行调换，行变成列，列变成行。$$\mathbf{D} = \begin{vmatrix}
+	1 & 2 & 3\\
+	4 & 5 & 6\\
+	7 & 8 & 9
+\end{vmatrix} \Longrightarrow \mathbf{D}^{T}=\begin{vmatrix}
+	1 & 4 & 7\\
+	2 & 5 & 8\\
+	3 & 6 & 9
+\end{vmatrix}$$
+
+\begin{corollary}
+	行列式转置的转置等于其本身，即$\left( \mathbf{D}^{T} \right)^{T}=\mathbf{D}$
+\end{corollary}
+
+这个推论是显然的。
+
+\begin{corollary}
+	行列式转置的值等于其本身的值，即$\mathbf{D}^{T}=\mathbf{D}$
+\end{corollary}
+
+转置不变性说明在行列式中行和列的地位是平等的。因此行列式关于行变换的性质对于列变换也成立，此处不作证明，读者可以自己举例验证。
+
+\subsection{其他性质}
+
+\begin{corollary}
+	把行列式的某一行乘以一个系数，则它的行列式的值也乘以同一个系数。
+\end{corollary}
+
+$$\begin{vmatrix}
+	a_{11} & a_{12} & a_{13} & \cdots & a_{1n}\\
+	\vdots & \vdots & \vdots & \vdots & \vdots\\
+	\lambda a_{k1} & \lambda a_{k2} & \lambda a_{k2} & \cdots & \lambda a_{kn}\\
+	\vdots & \vdots & \vdots & \vdots & \vdots\\
+	a_{n1} & a_{n2} & a_{n3} & \cdots & a_{nn}
+\end{vmatrix}=\lambda \begin{vmatrix}
+	a_{11} & a_{12} & a_{13} & \cdots & a_{1n}\\
+	\vdots & \vdots & \vdots & \vdots & \vdots\\
+	a_{k1} & a_{k2} & a_{k2} & \cdots & a_{kn}\\
+	\vdots & \vdots & \vdots & \vdots & \vdots\\
+	a_{n1} & a_{n2} & a_{n3} & \cdots & a_{nn}
+\end{vmatrix}$$
+
+\begin{corollary}
+	行列式任意两行(列)交换，行列式的值变为原来的相反数。
+\end{corollary}
+
+$$\begin{vmatrix}
+	a_{11} & a_{12} & a_{13} & \cdots & a_{1n}\\
+	\vdots & \vdots & \vdots & \vdots & \vdots\\
+	a_{k1} & a_{k2} & a_{k3} & \cdots & a_{kn}\\
+	\vdots & \vdots & \vdots & \vdots & \vdots\\
+	a_{j1} & a_{j2} & a_{j3} & \cdots & a_{jn}\\
+	\vdots & \vdots & \vdots & \vdots & \vdots\\
+	a_{n1} & a_{n2} & a_{n3} & \cdots & a_{nn}
+\end{vmatrix}=-\begin{vmatrix}
+	a_{11} & a_{12} & a_{13} & \cdots & a_{1n}\\
+	\vdots & \vdots & \vdots & \vdots & \vdots\\
+	a_{j1} & a_{j2} & a_{j3} & \cdots & a_{jn}\\
+	\vdots & \vdots & \vdots & \vdots & \vdots\\
+	a_{k1} & a_{k2} & a_{k3} & \cdots & a_{kn}\\
+	\vdots & \vdots & \vdots & \vdots & \vdots\\
+	a_{n1} & a_{n2} & a_{n3} & \cdots & a_{nn}
+\end{vmatrix}$$
+
+\begin{corollary}
+	行列式中的一行是另一行的倍数，行列式值为0；或构成行列式的向量线性相关，行列式值为0。
+\end{corollary}
+
+$$\begin{vmatrix}
+	a_{11} & a_{12} & a_{13} & \cdots & a_{1n}\\
+	\vdots & \vdots & \vdots & \vdots & \vdots\\
+	\lambda a_{k1} & \lambda  a_{k2} & \lambda  a_{k3} & \cdots & \lambda  a_{kn}\\
+	\vdots & \vdots & \vdots & \vdots & \vdots\\
+	a_{k1} & a_{k2} & a_{k3} & \cdots & a_{kn}\\
+	\vdots & \vdots & \vdots & \vdots & \vdots\\
+	a_{n1} & a_{n2} & a_{n3} & \cdots & a_{nn}
+\end{vmatrix}=\lambda \begin{vmatrix}
+a_{11} & a_{12} & a_{13} & \cdots & a_{1n}\\
+\vdots & \vdots & \vdots & \vdots & \vdots\\
+a_{k1} & a_{k2} & a_{k3} & \cdots & a_{kn}\\
+\vdots & \vdots & \vdots & \vdots & \vdots\\
+a_{k1} & a_{k2} & a_{k3} & \cdots & a_{kn}\\
+\vdots & \vdots & \vdots & \vdots & \vdots\\
+a_{n1} & a_{n2} & a_{n3} & \cdots & a_{nn}
+\end{vmatrix}=0$$
+
+\begin{corollary}
+	行列式的一行具有线性性。
+\end{corollary}
+
+$$\begin{vmatrix}
+	a_{11} & a_{12} & a_{13} & \cdots & a_{1n}\\
+	\vdots & \vdots & \vdots & \vdots & \vdots\\
+	a_{k1}+b_{k1} & a_{k2}+b_{k2} & a_{k3}+b_{k3} & \cdots & a_{kn}+b_{k3} \\
+	\vdots & \vdots & \vdots & \vdots & \vdots\\
+	a_{j1} & a_{j2} & a_{j3} & \cdots & a_{jn}\\
+	\vdots & \vdots & \vdots & \vdots & \vdots\\
+	a_{n1} & a_{n2} & a_{n3} & \cdots & a_{nn}
+\end{vmatrix}=\begin{vmatrix}
+	a_{11} & a_{12} & a_{13} & \cdots & a_{1n}\\
+	\vdots & \vdots & \vdots & \vdots & \vdots\\
+	a_{k1} & a_{k2} & a_{k3} & \cdots & a_{kn}\\
+	\vdots & \vdots & \vdots & \vdots & \vdots\\
+	a_{j1} & a_{j2} & a_{j3} & \cdots & a_{jn}\\
+	\vdots & \vdots & \vdots & \vdots & \vdots\\
+	a_{n1} & a_{n2} & a_{n3} & \cdots & a_{nn}
+\end{vmatrix}+\begin{vmatrix}
+	a_{11} & a_{12} & a_{13} & \cdots & a_{1n}\\
+	\vdots & \vdots & \vdots & \vdots & \vdots\\
+	b_{k1} & b_{k2} & b_{k3} & \cdots & b_{kn}\\
+	\vdots & \vdots & \vdots & \vdots & \vdots\\
+	a_{j1} & a_{j2} & a_{j3} & \cdots & a_{jn}\\
+	\vdots & \vdots & \vdots & \vdots & \vdots\\
+	a_{n1} & a_{n2} & a_{n3} & \cdots & a_{nn}
+\end{vmatrix}$$
+
+\begin{corollary}
+	把某一行乘以一个数加到另一行，行列式值不变。
+\end{corollary}
+
+$$\begin{vmatrix}
+	a_{11} & a_{12} & a_{13} & \cdots & a_{1n}\\
+	\vdots & \vdots & \vdots & \vdots & \vdots\\
+	a_{k1} & a_{k2} & a_{k3} & \cdots & a_{kn}\\
+	\vdots & \vdots & \vdots & \vdots & \vdots\\
+	a_{j1} & a_{j2} & a_{j3} & \cdots & a_{jn}\\
+	\vdots & \vdots & \vdots & \vdots & \vdots\\
+	a_{n1} & a_{n2} & a_{n3} & \cdots & a_{nn}
+\end{vmatrix}=\begin{vmatrix}
+	a_{11} & a_{12} & a_{13} & \cdots & a_{1n}\\
+	\vdots & \vdots & \vdots & \vdots & \vdots\\
+	a_{k1}+a_{j1} & a_{k2}+a_{j2} & a_{k3}+a_{j3} & \cdots & a_{kn}+a_{jn}\\
+	\vdots & \vdots & \vdots & \vdots & \vdots\\
+	a_{j1} & a_{j2} & a_{j3} & \cdots & a_{jn}\\
+	\vdots & \vdots & \vdots & \vdots & \vdots\\
+	a_{n1} & a_{n2} & a_{n3} & \cdots & a_{nn}
+\end{vmatrix}$$
+
+\begin{corollary}
+	上三角方阵的行列式是对角线元素的乘积。
+\end{corollary}
+
+$$\begin{vmatrix}  
+	a_{11}& a_{12}& \cdots  & a_{1n} \\  
+	0 & a_{22}& \cdots  & a_{2n} \\  
+	\vdots & \vdots & \ddots & \vdots \\  
+	0& 0& \cdots  & a_{nn}  
+\end{vmatrix}=a_{11}a_{22}\cdots a_{nn}$$
+
+\begin{corollary}
+	设$n$阶方阵$\mathbf{A},\mathbf{B}$的行列式为$\det \mathbf{A},\det \mathbf{B}$有$\det (\mathbf{A}\mathbf{B})=\det \mathbf{A} \det \mathbf{B}$
+\end{corollary}
+
+\subsection{初等变换计算行列式}
+
+我们可以利用上述的性质来计算行列式，上述性质的变换我们称为行列式的初等变换，下面是常用的几种初等变换：
+\begin{enumerate}
+	\item 将行列式的两行交换位置
+	\item 将其中的一行乘一个非0常数
+	\item 将其中的一行乘一个非0常数后加到另一行
+\end{enumerate}
+它们分别对应
+\begin{enumerate}
+	\item 行列式的值变为原来的相反数
+	\item 行列式乘以同一个非零常数
+	\item 保持不变
+\end{enumerate}
+
+\begin{example}
+	计算行列式$\mathbf{D}=\begin{vmatrix}
+		1 & 2 & 1\\
+		0 & -3 & 4\\
+		1 & 0 & 5
+	\end{vmatrix}$
+	\tcblower
+	\textcolor{purple}{\textbf{解}}：将第1行乘$(-1)$加到第3行有
+	$$\begin{vmatrix}
+		1 & 2 & 1\\
+		0 & -3 & 4\\
+		1 & 0 & 5
+	\end{vmatrix}=\begin{vmatrix}
+		1 & 2 & 1\\
+		0 & -3 & 4\\
+		0 & -2 & 4
+	\end{vmatrix}$$交换第2列与第3列
+	$$\begin{vmatrix}
+		1 & 2 & 1\\
+		0 & -3 & 4\\
+		0 & -2 & 4
+	\end{vmatrix}=-\begin{vmatrix}
+		1 & 1 & 2\\
+		0 & 4 & -3\\
+		0 & 4 & -2
+	\end{vmatrix}$$第2行乘$(-1)$加到第3行$$-\begin{vmatrix}
+		1 & 1 & 2\\
+		0 & 4 & -3\\
+		0 & 4 & -2
+	\end{vmatrix}=-\begin{vmatrix}
+		1 & 1 & 2\\
+		0 & 4 & -3\\
+		0 & 0 & 1
+	\end{vmatrix}=-\left( 1\times 4 \times 1 \right)=-4$$
+\end{example}
+
+再来看一个4阶行列式的例子。
+
+\begin{example}
+	计算行列式$\mathbf{D}=\begin{vmatrix}
+		1 & 2 & 0 & 4\\
+		0 & 3 & -1 & 1\\
+		3 & -1 & 5 & 0\\
+		-2 & 0 & 1 & 1
+	   \end{vmatrix}$
+	\tcblower
+	\textcolor{purple}{\textbf{解}}：将第1行乘$(-3)$加到第3行有
+	$$\begin{vmatrix}
+		1 & 2 & 0 & 4\\
+		0 & 3 & -1 & 1\\
+		3 & -1 & 5 & 0\\
+		-2 & 0 & 1 & 1
+	   \end{vmatrix}=\begin{vmatrix}
+		1 & 2 & 0 & 4\\
+		0 & 3 & -1 & 1\\
+		0 & -7 & 5 & -12\\
+		-2 & 0 & 1 & 1
+	   \end{vmatrix}$$将第1行乘2加到第4行有
+	   $$\begin{vmatrix}
+		1 & 2 & 0 & 4\\
+		0 & 3 & -1 & 1\\
+		0 & -7 & 5 & -12\\
+		-2 & 0 & 1 & 1
+	   \end{vmatrix}=\begin{vmatrix}
+		1 & 2 & 0 & 4\\
+		0 & 3 & -1 & 1\\
+		0 & -7 & 5 & -12\\
+		0 & 4 & 1 & 9
+	   \end{vmatrix}$$将第2行乘2加到第3行；第2行乘$(-1)$加到第4行有
+	   $$\begin{vmatrix}
+		1 & 2 & 0 & 4\\
+		0 & 3 & -1 & 1\\
+		0 & -7 & 5 & -12\\
+		0 & 4 & 1 & 9
+	   \end{vmatrix}=\begin{vmatrix}
+		1 & 2 & 0 & 4\\
+		0 & 3 & -1 & 1\\
+		0 & -1 & 3 & -10\\
+		0 & 1 & 2 & 8
+	   \end{vmatrix}$$将第4行加到第3行有
+	   $$\begin{vmatrix}
+		1 & 2 & 0 & 4\\
+		0 & 3 & -1 & 1\\
+		0 & -1 & 3 & -10\\
+		0 & 1 & 2 & 8
+	   \end{vmatrix}=\begin{vmatrix}
+		1 & 2 & 0 & 4\\
+		0 & 3 & -1 & 1\\
+		0 & 0 & 5 & -2\\
+		0 & 1 & 2 & 8
+	   \end{vmatrix}$$运算到这里，为了计算不出错，我们最好遵循一个原则，就是行列式内的元素尽量不要出现分数，否则计算会比较麻烦，为了转化为上三角行列式我们先对第1行第2列的元素凑为1，即：将第4行乘$(-1)$加到第一行，并提取系数4$$\begin{vmatrix}
+		1 & 2 & 0 & 4\\
+		0 & 3 & -1 & 1\\
+		0 & 0 & 5 & -6\\
+		0 & 1 & 2 & 8
+	   \end{vmatrix}=\begin{vmatrix}
+		1 & 1 & -2 & -4\\
+		0 & 3 & -1 & 1\\
+		0 & 0 & 5 & -2\\
+		0 & 1 & 2 & 8
+	   \end{vmatrix}$$再将第4行乘$(-3)$加到第2行后交换2，4行有
+	   $$\begin{vmatrix}
+		1 & 1 & -2 & -4\\
+		0 & 3 & -1 & 1\\
+		0 & 0 & 5 & -2\\
+		0 & 1 & 2 & 8
+	   \end{vmatrix}=\begin{vmatrix}
+		1 & 1 & -2 & -4\\
+		0 & 0 & -7 & -23\\
+		0 & 0 & 5 & -2\\
+		0 & 1 & 2 & 8
+	   \end{vmatrix}=-\begin{vmatrix}
+		1 & 1 & -2 & -4\\
+		0 & 1 & 2 & 8\\
+		0 & 0 & 5 & -2\\
+		0 & 0 & -7 & -23
+	   \end{vmatrix}$$算到这里同学们可以继续将其化为上三角，但是我们选择按列展开两次便捷，即$$-\begin{vmatrix}
+		1 & 1 & -2 & -4\\
+		0 & 1 & 2 & 8\\
+		0 & 0 & 5 & -2\\
+		0 & 0 & -7 & -23
+	   \end{vmatrix}=-1\times 1\times \begin{vmatrix}
+		5 & -2\\
+		-7 & -23
+	   \end{vmatrix}$$最后求得行列式值为$$\mathbf{D}=-\begin{vmatrix}
+		5 & -2\\
+		-7 & -23
+	   \end{vmatrix}=129$$
+\end{example}
+
+\section{置换\footnote{本节选学} }
+
+\subsection{全排列与置换}
+
+本节内容选学。
+
+如果有$n$个元素进行排列，那么将其全部有序排列的方案一共有$n!$种排列方式。如果我们将$n$个元素的初始排列集合称作初始集合，那么我们可以看作一个函数映射，将这个集合映射为$n!-1$中的一个，我们称该函数为置换函数；
+
+\begin{definition}{置换函数}
+	若集合$V=\left\{ 1,2,3,\cdots,n \right\}$，设映射法则$\sigma: V\rightarrow V$的一一映射称为一个$n $元置换。函数$f(x)$称为置换函数。
+\end{definition}
+
+例如置换映射$\sigma:\left\{ 1,2,3,4,5 \right\}\rightarrow \left\{ 3,1,4,2,5 \right\}$，那么函数$\sigma(1)=3,\sigma(2)=1,\cdots$。
+
+\subsection{有向的$n$维测度}
+
+首先我们还是看二维平面，其二维测度为面积，我们不难发现当向量$u=(u_1,u_2),v=(v_1,v_2)$，当$v$在$u$的顺时针方向上的时候面积为正，否则为负。
+
+由此我们不妨以$n$维空间的标准基定义$n$维上向量的``旋转''方向，以此为基准形成排列，则如果有两个向量进行一次交换，那么它们进行一次置换后符号方向改变。如果上面的话有些抽象，我们不妨再拿二维空间举例；在二维空间中的标准基为$\left\{ (1,0),(0,1) \right\}$，其中如果有两个向量符合标准基的第一个和标准基的第二个的位置关系(第二个向量在第一个的顺时针方向)，那么行列式值为正，否则为负。推广到高维空间中也是如此。
+
+那么接下来我们继续探讨置换这些向量对行列式的影响，在此之前我们先对$\sigma$函数引入一个记号，表示$\sigma$置换了多少次。
+
+\subsection{最少置换次数与$\text{sign} (\sigma)$}
+
+首先定义最少置换次数函数。
+
+\begin{definition}{最少置换次数}
+	最少置换次数对置换映射法则$\sigma$的函数$\mathcal{R}:\sigma \rightarrow \mathbb{N}$，表示对使用映射法则$\sigma$之前的集合至少需要多少次置换以达到使用映射法则$\sigma$之后的集合\footnote{需要注意的是，这集合无序，但是映射后的集合却是一一对应，这里的集合可以看作是一个有序的数组，虽然集合讲究无序性}。
+\end{definition}
+
+下面我们来看一个例子，置换映射$\sigma:\left\{ 1,2,3,4,5 \right\}\rightarrow \left\{ 3,1,4,2,5 \right\}$，那么它的最少置换次数为3次，置换如下：首先初始状态为$$3,1,4,2,5$$第一次选择$3,1$调换顺序$$1,3,4,2,5$$接下里第二次选择$3,4$调换$$1,4,3,2,5$$最后第三次选择$2,4$调换顺序$$1,2,3,4,5$$所以$$\mathcal{R}(\sigma)=3$$事实上如果我们去掉最少二字的限定，置换次数可以是$3+2k,k\in \mathbb{N}$。
+
+接下来我们继续定义函数$\text{sign}(\sigma)$，它表示的是映射$\sigma$的奇偶性；
+
+\begin{definition}{奇偶置换}
+	若式子$\mathcal{R}(\sigma)$的值如果为偶数，那么该置换为偶置换，否则为奇置换，另有函数$\text{sign}(\sigma)$定义为$$\text{sign}(\sigma):=(-1)^{\mathcal{R}(\sigma)}$$
+\end{definition}
+
+\subsection{行列式的排列定义}
+
+还是这个例子：置换映射$\sigma:\left\{ 1,2,3,4,5 \right\}\rightarrow \left\{ 3,1,4,2,5 \right\}$，如果我们把它们的空间的标准基标号作为映射集合有$\sigma':\left\{ e_1,e_2,e_3,e_4,e_5 \right\}\rightarrow \left\{ e_3,e_1,e_4,e_2,e_5 \right\}$，相当于在$\mathbb{R}^5$空间中定义标准基的方向是这5维测度的方向，每个向量如果按这样的顺序(相当于二维空间的顺时针)排列的话，其测度为正；不过，我们对其进行了至少3次的置换，所以其测度应当为$\text{sign}(\sigma)=-1$。
+
+如果我们类比2，3阶行列式的推导过程，即$$n\text{维测度}=(n-1)\text{维测度}\times \text{高}$$通过更高维的割补法，我们可以如下定义一个行列式：
+
+\begin{definition}{行列式的排列定义}
+	设$\mathbf{A}$是$n$阶方阵，设其第$i$行第$j$列的元素为$a_{ij}$那么有$$\det \mathbf{A}=\sum_{\sigma \in S_n}\text{sign} (\sigma)\prod_{i=1}^{n} a_{\left ( \sigma(i) \right )i}$$其中$S_n$表示是所有$n$ 元置换的集合，即共$n!$个的$\left\{ 1,2,3,\cdots,n \right\}$的全排列集合。
+\end{definition}
+
+下面举个例子，3阶行列式$\mathbf{D}=\begin{vmatrix}
+	a_{11} & a_{12} & a_{13}\\
+	a_{21} & a_{22} & a_{23}\\
+	a_{31} & a_{32} & a_{33}
+\end{vmatrix}$，它们的全排列共有$3!=6$种，分别映射为$$\left\{ \left\{ 1,2,3 \right\},\left\{ 1,3,2 \right\},\left\{ 2,1,3 \right\},\left\{ 2,3,1 \right\},\left\{ 3,1,2 \right\},\left\{ 3,2,1 \right\} \right\}$$那么对于每一个从集合$\left\{ 1,2,3 \right\}$置换开始求和，首先是$\sigma :\left\{ 1,2,3 \right\}\rightarrow \left\{ 1,2,3 \right\}$，则$$\text{sign}(\sigma)a_{11}a_{22}a_{23}=+a_{11}a_{22}a_{33}$$接下来是$\sigma :\left\{ 1,2,3 \right\}\rightarrow \left\{ 1,3,2 \right\}$则$$\text{sign}(\sigma)a_{11}a_{32}a_{23}=-a_{11}a_{32}a_{23}$$$$\cdots$$最终进行6次这样的操作后，我们得到多项式$$a_{11}a_{22}a_{33}-a_{11}a_{32}a_{23}-a_{21}a_{12}a_{33}+a_{21}a_{32}a_{13}\cdots$$
+
+当然也可以按顺序从每行找不同列的元素相乘，结果都是一样的。
+
+\section{章节练习}
+
+\subsection{A组}
+
+\begin{reidai}
+	计算行列式$\mathbf{D}=\begin{vmatrix}
+		1 & 2 & 3\\
+		2 & -2 & 1\\
+		6 & 1 & 0
+	   \end{vmatrix}$
+\end{reidai}
+
+\begin{reidai}
+	计算行列式$\mathbf{D}=\begin{vmatrix}
+		1 & 1 & 2 & 2 & 0\\
+		0 & 2 & -3 & -1 & 1\\
+		1 & 1 & 3 & 1 & 1\\
+		2 & -4 & 0 & 0 & 3\\
+		1 & 7 & -1 & 0 & 2
+	   \end{vmatrix}$
+\end{reidai}
+
+\begin{reidai}
+	计算行列式$\mathbf{D}=\begin{vmatrix}
+		1 & 2 & 3 & 4\\
+		2 & 3 & 4 & 1\\
+		3 & 4 & 1 & 2\\
+		4 & 3 & 2 & 1
+	   \end{vmatrix}$
+\end{reidai}
+
+\begin{reidai}
+	矩阵$\mathbf{A}=\begin{pmatrix}
+		2 & 1 & 0\\
+		3 & 1 & 1\\
+		0 & 2 & 0
+	   \end{pmatrix}$，求$\det (3\mathbf{A})$和$\det (\mathbf{A}^2)$
+\end{reidai}
+
+\subsection{B组}
+
+\begin{reidai}
+	设数列$\left\{ F_n \right\}$为Fibonacci数列，其中$F_1=0,F_2=1,F_{n-1}+F_{n-2}=F_n,n\ge 2$证明$$F_{n+1}F_{n-1}-F_n^2=\left( -1 \right)^n$$
+\end{reidai}

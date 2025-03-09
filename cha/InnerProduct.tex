@@ -359,5 +359,97 @@
 	\label{tikz:botDistanceLine}
 \end{figure}
 
-\subsection{多项式与极小化}
+如图\ref{tikz:botDistanceLine}所示，将$v$正交投影到$U$上的$P_U$点，它们距离最短。
+
+\subsection{多项式与最小化}
+
+首先我们给出两个函数内积的定义。
+
+\begin{definition}{函数的内积}
+	定义区间$S=\left[ a,b \right]$上的连续实值函数构成的的向量可定义内积如下：
+	$$\left \langle f,g \right \rangle =\int_{a}^{b} f(x)g(x)\mathrm{d}x $$
+\end{definition}
+
+下面将以此介绍一个最小化方法，求解一些函数的多项式近似。在之前微积分的学习中，我们学到了麦克劳林近似，它在0处对函数有着极好的逼近。
+
+\begin{theorem}{麦克劳林近似}
+	函数$f(x)$的$n$阶导数为$f^{(n)}(x)$满足公式$$f(x)=f(0)+f'(0)x+\frac{f''(0)}{2!}x^2+\cdots+\frac{f^{(0)}}{n!}x^n+\frac{f^{(n+1)}(\theta x)}{(n+1)!}x^{n+1}(0<\theta<1)$$
+\end{theorem}
+
+下面我们新介绍一个方法叫做 Legendre 多项式，利用正交的极小化完成对函数的多项式近似，为了形成对比，我们先使用泰勒近似取最高次数项为 5 次的结果$$\sin x\sim x-\frac{x^3}{3!}+\frac{x^5}{5!}$$根据 Python-Matplotlib 工具我们绘制了这样的图：
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figure/eps/FunctionPolMaclaurin.eps}
+	\caption{蓝色为$\sin x$的图像，红色为麦克劳林近似多项式}
+	\label{fig:Maclaurin}
+\end{figure}
+
+接下来使用正交最小化的方式来取近似，首先我们令多项式为函数$g(x)$设函数$f(x)=\sin x$与函数$g(x)$在$\left[ -\pi,\pi \right]$的内积表示为$$\left \langle f,g \right \rangle =\int_{-\pi}^{\pi} f(x)g(x)\mathrm{d}x $$下面选取$u(x)$的基$\left\{ 1,x,x^2,x^3,x^4,x^5 \right\}$对其使用Gram-Schmidt正交化，设$\left\{ v_0,v_1,v_2,v_3,v_4,v_5 \right\}$为正交化过程后的基，我们有：
+\begin{align}
+	&v_0=1\\
+	&v_1=x-\frac{\left \langle x,v_0 \right \rangle }{\left \langle v_0,v_0 \right \rangle }v_0=x\\
+	&v_2 = x^2 - \frac{\langle x^2, v_0 \rangle}{\langle v_0, v_0 \rangle} v_0 - \frac{\langle x^2, v_1 \rangle}{\langle v_1, v_1 \rangle} v_1\\&\cdots\notag
+\end{align}
+重复采用函数内积公式将对空间$U=\left\{ v_0,v_1,v_2,v_3,v_4,v_5 \right\}$和函数空间$f(x)=\sin x$计算$P_U(f)$，计算$P_U(f)$表示函数空间$$g(x)=0.987862x-0.155271x^3+0.00564312x^5$$%cite、
+
+如果你使用的是电子介质，你可以放大并看到它们拟合的几乎严丝合缝，相较于麦克劳林近似，这种近似法在 3 处仅有微小差别。而麦克劳林近似由于采用的在0处展开，所以越靠近0，拟合的效果越好，下面给出一张表来观察两种近似的对比：
+
+如图表所示，麦克劳林近似在越靠近0处的拟合效果更好，而纵观全局，Legendre 多项式近似法在$\left[ -\pi,\pi \right]$上拟合效果更好。正交投影最小化帮我们找到了一个方法，改进了我们在微积分学习中学到的近似。实际上，如果我们给定一个函数如下$$\mathcal{F}(x)=\int_{-\pi}^{\pi} \left | \sin x-u(x) \right |^2 \mathrm{d}x $$这个函数表示在拟合过程中，多项式函数与被拟合函数相减并平方围成的面积，这个值越小，在这种情况下拟合效果越好，实际上，使用 Legendre 多项式近似法要比麦克劳林近似，该值要小得多。
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figure/eps/FunctionPolLegendre.eps}
+	\caption{蓝色为$\sin x$的图像，红色为 Legendre 多项式近似法}
+	\label{fig:PolLegendre}
+\end{figure}
+
+\begin{table}
+	\centering
+	\begin{minipage}[c]{\textwidth}
+		\include{figure/tables/inner}
+	\end{minipage}
+\end{table}
+
+\section{章节练习}
+
+\subsection{A组}
+
+\begin{reidai}
+	设$V$为实内积空间，尝试证明极化恒等式成立，即对$v,w\in V$有$$\left \langle v,w \right \rangle =\frac{\left \| v+w \right \|^2-\left \| v-w \right \|^2  }{4}$$
+\end{reidai}
+
+\begin{reidai}
+	设$v,w\in V$，若$\left \| v \right \| =3, \left \| v+w \right \| =4, \left \| v-w \right \| =6$求$\left \| w \right \| $的值。
+\end{reidai}
+
+\begin{reidai}
+	请自行选取一个关于$\mathbb{R}^4$的非正交基，使用 Gram-Schmidt 正交化将其转化为正交基。
+\end{reidai}
+
+\begin{reidai}
+	证明，菱形的对角线相互垂直，即对角线表示的有向箭头正交。
+\end{reidai}
+
+\begin{reidai}
+	比较大小：设数列$\left\{ a_n \right\}$，比较它们的平均数的平方的和与它们和的平方的平均数的大小，即$$\frac{1}{n} \left ( \sum_{i=0}^{n}a_i^2  \right ) \quad \text{and} \quad \left ( \frac{1}{n} \left ( \sum_{i=1}^{n}a_i \right )  \right )  ^2$$
+\end{reidai}
+
+\begin{reidai}
+	若基$S=\left\{ (1,2,3,4),(9,8,7,6) \right\}$其张成空间为$\text{Span}(S)=U$为$\mathbb{R}^4$的子空间，求$U$的一个正交基和$U^{\bot}$的一个正交基。
+\end{reidai}
+
+\begin{reidai}
+	若基$S=\left\{ (1,1,0,0),(1,1,1,2) \right\}$其张成空间为$\text{Span}(S)=U$为$\mathbb{R}^4$的子空间，求$u\in U$的使得$\left \| u-(1,2,3,4) \right \| $最小。
+\end{reidai}
+
+\subsection{B组}
+
+\begin{reidai}
+	多项式$P(x)$的最高次数为2，在此之上考虑内积$$\left \langle f,g \right \rangle =\int_{0}^{1} f(x)g(x)\mathrm{d}x $$对基$\left\{ 1,x,x^2 \right\}$使用Gram-Schmidt正交化求$P(x)$的一个正交基。
+\end{reidai}
+
+\begin{reidai}
+	请使用 Legendre 多项式与正交化，对$\ln x$在$\left [ 1,2 \right ] $上进行最高次数为 5 的多项式拟合。
+\end{reidai}
 
