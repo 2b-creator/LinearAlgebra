@@ -99,5 +99,9 @@
 \contentsline {section}{\numberline {4.6}章节练习}{61}{section.4.6}%
 \contentsline {subsection}{\numberline {4.6.1}A组}{61}{subsection.4.6.1}%
 \contentsline {subsection}{\numberline {4.6.2}B组}{61}{subsection.4.6.2}%
-\contentsline {chapter}{\numberline {5}矩阵与线性方程组}{62}{chapter.5}%
+\contentsline {chapter}{\numberline {5}线性方程组}{62}{chapter.5}%
+\contentsline {section}{\numberline {5.1}线性方程组的解}{62}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}二元线性方程组}{62}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.2}Cramer 法则}{62}{subsection.5.1.2}%
+\contentsline {subsection}{\numberline {5.1.3}齐次线性方程组}{64}{subsection.5.1.3}%
 \contentsfinish 

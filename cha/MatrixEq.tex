@@ -1,4 +1,4 @@
-\chapter{线性方程组}
+\chapter{初等矩阵}
 \begin{center}
 	% \textcolor[RGB]{255, 0, 0}{\faHeart}所以生命啊，它苦涩如歌.\textcolor[RGB]{255, 0, 0}{\faHeart}
 	「只愿君心似我心，定不负相思意」
@@ -11,3 +11,109 @@
 
 \section{线性方程组的解}
 
+\subsection{二元线性方程组}
+
+考虑一般的二元线性方程组\begin{numcases}{}
+	a_{11}x_1+a_{12}x_2=b_1 \label{eq:1-1}\\
+	a_{21}x_1+a_{22}x_2=b_2 \label{eq:1-2}
+\end{numcases}按照正常的方法，我们将式\ref{eq:1-1}乘系数$a_{21}$，将\ref{eq:1-2}乘系数$a_{11}$后，用变换过的\ref{eq:1-1}减去\ref{eq:1-2}后我们可以得到$$\left( a_{11}a_{22}-a_{12}a_{21} \right)x_1=b_1a_{22}-b_2a_{12}$$我们可以得到方程的解$$x_1=\frac{\begin{vmatrix}
+	b_1 & a_{12}\\
+	b_2 & a_{22}
+\end{vmatrix}}{\begin{vmatrix}
+	a_{11} & a_{12}\\
+	a_{21} & a_{22}
+\end{vmatrix}}$$通过上述方法，我们可以得到$$x_2=\frac{\begin{vmatrix}
+	a_{11} & b_1\\
+	a_{21} & b_2
+\end{vmatrix}}{\begin{vmatrix}
+	a_{11} & a_{12}\\
+	a_{21} & a_{22}
+\end{vmatrix}}$$
+
+\subsection{Cramer 法则}
+
+以上面的二元线性方程组为例我们抽象出的两个解的表示方法，其中我们有系数矩阵行列式$$\mathbf{D}=\begin{vmatrix}
+	a_{11} & a_{12}\\
+	a_{21} & a_{22}
+\end{vmatrix}$$其中常数矩阵$\mathbf{B}=\begin{pmatrix}
+	b_1\\
+	b_2
+\end{pmatrix}$，我们将常数矩阵替换系数矩阵的第$i$列，得到$\mathbf{D}_i$行列式，例如$$\mathbf{D}_1=\begin{vmatrix}
+	b_1 &a_{12}\\
+	b_2 &a_{22}
+   \end{vmatrix},\mathbf{D}_2=\begin{vmatrix}
+	a_{11} & b_1 \\
+	a_{12} & b_2
+\end{vmatrix}$$最后方程组的第$i$个解为$$x_i=\frac{\mathbf{D}_i}{\mathbf{D}}$$
+
+\begin{example}
+	使用Cramer法则计算线性方程组$$\left\{\begin{matrix} 
+		2x+3y+4z =3 \\  
+		5x+4z=2\\
+		x+3y+z=1
+	  \end{matrix}\right. $$
+	  \tcblower
+	  \textcolor{purple}{\textbf{解}}：考虑系数矩阵行列式$$\mathbf{D}=\begin{vmatrix}
+		2 & 3 & 4\\
+		5 & 0 & 4\\
+		1 & 3 & 1
+	   \end{vmatrix}=33$$常数矩阵$$\mathbf{B}=\begin{pmatrix}
+		3 \\
+		2 \\
+		1
+		\end{pmatrix}$$使用常数矩阵替换行列式的第$i$列，我们可以得到$$\mathbf{D}_1=\begin{vmatrix}
+			3 & 3 & 4\\
+			2 & 0 & 4\\
+			1 & 3 & 1
+		   \end{vmatrix}=-6,\mathbf{D}_2=\begin{vmatrix}
+			2 & 3 & 4\\
+			5 & 2 & 4\\
+			1 & 1 & 1
+		   \end{vmatrix}=5,\mathbf{D}_3=\begin{vmatrix}
+			2 & 3 & 3\\
+			5 & 0 & 2\\
+			1 & 3 & 1
+		   \end{vmatrix}=24$$那么该方程组的三个解分别为$$x_1=\frac{\mathbf{D}_1}{\mathbf{D}}=-\frac{2}{11},x_2=\frac{\mathbf{D}_2}{\mathbf{D}}=\frac{5}{33},x_3=\frac{\mathbf{D}_3}{\mathbf{D}}=-\frac{8}{11}$$
+\end{example}
+
+\begin{ascolorbox1}{思考}
+	当系数矩阵的行列式$\mathbf{D}=0$时是什么情况？
+\end{ascolorbox1}
+
+Cramer 法则的适用前提是系数矩阵的行列式值不能为0，读者可以发现若系数矩阵的行列式为0的时候会有一组方程组线性相关，其所面临的情况为有无穷多解或无解，例如$$\left\{\begin{matrix} 
+	2x_1+3x_2 = 4 \\  
+	4x_1+6x_2 = 8
+  \end{matrix}\right. $$这种情况就是无穷多解，而$$\left\{\begin{matrix} 
+	2x_1+3x_2 = 4 \\  
+	4x_1+6x_2 = 9
+  \end{matrix}\right. $$则是无解。
+
+\subsection{齐次线性方程组}
+
+齐次线性方程组是线性方程组中的一个特例，定义如下
+\begin{definition}{齐次线性方程组}
+	齐次线性方程组指的是常数项全部为零的线性方程组，它们一般记作$$\left\{\begin{matrix} 
+		a_{11}x_1+a_{12}x_2+a_{13}x_3+\cdots+a_{1n}x_n=0 \\  
+		a_{21}x_1+a_{22}x_2+a_{23}x_3+\cdots+a_{2n}x_n=0 \\  
+		a_{31}x_1+a_{32}x_2+a_{33}x_3+\cdots+a_{3n}x_n=0 \\
+		\cdots \\
+		a_{m1}x_1+a_{m2}x_2+a_{m3}x_3+\cdots+a_{mn}x_n=0
+	  \end{matrix}\right. $$
+\end{definition}
+
+我们在第2章的B组练习中有提到这种方程组，先说结论，当$n>m$的时候齐次线性方程组必有非零解，在练习中，我们使用线性映射$$T(x_1,x_2,\cdots,x_n)=\left( \sum_{i=1}^{n}a_{1i}x_i,\sum_{i=1}^{n}a_{2i}x_i,\cdots,\sum_{i=1}^{n}a_{mi}x_i \right)$$这里的线性映射$T$将$\mathbb{F}^n$映射为$\mathbb{F}^m$，根据线性映射的基本定理有$$\text{dim}\mathbb{F}^n=\text{dim}~\text{null}T+\text{dim}~\text{range}T$$使得齐次线性方程组有无穷多解的充要条件是$T$不是单射；所以$\text{null}T\neq \left\{ 0 \right\}$(否则对应映射到零空间的向量只有$\boldsymbol{0}$)。
+
+接下来我们考虑特殊的情况，当$m=n$的时候，系数矩阵的行列式$\mathbf{D}=\begin{vmatrix}  
+	a_{11}& a_{12}& \cdots  & a_{1n} \\  
+	a_{21}& a_{22}& \cdots  & a_{2n} \\  
+	\vdots & \vdots & \ddots & \vdots \\  
+	a_{m1}& a_{m2}& \cdots  & a_{mn}  
+  \end{vmatrix}  
+$如果我们对其使用 Cramer 法则，当$\mathbf{D}\neq 0$时，$\displaystyle x_i=\frac{\mathbf{D}_i}{\mathbf{D}}=0$有且仅有全为0解，即$x_1=x_2=\cdots=x_n=0$。那如果$\mathbf{D}= 0$则系数矩阵的几行向量线性相关，根据线性相关的向量可以通过去除$i$个向量可以得到线性无关的向量，由于$m=n,m-i<n$，所以我们得到齐次线性方程组有无穷多解。
+
+\section{初等矩阵}
+
+\subsection{增广矩阵}
+
+%cite
+首先需要注意的是，按照初等矩阵的定义，
