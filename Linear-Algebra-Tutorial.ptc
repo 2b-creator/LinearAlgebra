@@ -99,9 +99,17 @@
 \contentsline {section}{\numberline {4.6}章节练习}{61}{section.4.6}%
 \contentsline {subsection}{\numberline {4.6.1}A组}{61}{subsection.4.6.1}%
 \contentsline {subsection}{\numberline {4.6.2}B组}{61}{subsection.4.6.2}%
-\contentsline {chapter}{\numberline {5}线性方程组}{62}{chapter.5}%
+\contentsline {chapter}{\numberline {5}初等矩阵}{62}{chapter.5}%
 \contentsline {section}{\numberline {5.1}线性方程组的解}{62}{section.5.1}%
 \contentsline {subsection}{\numberline {5.1.1}二元线性方程组}{62}{subsection.5.1.1}%
 \contentsline {subsection}{\numberline {5.1.2}Cramer 法则}{62}{subsection.5.1.2}%
 \contentsline {subsection}{\numberline {5.1.3}齐次线性方程组}{64}{subsection.5.1.3}%
+\contentsline {section}{\numberline {5.2}初等矩阵}{64}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}增广矩阵}{64}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}矩阵的初等变换}{65}{subsection.5.2.2}%
+\contentsline {subsubsection}{\numberline {5.2.2.1}交换两行}{65}{subsubsection.5.2.2.1}%
+\contentsline {subsection}{\numberline {5.2.3}某一行乘以常数k}{66}{subsection.5.2.3}%
+\contentsline {subsection}{\numberline {5.2.4}某个数乘以某一行并加到另一行中去}{66}{subsection.5.2.4}%
+\contentsline {subsubsection}{\numberline {5.2.4.1}最简矩阵}{66}{subsubsection.5.2.4.1}%
+\contentsline {subsection}{\numberline {5.2.5}高斯消元法}{67}{subsection.5.2.5}%
 \contentsfinish 
