@@ -24,9 +24,9 @@
 \contentsline {section}{\numberline {1.5}张成空间与线性相关性}{13}{section.1.5}%
 \contentsline {subsection}{\numberline {1.5.1}线性组合与张成空间}{13}{subsection.1.5.1}%
 \contentsline {subsection}{\numberline {1.5.2}线性相关性}{14}{subsection.1.5.2}%
-\contentsline {subsection}{\numberline {1.5.3}基与维数}{15}{subsection.1.5.3}%
-\contentsline {section}{\numberline {1.6}章节练习}{16}{section.1.6}%
-\contentsline {subsection}{\numberline {1.6.1}A组}{16}{subsection.1.6.1}%
+\contentsline {subsection}{\numberline {1.5.3}基与维数}{16}{subsection.1.5.3}%
+\contentsline {section}{\numberline {1.6}章节练习}{17}{section.1.6}%
+\contentsline {subsection}{\numberline {1.6.1}A组}{17}{subsection.1.6.1}%
 \contentsline {subsection}{\numberline {1.6.2}B组}{17}{subsection.1.6.2}%
 \contentsline {chapter}{\numberline {2}矩阵与线性映射}{18}{chapter.2}%
 \contentsline {section}{\numberline {2.1}线性方程组与矩阵}{18}{section.2.1}%
@@ -112,4 +112,11 @@
 \contentsline {subsection}{\numberline {5.2.4}某个数乘以某一行并加到另一行中去}{66}{subsection.5.2.4}%
 \contentsline {subsubsection}{\numberline {5.2.4.1}最简矩阵}{66}{subsubsection.5.2.4.1}%
 \contentsline {subsection}{\numberline {5.2.5}高斯消元法}{67}{subsection.5.2.5}%
+\contentsline {section}{\numberline {5.3}矩阵的逆}{68}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}单位矩阵}{68}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}逆矩阵}{69}{subsection.5.3.2}%
+\contentsline {subsection}{\numberline {5.3.3}初等变换求逆矩阵}{69}{subsection.5.3.3}%
+\contentsline {section}{\numberline {5.4}线性方程组的解空间}{71}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}极大线性无关组}{71}{subsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.4.2}向量组的秩}{72}{subsection.5.4.2}%
 \contentsfinish 
