@@ -81,7 +81,7 @@
 
 \begin{definition}{笛卡尔积}
 	\label{def:dicar}
-	两个集合${\displaystyle X}$和${\displaystyle Y}$的笛卡尔积是所有可能的有序对组成的集合，其中有序对的第一个对象是$X$的成员，第二个对象是$Y$的成员，记作：$${\displaystyle X\times Y := \footnote{符号$:=$表示定义为，用来明确地给某个符号或概念赋予一个新的定义，例如：妈妈$:=$养育与教养子女成长的女性} \left\{\left(x,y\right)\mid x\in X \text{且} y\in Y\right\}}$$
+	两个集合${\displaystyle X}$和${\displaystyle Y}$的笛卡尔积是所有可能的有序对组成的集合，其中有序对的第一个对象是$X$的成员，第二个对象是$Y$的成员，记作：$${\displaystyle X\times Y := \footnote{\text{符号$:=$表示定义为，用来明确地给某个符号或概念赋予一个新的定义，例如：妈妈$:=$养育与教养子女成长的女性}} \left\{\left(x,y\right)\mid x\in X \text{且} y\in Y\right\}}$$
 \end{definition}
 
 举个很常见的例子，如果集合$X$是13个元素的点数集合${\displaystyle \left\{A,K,Q,J,10,9,8,7,6,5,4,3,2\right\}}$而集合$Y$是四种花色$\{\spadesuit, \heartsuit, \diamondsuit, \clubsuit\}$，则这两个集合的笛卡尔积是有52个元素的标准扑克牌的集合：$$X\times Y = \left\lbrace (A,\spadesuit),(K,\spadesuit),(Q,\spadesuit)\cdots (2,\spadesuit),\cdots,(3,\clubsuit),(2,\clubsuit)\right\rbrace $$
@@ -474,15 +474,6 @@ $P_n$ 中的元素是形如 $p(x) = a_0 + a_1 x + a_2 x^2 + \cdots + a_n x^n$ �
 	\end{flushright}
 \end{proof}
 
-根据上述推论我们有 Steinitz 替换定理：
-
-\begin{theorem}{Steinitz 替换定理}
-	\label{the:Steinitz}
-	一个向量集合 $ A $ 是线性无关的，另一个向量组 $ B $ 生成了 $ A $ 所在线性空间，设 $A,B$ 的向量个数分别为 $s,r$ 则 $s\le r$。
-\end{theorem}
-
-这里我们不作证明，但是希望读者能够理解这个定理；例如在线性空间$\mathbb{R}^3$上，我们可以选择3个线性无关向量作为基底，此外也有3个及以上能够张成此空间的向量。\footnote{关于此内容我们会在节\ref{subsec:preRank}详细讲述}
-
 \subsection{线性相关性}
 
 \label{subsec:LinearDependence}
@@ -528,6 +519,15 @@ $P_n$ 中的元素是形如 $p(x) = a_0 + a_1 x + a_2 x^2 + \cdots + a_n x^n$ �
 这个例子也说明了线性相关的向量集合张成的空间与其去掉任意一个向量后张成的空间是同一个空间。
 
 此外也有一条重要的结论，若向量集合$V$内的元素线性无关，则$V$中元素的个数不大于张成该空间$U$的向量的个数。举个例子，$\left( 0,0,1 \right)$和$(0,1,0)$在$\mathbb{R}^3$线性无关，而张成$\mathbb{R}^3$的向量可能由$(1,0,0),(0,1,0),(0,0,1)$(或更多其他3个不共面的向量)构成，但是既要线性无关，而且还要张成这个空间的向量集合(下面会给这些向量集合一个名字叫做基)在$\mathbb{R}^3$上为3个\footnote{关于这个推论可能会比较抽象，读者可以回想在高中的学习生活中，通过空间直角坐标系的三个基底可以表示整个空间，缺一不可，且3个不共面的向量都可以成为基底，在后面的学习中，我们会给它一个名词叫做极大线性无关组。}。
+
+根据上述推论我们有 Steinitz 替换定理：
+
+\begin{theorem}{Steinitz 替换定理}
+	\label{the:Steinitz}
+	一个向量集合 $ A $ 是线性无关的，另一个向量组 $ B $ 生成了 $ A $ 所在线性空间，设 $A,B$ 的向量个数分别为 $s,r$ 则 $s\le r$。
+\end{theorem}
+
+这里我们不作证明，但是希望读者能够理解这个定理；例如在线性空间$\mathbb{R}^3$上，我们可以选择3个线性无关向量作为基底，此外也有3个及以上能够张成此空间的向量。\footnote{关于此内容我们会在节\ref{subsec:preRank}详细讲述}
 
 \subsection{基与维数}
 
