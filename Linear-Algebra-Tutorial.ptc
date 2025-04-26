@@ -108,10 +108,10 @@
 \contentsline {subsection}{\numberline {5.2.1}增广矩阵}{65}{subsection.5.2.1}%
 \contentsline {subsection}{\numberline {5.2.2}矩阵的初等变换}{66}{subsection.5.2.2}%
 \contentsline {subsubsection}{\numberline {5.2.2.1}交换两行}{66}{subsubsection.5.2.2.1}%
-\contentsline {subsection}{\numberline {5.2.3}某一行乘以常数k}{67}{subsection.5.2.3}%
-\contentsline {subsection}{\numberline {5.2.4}某个数乘以某一行并加到另一行中去}{67}{subsection.5.2.4}%
-\contentsline {subsubsection}{\numberline {5.2.4.1}最简矩阵}{67}{subsubsection.5.2.4.1}%
-\contentsline {subsection}{\numberline {5.2.5}高斯消元法}{68}{subsection.5.2.5}%
+\contentsline {subsubsection}{\numberline {5.2.2.2}某一行乘以常数k}{67}{subsubsection.5.2.2.2}%
+\contentsline {subsubsection}{\numberline {5.2.2.3}某个数乘以某一行并加到另一行中去}{67}{subsubsection.5.2.2.3}%
+\contentsline {subsubsection}{\numberline {5.2.2.4}最简矩阵}{67}{subsubsection.5.2.2.4}%
+\contentsline {subsection}{\numberline {5.2.3}高斯消元法}{68}{subsection.5.2.3}%
 \contentsline {section}{\numberline {5.3}矩阵的逆}{69}{section.5.3}%
 \contentsline {subsection}{\numberline {5.3.1}单位矩阵}{69}{subsection.5.3.1}%
 \contentsline {subsection}{\numberline {5.3.2}逆矩阵}{70}{subsection.5.3.2}%
@@ -124,4 +124,8 @@
 \contentsline {subsection}{\numberline {5.5.1}齐次线性方程组解的结构}{75}{subsection.5.5.1}%
 \contentsline {subsection}{\numberline {5.5.2}解空间}{76}{subsection.5.5.2}%
 \contentsline {subsection}{\numberline {5.5.3}非齐次线性方程组的导出组与特解}{78}{subsection.5.5.3}%
+\contentsline {section}{\numberline {5.6}章节练习}{80}{section.5.6}%
+\contentsline {subsection}{\numberline {5.6.1}A组}{80}{subsection.5.6.1}%
+\contentsline {subsection}{\numberline {5.6.2}B组}{81}{subsection.5.6.2}%
+\contentsline {chapter}{\numberline {6}特征值理论}{82}{chapter.6}%
 \contentsfinish 

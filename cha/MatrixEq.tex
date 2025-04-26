@@ -178,7 +178,7 @@ $如果我们对其使用 Cramer 法则，当$\mathbf{D}\neq 0$时，$\displayst
 	\textcolor{blue}{2} & \textcolor{blue}{2} & \textcolor{blue}{2} & \textcolor{blue}{1}
 \end{pmatrix}$$
 
-\subsection{某一行乘以常数k}
+\subsubsection{某一行乘以常数k}
 
 某一行乘以常数$k$是矩阵的初等变换，例如$$\begin{pmatrix}
 	1 & 2 & 3 & 1\\
@@ -190,7 +190,7 @@ $如果我们对其使用 Cramer 法则，当$\mathbf{D}\neq 0$时，$\displayst
 	2 & 2 & 2 & 1
 \end{pmatrix},k\in \mathbb{C}$$
 
-\subsection{某个数乘以某一行并加到另一行中去}
+\subsubsection{某个数乘以某一行并加到另一行中去}
 
 某个数乘以某一行并加到另一行中去是矩阵的初等变换，例如$$\begin{pmatrix}
 	\textcolor{red}{1} & \textcolor{red}{2} & \textcolor{red}{3} & \textcolor{red}{4}\\
@@ -660,6 +660,7 @@ $$再将第1行乘以$-1$加到第三行可得$$\left( \begin{array}{ccc|ccc}
 现在我们回顾这个重要的定理\ref{the:important}，若使用矩阵$\mathbf{A}$表示线性映射$T$，那么该矩阵的秩$r(\mathbf{A})$可以表示映射到非零空间的维度，即$\text{dim}~\text{range}T$，它们在数量上两者相等$$r(\mathbf{A})=\text{dim}~\text{range}T$$由此，我们可以将秩替换掉$\text{dim}~\text{range}T$获得一个更加正式的定理，该名称为秩——零化度定理。
 
 \begin{theorem}{秩——零化度定理(Rank-Nullity Theorem)}
+	\label{the:RankNullity}
 	若$m\times n$矩阵$\mathbf{A}$表示线性映射$T:\mathcal{L}(\mathbb{F}^m,\mathbb{F}^n)$满足$$r(\mathbf{A})+\text{dim}~\text{null}T=n$$
 \end{theorem}
 
@@ -904,3 +905,114 @@ $$再将第1行乘以$-1$加到第三行可得$$\left( \begin{array}{ccc|ccc}
 		$\square$
 	\end{flushright}
 \end{proof}
+
+根据上面的推论与定义，我们可以使用解空间加特解的方式来表示所有解，下面是一个例题：
+
+\begin{example}
+	求解下列的线性方程组并使用基础解系与特解的形式表示$$\left\{\begin{matrix} 
+		x_1+2x_2+3x_3+4x_4=10 \\  
+		2x_1+x_2+x_3+x_4=5
+	\end{matrix}\right.$$\tcblower
+	\textcolor{purple}{\textbf{解}}：
+	提取线性方程组的增广矩阵$$\mathbf{A}=\begin{pmatrix}
+		1 & 2 & 3 & 4 & 10\\
+		2 & 1 & 1 & 1 & 5
+	   \end{pmatrix}\xrightarrow{r_1\times 2}
+	   \begin{pmatrix}
+		2 & 4 & 6 & 8 & 20\\
+		2 & 1 & 1 & 1 & 5
+	   \end{pmatrix}\xrightarrow{r_2-r_1}
+	   \begin{pmatrix}
+		2 & 4 & 6 & 8 & 20\\
+		0 & -3 & -5 & -7 & -15
+	   \end{pmatrix}$$矩阵的秩$r(\mathbf{A})=2$方程组未知数的个数为$n=4$其自由变量个数为$n-r(\mathbf{A})=2$，那么设$k_1,k_2\in \mathbb{R}$，对于原方程组，由于自由变量有2个，我们可以固定2个未知变量的值，例如$x_1=1,x_2=1$得到一个特解为$x_p=(1,1,1,1)$。此外其导出组的增广矩阵为$$\begin{pmatrix}
+		2 & 4 & 6 & 8 & 0\\
+		0 & -3 & -5 & -7 & 0
+	   \end{pmatrix}\xrightarrow{r_1/2}\begin{pmatrix}
+		1 & 2 & 3 & 4 & 0\\
+		0 & -3 & -5 & -7 & 0
+	   \end{pmatrix}$$根据自由变量个数为2，则线性无关组会有2个向量，可设$x_1=0,x_2=1$并求出$x_3=-2,x_4=1$作为第一个向量，$x_1=1,x_2=0$则$x_3=-7,x_4=5$作为第二个向量，由于$(1,0),(0,1)$线性无关则它们的延长组$(0,1,-2,1)$和$(1,0,-7,5)$必定线性无关所以其导出组的一个基础解系$\mathcal{B}=\left\{ (0,1,-2,1),(1,0,-7,5) \right\}$，其解空间为$k_1(0,1,-2,1)+k_2(1,0,-7,5)$再加上特解的结果，最终结果为$$x=k_1(0,1,-2,1)+k_2(1,0,-7,5)+(1,1,1,1),k_1,k_2\in \mathbb{R}$$
+\end{example}
+
+\section{章节练习}
+
+\subsection{A组}
+
+\begin{reidai}
+	使用 Cramer 法则计算线性方程组$$\left\{\begin{matrix} 
+		2x+3y+4z=1 \\  
+		4x+3y-z=-4 \\
+		x-2y+3z=5
+	  \end{matrix}\right. $$
+\end{reidai}
+
+\begin{reidai}
+	若矩阵$\mathbf{A}=\begin{pmatrix}
+		1 & 3 & 4 & 2\\
+		2 & 0 & 0 & 2\\
+		-1 & \sqrt{3} & 1 & -2
+	\end{pmatrix}$，将其化为最简矩阵。
+\end{reidai}
+
+\begin{reidai}
+	若矩阵$\mathbf{A}=\begin{pmatrix}
+		1 & 2 & 3 & 1\\
+		-2 & 0 & 1 & 0\\
+		1 & 1 & 3 & 4\\
+		2 & 3 & -2 & 0
+	   \end{pmatrix}$，求$\mathbf{A}^{-1}$。
+\end{reidai}
+
+\begin{reidai}
+	若矩阵$\mathbf{A}=\begin{pmatrix}
+		4 & -2 & 1 \\
+		1 & 2 & -2 \\
+		-1 & 8 & 7 \\
+		2 & 14 & -13
+	   \end{pmatrix}$，求$r(\mathbf{A})$。
+\end{reidai}
+
+\begin{reidai}
+	若矩阵$\mathbf{A}=\begin{pmatrix}
+		1 & -1 & 1 & 2\\
+		3 & \lambda & -1 & 2\\
+		5 & 3 & \mu & 6
+	   \end{pmatrix}$且$r(\mathbf{A})=2$，求$\lambda^2+\mu^2$的值。
+\end{reidai}
+
+\begin{reidai}
+	求下列齐次线性方程组的基础解系$\mathcal{B}$和解空间$S$
+	$$
+	\left\{\begin{matrix} 
+		x_1-2x_3+x_4=0 \\  
+		x_2+x_3-x_4= 0 \\
+		x_1+2\sqrt{3}x_2+x_3=0
+	  \end{matrix}\right. 
+	$$
+\end{reidai}
+
+\begin{reidai}
+	求下列线性方程组的解并使用解空间与特解的和的形式表示解向量
+	$$
+	\left\{\begin{matrix} 
+		x_1-2x_3+x_4=-2\sqrt{5}+1 \\  
+		x_2+\sqrt{5}x_3-x_4= 4 \\
+		x_1+2x_2+x_3=\sqrt{5}
+	  \end{matrix}\right. 
+	$$
+\end{reidai}
+
+\subsection{B组}
+
+\begin{reidai}
+	若$\lambda\in \mathbb{R}$，讨论该线性方程组解的结构$$\left\{\begin{matrix} 
+		\lambda x_1+x_2+x_4=1 \\
+		x_1+\lambda x_2+x_3=1 \\
+		x_2+\lambda x_3+x_4=1 \\
+		x_1+x_3+\lambda x_4=1 
+	  \end{matrix}\right. $$
+\end{reidai}
+
+\begin{reidai}
+	证明定理\ref{the:RankNullity}。
+\end{reidai}
