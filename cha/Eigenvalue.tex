@@ -8,3 +8,164 @@
 \begin{center}
 	\pgfornament[width=0.36\linewidth,color=lsp]{88}
 \end{center}
+
+\section{特征值与特征向量}
+
+\subsection{特征值}
+
+首先我们来定义特征值：
+
+\begin{definition}{特征值(Eigenvalue)}
+	若存在向量$v\in V$，线性映射算子$T\in \mathcal{L}(V)$与标量$\lambda \in \mathbb{F}$满足$$T(v)=\lambda v$$则称$\lambda$为$T$的特征值。
+\end{definition}
+
+下面是一个例子：
+
+\begin{example}
+	若算子$T\in \mathcal{L}(\mathbb{F}^2)$定义为$T((x,y))=(-y,x)$求;
+
+	(1)算子$T$以标准基进行变换的矩阵表示$\mathcal{M}(T)$;
+
+	(2)当$\mathbb{F}=\mathbb{R}$时，验证$T$是否有特征值，如果有则求之，否则说明理由;
+
+	(3)当$\mathbb{F}=\mathbb{C}$时，验证$T$是否有特征值，如果有则求之，否则说明理由。
+
+	\tcblower
+	\textcolor{purple}{\textbf{解}}： 
+	
+	(1) 算子 $ T $ 在标准基下的矩阵表示：
+
+	标准基为 $ e_1 = (1, 0) $ 和 $ e_2 = (0, 1) $。计算 $ T $ 作用在基向量上的结果：
+	\begin{itemize}
+		\item $ T(e_1) = T((1, 0)) = (0, 1) = e_2 $
+		\item $ T(e_2) = T((0, 1)) = (-1, 0) = -e_1 $
+	\end{itemize}
+	
+	因此，矩阵表示为：
+	$$
+	\mathcal{M}(T) = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}
+	$$
+	所以答案是：
+	$$
+	\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}
+	$$
+
+	(2) 假设存在实数$\lambda$和非零向量$(x,y)\in\mathbb{R}^2$，使得：
+	$$
+	T(x,y) = \lambda(x,y) \implies (-y, x) = (\lambda x, \lambda y)
+	$$
+	这等价于方程组：
+	$$
+	\begin{cases}
+	-y = \lambda x \\
+	x = \lambda y
+	\end{cases}
+	$$
+	\begin{enumerate}
+		\item 从第一式得 $y = -\lambda x$，代入第二式：
+		$$
+		x = \lambda (-\lambda x) = -\lambda^2 x
+		$$
+		\item 整理得 $x(1 + \lambda^2) = 0$。
+		\begin{itemize}
+			\item 若$x \neq 0$，则 $1 + \lambda^2 = 0$。但在$\mathbb{R}$中无解。 
+			\item  若$x = 0$，则第一式给出$y = 0$，与$v$非零矛盾。 
+		\end{itemize}
+		所以在实数域$\mathbb{R}$中，$T$没有特征值
+
+		\item 假设存在复数$\lambda$和非零向量$(x,y)\in\mathbb{C}^2$，使得：
+		$$
+		T(x,y) = \lambda(x,y) \implies (-y, x) = (\lambda x, \lambda y)
+		$$
+		方程组仍为：
+		$$
+		\begin{cases}
+		-y = \lambda x \\
+		x = \lambda y
+		\end{cases}
+		$$
+		\begin{enumerate}
+			\item 从第一式得 $y = -\lambda x$，代入第二式：$$x = \lambda (-\lambda x) = -\lambda^2 x$$
+			\item 整理得 $x(1 + \lambda^2) = 0$。\begin{itemize}
+				\item 若$x \neq 0$，则 $1 + \lambda^2 = 0 \implies \lambda = \pm \mathrm{i}$（复数解）。
+				\item 若$x = 0$，则$y = -\lambda \cdot 0 = 0$，与$v$非零矛盾。
+			\end{itemize}
+			\item 验证$\lambda = \mathrm{i}$和$\lambda = -\mathrm{i}$对应的非零向量：
+			\begin{itemize}
+				\item 对$\lambda = \mathrm{i}$，由$y = -\mathrm{i} x$，特征向量为$(x, -\mathrm{i} x)$（$x \neq 0$）。
+				\item 对$\lambda = -\mathrm{i}$，由$y = \mathrm{i} x$，特征向量为$(x, \mathrm{i} x)$（$x \neq 0$）。
+			\end{itemize}
+		\end{enumerate}
+		所以在复数域$\mathbb{C}$中，$T$的特征值为$\mathrm{i}$和$-\mathrm{i}$。
+	\end{enumerate}
+\end{example}
+
+根据上面的定义和例子，我们了解到特征值并不是唯一且一定拥有的，并我们要求$v\neq \boldsymbol{0}$这是因为每个标量$\lambda \in \mathbb{F}$都满足$T(\boldsymbol{0})=\lambda \boldsymbol{0}$。
+
+根据一般的算子矩阵$\mathcal{T}$，下面推导矩阵的特征方程：设$\mathbf{A}$是一个$n\times n$方阵，$\mathbf{A}=\mathcal{M}(T)$，$\lambda$为$\mathbf{A}$的特征值，对应的非零特征向量$v$满足：$$\mathbf{A} v = \lambda v$$将等式改写为：$$\mathbf{A} v - \lambda v = \mathbf{0}$$引入单位矩阵$\mathbf{I}$以保持维度一致：$$(\mathbf{A} - \lambda \mathbf{I}) v = \mathbf{0}$$则非零解$v$存在的条件是系数矩阵的行列式为零：$$\det(\mathbf{A} - \lambda \mathbf{I}) = 0$$上述行列式方程即为矩阵$\mathbf{A}$的特征方程，展开后得到一个关于$\lambda$的多项式。
+
+\begin{corollary}
+	关于线性映射算子$T$的矩阵表示$\mathcal{M}(T)$的特征值$\lambda$满足$$\det(\mathbf{A} - \lambda \mathbf{I}) = 0$$
+\end{corollary}
+
+\begin{example}
+	对于$2\times 2$矩阵 $ \mathbf{A} = \begin{pmatrix} a & b \\ c & d \end{pmatrix} $，求其特征方程，并求$a+b=3$，$ad-bc=2$时，矩阵$\mathbf{A}$的特征值.
+
+	\tcblower
+	\textcolor{purple}{\textbf{解}}： 对于$2\times 2$矩阵 $ \mathbf{A} = \begin{pmatrix} a & b \\ c & d \end{pmatrix} $特征方程为$$\det\left( \begin{pmatrix} a-\lambda & b \\ c & d-\lambda \end{pmatrix} \right) = (a-\lambda)(d-\lambda) - bc = 0$$展开后得到：$$\lambda^2 - (a+d)\lambda + (ad - bc) = 0$$带入$a+b=3$，$ad-bc=2$可得方程$$\lambda^2 - 3\lambda + 2 = 0$$因式分解可得$(\lambda-1)(\lambda-2)=0$解得$\lambda=1,2$故矩阵$\mathbf{A}$的特征值为$1$和$2$。
+\end{example}
+
+对于等式$T(v)=\lambda v$接下来我们逐步引出特征向量的概念，实际上这里的$v$就是特征向量。
+
+\subsection{特征向量}
+
+\begin{definition}{特征向量(Eigenvector)}
+	设线性映射算子$T\in\mathcal{L}(V)$其中$V$为一个线性子空间，$\lambda \in \mathbb{F}$是算子$T$的特征值，若能满足等式$T(v)=\lambda v$且$v\neq 0,v\in V$则称$v$为$T$相对于$\lambda$的特征向量。
+\end{definition}
+
+下面我们介绍如何求解特征值所对应的特征向量，实际上它们与解线性方程组的方式一致，接下来请大家带着一个问题去看下面的例题，即:
+
+\begin{ascolorbox1}{思考}
+	特征向量是只有一个向量构成集合还是有很多个向量构成的集合？
+\end{ascolorbox1}
+
+\begin{example}
+	算子$T\in\mathcal{L}(\mathbb{R}^2)$满足$T((x,y,z))=(y+z, x+z, x+y)$求；
+
+	(1)算子$T$以标准基进行变换的矩阵表示$\mathcal{M}(T)$;
+
+	(2)求算子$T$的所有特征值，并求出每个特征值对应的特征向量。
+	\tcblower
+	\textcolor{purple}{\textbf{解}}： 
+	(1)算子$T$在标准基下的矩阵表示：
+	
+	标准基为$e_1 = (1, 0, 0)$，$e_2 = (0, 1, 0)$，$e_3 = (0, 0, 1)$。计算每个基向量在$T$作用下的结果：
+	\begin{itemize}
+		\item $T(e_1) = (0, 1, 1)$
+		\item $T(e_2) = (1, 0, 1)$
+		\item $T(e_3) = (1, 1, 0)$
+	\end{itemize}
+	因此，矩阵$\mathcal{M}(T)$为：$$\begin{pmatrix} 0 & 1 & 1 \\ 1 & 0 & 1 \\ 1 & 1 & 0 \end{pmatrix}$$
+
+	(2)算子$T$的特征值及对应的特征向量：
+
+	首先求解特征方程$\det(\mathcal{M}(T) - \lambda I) = 0$，其中矩阵$\mathcal{M}(T) - \lambda I$为：$$\begin{pmatrix} -\lambda & 1 & 1 \\ 1 & -\lambda & 1 \\ 1 & 1 & -\lambda \end{pmatrix}$$
+	计算行列式：$$\det(\mathcal{M}(T) - \lambda I) = -\lambda^3 + 3\lambda + 2 = 0$$
+	解得特征值为$\lambda = 2$和$\lambda = -1$（二重根）。
+	\begin{itemize}
+		\item 对于$\lambda = 2$，解方程组$(T - 2I)v = 0$，得到特征向量为所有非零标量倍的$(1, 1, 1)$即
+		\item 对于$\lambda = -1$，解方程组$(T + I)v = 0$，得到特征向量为满足$x + y + z = 0$的所有非零向量，例如$(1, -1, 0)$和$(1, 0, -1)$。
+	\end{itemize}
+	计算行列式：$$\det(\mathcal{M}(T) - \lambda I) = -\lambda^3 + 3\lambda + 2 = 0$$解得特征值为$\lambda = 2$和$\lambda = -1$（二重根）。
+
+	\begin{enumerate}
+		\item 当特征值 $\lambda = 2$ 时$$\mathcal{M}(T) - 2I = \begin{pmatrix} -2 & 1 & 1 \\ 1 & -2 & 1 \\ 1 & 1 & -2 \end{pmatrix}$$对其进行使用初等变换$$ \begin{pmatrix} -2 & 1 & 1 \\ 1 & -2 & 1 \\ 1 & 1 & -2 \end{pmatrix}\xrightarrow{r_1\leftrightarrow r_2}\begin{pmatrix} 1 & -2 & 1 \\ -2 & 1 & 1 \\ 1 & 1 & -2 \end{pmatrix}\xrightarrow{r_2+2\times r_1}\begin{pmatrix} 1 & -2 & 1 \\ 0 & -3 & 3 \\ 3 & 1 & -2 \end{pmatrix}\xrightarrow{r_3-r_1}\begin{pmatrix} 1 & -2 & 1 \\ 0 & -3 & 3 \\ 0 & 3 & -3 \end{pmatrix}$$$$\xrightarrow{r_3+ r_2}\begin{pmatrix} 1 & -2 & 1 \\ 0 & -3 & 3 \\ 0 & 0 & 0 \end{pmatrix}\xrightarrow{r_2/3}\begin{pmatrix} 1 & -2 & 1 \\ 0 & -1 & 1 \\ 0 & 0 & 0 \end{pmatrix}$$还原为齐次线性方程组$$\left\{\begin{matrix} 
+  		x_1-2x_2+x_3=0 \\  
+  		-x_2+x_3=0 
+		\end{matrix}\right. $$确定基础解系，设$x_1=1$则$x_2=1,x_3=1$由于$r(\mathcal{M}(T))=2$所以$n-r=1$故基础解系中一个$\mathcal{B}$共一个向量即$\mathcal{B}=\left\{ (1,1,1) \right\}$所以当特征值$\lambda=2$时，特征向量为$v=k(1,1,1),k\in \mathbb{R}$
+		\item 当特征值 $\lambda = -1$时$$\mathcal{M}(T) + I = \begin{pmatrix} 1 & 1 & 1 \\ 1 & 1 & 1 \\ 1 & 1 & 1 \end{pmatrix}$$所有行相同，化为：$$\begin{pmatrix} 1 & 1 & 1 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix}$$其对应的方程为$$x+y+z=0$$最后令$x=0,y=1$则$z=-1$令$x=1,y=0$则$z=-1$那么基础解系$\mathcal{B}=\left\{ (0,1,-1),(1,0,-1) \right\}$特征向量为$v=s(-1, 1, 0) + t(-1, 0, 1)$
+	\end{enumerate}
+\end{example}
+
+接下来回答上述的思考题：特征向量是只有一个向量构成集合还是有很多个向量构成的集合？答案是很多个向量构成的集合，因为最后此类问题求解特征向量都会转化为求齐次线性方程组，然而齐次线性方程组要么全为0解，要么有无数个非零解，全为0解的时，特征值为0或不存在故不存在特征向量。
+
