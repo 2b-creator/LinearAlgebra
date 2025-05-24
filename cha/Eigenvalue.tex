@@ -169,3 +169,216 @@
 
 接下来回答上述的思考题：特征向量是只有一个向量构成集合还是有很多个向量构成的集合？答案是很多个向量构成的集合，因为最后此类问题求解特征向量都会转化为求齐次线性方程组，然而齐次线性方程组要么全为0解，要么有无数个非零解，全为0解的时，特征值为0或不存在故不存在特征向量。
 
+\section{迹与上三角矩阵}
+
+\subsection{矩阵的迹}
+
+首先我们先定义矩阵的迹。
+
+\begin{definition}{矩阵的迹(trace)}
+		$n\times n$矩阵的迹(trace)是矩阵对角元素的和，通常表示为 $\text{Tr}(\mathbf{A})$；若方阵$\mathbf{A}=\begin{pmatrix}  
+  a_{11}& a_{12} & \cdots & a_{1n} \\  
+	a_{21}& a_{22} & \cdots & a_{2n} \\ 
+  \vdots & \vdots & \ddots & \vdots\\  
+  a_{n1} & a_{n2} & \cdots &a_{nn}  
+\end{pmatrix} $，则$$\text{Tr}(\mathbf{A}):=\sum_{i=1}^{n}a_{ii} $$即为A的所有对角元的和。
+\end{definition}
+
+下面是有关迹的一些推论:
+
+\begin{corollary}
+	设$\mathbf{A}$是$m\times n$矩阵，$\mathbf{B}$是$n\times m$矩阵。证明:$$\text{Tr}\mathbf{A}\mathbf{B}=\text{Tr}\mathbf{B}\mathbf{A}$$ 
+\end{corollary}
+
+\begin{proof}
+	考虑$\mathbf{A}\mathbf{B}$的迹，其定义为：
+$$
+\text{Tr}(\mathbf{A}\mathbf{B}) = \sum_{i=1}^m [\mathbf{A}\mathbf{B}]_{ii} = \sum_{i=1}^m \sum_{k=1}^n a_{ik} b_{ki}
+$$
+
+同样地，考虑$\mathbf{B}\mathbf{A}$的迹，其定义为：
+$$
+\text{Tr}(\mathbf{B}\mathbf{A}) = \sum_{k=1}^n [\mathbf{B}\mathbf{A}]_{kk} = \sum_{k=1}^n \sum_{i=1}^m b_{ki} a_{ik}
+$$
+
+接下来，我们交换双重求和的顺序。对于$\text{Tr}(\mathbf{A}\mathbf{B})$，我们可以将求和顺序交换为：
+$$
+\sum_{i=1}^m \sum_{k=1}^n a_{ik} b_{ki} = \sum_{k=1}^n \sum_{i=1}^m a_{ik} b_{ki}
+$$
+
+对于$\text{Tr}(\mathbf{B}\mathbf{A})$，我们注意到$b_{ki} a_{ik} = a_{ik} b_{ki}$，因此：
+$$
+\sum_{k=1}^n \sum_{i=1}^m b_{ki} a_{ik} = \sum_{k=1}^n \sum_{i=1}^m a_{ik} b_{ki}
+$$
+
+显然，$\text{Tr}(\mathbf{A}\mathbf{B})$和$\text{Tr}(\mathbf{B}\mathbf{A})$的表达式相同，只是求和顺序不同，因此它们的值相等。
+
+通过具体例子验证，例如当$\mathbf{A}$是行向量，$\mathbf{B}$是列向量时，或者当$\mathbf{A}$和$\mathbf{B}$分别为不同维度的矩阵时，它们的迹仍然相等。
+
+综上所述，我们证明了：
+$$
+\text{Tr}(\mathbf{A}\mathbf{B}) = \text{Tr}(\mathbf{B}\mathbf{A})
+$$
+\begin{flushright}
+		$\square$
+	\end{flushright}
+\end{proof}
+
+\begin{corollary}
+	\label{cor:trace}
+	设$n$阶方阵$\mathbf{A}$的特征方程为多项式$P(\lambda)=\lambda^n+a_1\lambda^{n-1}+a_2\lambda^{n-2}+\cdots+a_n$，则$$a_1=-\text{Tr}\mathbf{A}$$
+\end{corollary}
+
+\begin{proof}
+	特征方程多项式可以表示为$P(\lambda) = \det(\lambda \mathbf{I} - \mathbf{A})$，其中$\mathbf{I}$是单位矩阵。设$\mathbf{A}$的特征值为$\lambda_1, \lambda_2, \ldots, \lambda_n$，则特征方程多项式可以分解为：
+   $$
+   P(\lambda) = (\lambda - \lambda_1)(\lambda - \lambda_2) \cdots (\lambda - \lambda_n)
+   $$
+   根据韦达定理，$\lambda^{n-1}$项的系数由所有特征值的和决定，即：
+   $$
+   a_1 = -(\lambda_1 + \lambda_2 + \cdots + \lambda_n)
+   $$
+   \begin{flushright}
+		$\square$
+	\end{flushright}
+\end{proof}
+
+\subsection{上三角矩阵}
+
+首先我们先定义上三角矩阵。
+
+\begin{definition}{上三角矩阵(upper-triangular matrix)}
+	若方阵$\mathbf{A}$主对角线下方的元素全为0则$\mathbf{A}$为上三角矩阵。例如$$\begin{pmatrix}
+ \textcolor{blue}{*}  & * & * & *\\
+ \textcolor{red}{0}  & \textcolor{blue}{*} & * & *\\
+ \textcolor{red}{0} & \textcolor{red}{0} & \textcolor{blue}{*} & *\\
+ \textcolor{red}{0} & \textcolor{red}{0} & \textcolor{red}{0} & \textcolor{blue}{*}
+\end{pmatrix}$$该矩阵\textcolor{blue}{蓝色}标注的为矩阵对角线。
+\end{definition}
+
+在此我们引入上三角矩阵，是为了研究基于算子的某一个基的表示为上三角矩阵可以快速确定一些特征值的性质，以及为了后面的一些定理做一些铺垫。
+
+线性映射算子$T\in\mathcal{L}(V)$的矩阵$\mathcal{M}(T)$依赖于其基的选取，我们设空间$V$的一个基$S=\left\{ v_1,v_2,v_3,\cdots,v_n \right\}$，则$\text{dim}V=n$，不难看出选取基$S$的的矩阵$\mathcal{M}(T)$为一个$n\times n$矩阵，下面我们看一个例子：
+
+若$T\in \mathcal{\mathbb{F}^3}$表示为$T((x,y,z))=(x+y+3z,3y+2z,4z)$则选取$\mathbb{F}^3$的标准基$\left\{ (1,0,0),(0,1,0),(0,0,1) \right\}$的矩阵表示为$$\mathcal{M}(T)=\begin{pmatrix}
+ 1 & 1 & 3\\
+ 0 & 3 & 2\\
+ 0 & 0 & 4
+\end{pmatrix}$$事实上，在本章节我们会强调不是以标准基的线性映射矩阵，接下来我们约定一个记号，上述的例子我们用$\mathcal{M}(T)$来默认表示它们是基于标准基的变换矩阵。下面给出基于非标准基的线性映射的矩阵相关记号与定义。
+\begin{definition}{基于非标准基的线性映射的矩阵}
+	若线性映射算子$T\in\mathcal{V}$，若$S$为线性空间$V$的一个基，那么基于$S$的线性映射$T$的矩阵矩阵表示为$\mathcal{M}(T,S)$，若$S$为线性空间$V$的标准基，则简写为$\mathcal{M}(T)$
+\end{definition}
+
+接下来根据上述知识我们可以得到一些推论:
+
+\begin{corollary}
+	若算子$T\in\mathcal{L}(\mathbb{C}^n)$则一定存在基$S$使得算子关于该基的矩阵$\mathcal{M}(T,S)$为上三角矩阵。
+\end{corollary}
+
+\begin{proof}
+	为了证明任何线性算子 $ T \in \mathcal{L}(\mathbb{C}^n) $ 存在一个基 $ S $，使得其矩阵表示为上三角矩阵，我们可以使用数学归纳法：当 $ n=1 $ 时，任何 $ 1 \times 1 $ 矩阵本身就是上三角矩阵，结论显然成立。
+
+	那么假设对于所有 $ n-1 $ 维复向量空间上的线性算子，存在一个基使得其矩阵为上三角矩阵。设 $ V $ 为 $ n $ 维复向量空间，$ T \in \mathcal{L}(V) $。由于 $ V $ 是复空间，$ T $ 必有特征值 $ \lambda_1 $，对应非零特征向量 $ v_1 $。令 $ U = \text{Span}(v_1) $，则 $ U $ 是 $ T $-不变的一维子空间。考虑线性映射 $ T - \lambda_1 I $，根据秩零化度定理：$$\dim V = \dim \text{null}(T - \lambda_1 I) + \dim \text{range}(T - \lambda_1 I)$$由于 $ \dim \text{null}(T - \lambda_1 I) \geq 1 $，得 $ \dim \text{range}(T - \lambda_1 I) \leq n - 1 $。选取 $ V $ 的补空间 $ W $ 使得 $ V = U \oplus W $。这里 $ W $ 是 $ n-1 $ 维子空间。定义投影 $ \pi: V \to W $，将任意 $ v \in V $ 分解为 $ v = u + w $（其中 $ u \in U, w \in W $），并令 $ \pi(v) = w $。定义线性算子 $ S: W \to W $ 为 $ S(w) = \pi(T(w)) $。由线性性保证，$ S $ 是 $ W $ 上的线性算子。根据归纳假设，存在 $ W $ 的一组基 $ v_2, \dots, v_n $，使得 $ S $ 在此基下的矩阵为上三角形式。即对任意 $ 2 \leq j \leq n $，有：$$S(v_j) \in \text{Span}(\{v_2, \dots, v_j\}).$$合并基 $ v_1, v_2, \dots, v_n $。对每个 $ v_j $（$ j \geq 2 $），有：  
+$$
+T(v_j) = \pi(T(v_j)) + u_j \quad (u_j \in U).
+$$
+由于 $ \pi(T(v_j)) = S(v_j) \in \text{Span}(\{v_2, \dots, v_j\}) $，且 $ u_j \in \text{Span}(\{v_1\}) $，因此：  
+$$
+T(v_j) \in \text{Span}(\{v_1, v_2, \dots, v_j\}).
+$$
+对于 $ v_1 $，显然 $ T(v_1) = \lambda_1 v_1 \in \text{Span}(\{v_1\}) $。  
+因此，基 $ \{v_1, v_2, \dots, v_n\} $ 使得 $ \mathcal{M}(T, S) $ 为上三角矩阵。
+
+由数学归纳法，复向量空间上的任意线性算子均存在一组基，使其矩阵表示为上三角矩阵。  
+即，存在基 $ S $ 使得 $ \mathcal{M}(T, S) $ 为上三角矩阵。
+\begin{flushright}
+		$\square$
+	\end{flushright}
+\end{proof}
+
+\section{相似变换}
+
+\subsection{相似矩阵}
+
+首先给出举着相似的定义。
+
+\begin{definition}{相似矩阵}
+	若$n\times n$矩阵$\mathbf{A}$与矩阵$\mathbf{B}$相似，则存在 $n\times n$ 可逆矩阵$\mathbf{P}$使得$$\mathbf{A}=\mathbf{P}\mathbf{B}\mathbf{P}^{-1}$$记作$\mathbf{A}\sim \mathbf{B}$
+\end{definition}
+
+根据上述定义，我们不难发现如下的推论：
+
+\begin{corollary}
+	相似矩阵的性质：
+	\begin{enumerate}
+		\item 自反性：$\mathbf{A}$与$\mathbf{A}$相似；
+		\item 对称性：若$\mathbf{A}$与$\mathbf{B}$相似，则$\mathbf{B}$与$\mathbf{A}$相似；
+		\item 传递性：若$\mathbf{A}$与$\mathbf{B}$相似，$\mathbf{B}$与$\mathbf{C}$相似，则$\mathbf{A}$与$\mathbf{C}$相似
+	\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+	证明留给读者，参见课后练习 B 组。
+	\begin{flushright}
+		$\square$
+	\end{flushright}
+\end{proof}
+
+\begin{corollary}
+	如果矩阵$\mathbf{A}\sim \mathbf{B}$，则它们的特征方程$p(\lambda)$相同，并满足$\text{Tr}\mathbf{A}=\text{Tr}\mathbf{B}$与$\det \mathbf{A}=\det \mathbf{B}$
+\end{corollary}
+
+\begin{proof}
+	假设矩阵$\mathbf{A}$和$\mathbf{B}$相似，则存在可逆矩阵$\mathbf{P}$使得$\mathbf{B} = \mathbf{P}^{-1}\mathbf{A}\mathbf{P}$。
+
+首先，证明它们的特征方程相同：
+
+计算矩阵$\mathbf{B}$的特征方程多项式：
+$$
+\det(\lambda \mathbf{I} - \mathbf{B}) = \det(\lambda \mathbf{I} - \mathbf{P}^{-1}\mathbf{A}\mathbf{P})
+$$
+将$\lambda \mathbf{I}$改写为$\mathbf{P}^{-1}(\lambda \mathbf{I})\mathbf{P}$，因为$\mathbf{P}^{-1}(\lambda \mathbf{I})\mathbf{P} = \lambda \mathbf{I}$。于是：
+$$
+\det(\lambda \mathbf{I} - \mathbf{P}^{-1}\mathbf{A}\mathbf{P}) = \det(\mathbf{P}^{-1}(\lambda \mathbf{I} - \mathbf{A})\mathbf{P})
+$$
+利用行列式的乘法性质：
+$$
+\det(\mathbf{P}^{-1}(\lambda \mathbf{I} - \mathbf{A})\mathbf{P}) = \det(\mathbf{P}^{-1})\det(\lambda \mathbf{I} - \mathbf{A})\det(\mathbf{P})
+$$
+由于$\det(\mathbf{P}^{-1})\det(\mathbf{P}) = \det(\mathbf{P}^{-1}\mathbf{P}) = \det(\mathbf{I}) = 1$，因此：
+$$
+\det(\lambda \mathbf{I} - \mathbf{B}) = \det(\lambda \mathbf{I} - \mathbf{A})
+$$
+即$\mathbf{A}$和$\mathbf{B}$的特征方程相同。
+
+接下来，由于特征方程相同，它们的特征方程多项式相同。特征方程多项式的形式为：
+$$
+\lambda^n - (\text{Tr}\mathbf{A})\lambda^{n-1} + \cdots + (-1)^n \det{\mathbf{A}}\footnote{为什么最后一项是$(-1)^n \det{\mathbf{A}}$？}
+$$
+比较多项式两边的对应系数：
+
+第二项系数\footnote{根据推论\ref{cor:trace}}：$-\text{Tr}\mathbf{A} = -\text{Tr}\mathbf{B}$，因此$\text{Tr}\mathbf{A} = \text{Tr}\mathbf{B}$。常数项：$(-1)^n \det{\mathbf{A}} = (-1)^n \det{\mathbf{B}}$，因此$\det{\mathbf{A}} = \det{\mathbf{B}}$。
+
+因此，矩阵$\mathbf{A}$和$\mathbf{B}$的迹和行列式相等。
+\begin{flushright}
+		$\square$
+	\end{flushright}
+\end{proof}
+
+\subsection{对角化矩阵}
+
+首先给出对角矩阵的定义：
+
+\begin{definition}{对角矩阵(Diagonal Matrix)与矩阵的对角化}
+	若$n\times n$方阵$\mathbf{A}$的元素$a_{ij}$满足$a_{ij}=c_i\delta_{ij}$，其中$c_i\in \mathbb{F}$，$\delta_{ij}$为函数表示为$$\delta_{ij}=\left\{\begin{matrix} 
+  1 \quad i=j \\  
+  0 \quad i\neq j
+\end{matrix}\right. \footnote{Kronecker Delta, Kronecker function, 克罗内克函数, https://mathworld.wolfram.com/KroneckerDelta.html}$$则该矩阵为对角矩阵，即该矩阵的元素除了其对角线上的元素以外均为 0，并记作$\text{diag}(a_{1},a_2,\cdots,a_n)$，即$$\text{diag}(a_{1},a_2,\cdots,a_n):=\begin{pmatrix}
+ a_1 & 0 & \cdots &0 \\
+ 0 & a_2 & \cdots & 0 \\
+ \vdots & \vdots & \ddots & \vdots\\
+ 0 & 0 & \cdots & a_1
+\end{pmatrix}$$如果方阵$\mathbf{B}$与一个对角矩阵相似，则称$\mathbf{B}$称为可对角化。
+\end{definition}
+
+若方阵$\mathbf{A}\sim \text{diag}(a_{1},a_2,\cdots,a_n)$，则$\mathbf{A}$的特征方程$p(\lambda)=(\lambda-a_1)(\lambda-a_2)\cdots(\lambda-a_n)$
