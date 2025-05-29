@@ -105,7 +105,7 @@
 根据一般的算子矩阵$\mathcal{T}$，下面推导矩阵的特征方程：设$\mathbf{A}$是一个$n\times n$方阵，$\mathbf{A}=\mathcal{M}(T)$，$\lambda$为$\mathbf{A}$的特征值，对应的非零特征向量$v$满足：$$\mathbf{A} v = \lambda v$$将等式改写为：$$\mathbf{A} v - \lambda v = \mathbf{0}$$引入单位矩阵$\mathbf{I}$以保持维度一致：$$(\mathbf{A} - \lambda \mathbf{I}) v = \mathbf{0}$$则非零解$v$存在的条件是系数矩阵的行列式为零：$$\det(\mathbf{A} - \lambda \mathbf{I}) = 0$$上述行列式方程即为矩阵$\mathbf{A}$的特征方程，展开后得到一个关于$\lambda$的多项式。
 
 \begin{corollary}
-	关于线性映射算子$T$的矩阵表示$\mathcal{M}(T)$的特征值$\lambda$满足$$\det(\mathbf{A} - \lambda \mathbf{I}) = 0$$
+	关于线性映射算子$T$的矩阵表示$\mathcal{M}(T)$的特征值$\lambda$满足$$\det(\mathcal{M}(T) - \lambda \mathbf{I}) = 0$$
 \end{corollary}
 
 \begin{example}
@@ -272,6 +272,7 @@ $$
 接下来根据上述知识我们可以得到一些推论:
 
 \begin{corollary}
+	\label{cor:tri}
 	若算子$T\in\mathcal{L}(\mathbb{C}^n)$则一定存在基$S$使得算子关于该基的矩阵$\mathcal{M}(T,S)$为上三角矩阵。
 \end{corollary}
 
@@ -365,6 +366,22 @@ $$
 	\end{flushright}
 \end{proof}
 
+\begin{corollary}
+	\label{cor:tri2}
+	任意的$n$阶方阵$\mathbf{A}$都能相似于一个上三角矩阵。
+\end{corollary}
+
+\begin{proof}	
+	设 $\mathbf{A}$ 是任意 $n \times n$ 复矩阵。$\mathbf{A}$ 可视为线性算子 $T_A: \mathbb{C}^n \to \mathbb{C}^n$ 在标准基 $B$ 下的矩阵表示，即 $\mathcal{M}(T_A, B) = \mathbf{A}$。  
+	由推论\ref{cor:tri}证明，存在基 $S$ 使得 $\mathcal{M}(T_A, S)$ 是上三角矩阵。基变换矩阵 $\mathbf{P}$ 满足 $\mathbf{P}$ 的列是 $S$ 在基 $B$ 下的坐标向量，且  
+	$$
+	\mathcal{M}(T_A, S) = \mathbf{P}^{-1} \mathbf{A} \mathbf{P}.
+	$$
+	因此，$\mathbf{P}^{-1} \mathbf{A} \mathbf{P}$ 是上三角矩阵，即 $\mathbf{A}$ 相似于一个上三角矩阵。\begin{flushright}
+		$\square$
+	\end{flushright}
+\end{proof}
+
 \subsection{对角化矩阵}
 
 首先给出对角矩阵的定义：
@@ -381,4 +398,84 @@ $$
 \end{pmatrix}$$如果方阵$\mathbf{B}$与一个对角矩阵相似，则称$\mathbf{B}$称为可对角化。
 \end{definition}
 
-若方阵$\mathbf{A}\sim \text{diag}(a_{1},a_2,\cdots,a_n)$，则$\mathbf{A}$的特征方程$p(\lambda)=(\lambda-a_1)(\lambda-a_2)\cdots(\lambda-a_n)$
+若方阵$\mathbf{A}\sim \text{diag}(a_{1},a_2,\cdots,a_n)$，则$\mathbf{A}$的特征方程$p(\lambda)=(\lambda-a_1)(\lambda-a_2)\cdots(\lambda-a_n)$因此这个对角矩阵的元素即为$\mathbf{A}$的特征值。
+下面我们来描述矩阵可对角化的充分必要条件，若 $\mathbf{A}$ 可对角化，那么则有式子成立$$\mathbf{A}=\mathbf{P}\text{diag}(a_{1},a_2,\cdots,a_n)\mathbf{P}^{-1}$$设$\mathbf{P}$矩阵由列向量$\left\{ b_1,b_2,b_3,\cdots,b_n \right\}$构成，则$\mathbf{P}=\begin{pmatrix}
+	b_1 & b_2 & b_3 & \cdots & b_n
+\end{pmatrix}$由于$\mathbf{P}$可逆，所以其秩$r(\mathbf{P})=n$，因此$\left\{ b_1,b_2,b_3,\cdots,b_n \right\}$为其极大线性无关组，那么就可以写作下面的形式$$\mathbf{A}\begin{pmatrix}
+	b_1 & b_2 & b_3 & \cdots & b_n
+\end{pmatrix}=\begin{pmatrix}
+	b_1 & b_2 & b_3 & \cdots & b_n
+\end{pmatrix}\text{diag}(a_{1},a_2,\cdots,a_n)$$设矩阵 $\mathbf{B} = \begin{pmatrix} b_1 & b_2 & \cdots & b_n \end{pmatrix}$，其列由向量 $b_1, b_2, \ldots, b_n$ 组成。对角矩阵 $\mathbf{D} = \text{diag}(a_1, a_2, \cdots, a_n)$。则等式可写为：
+$$
+\mathbf{A} \mathbf{B} = \mathbf{B} \mathbf{D}
+$$
+\begin{itemize}
+	\item 左边 $\mathbf{A} \mathbf{B}$ 的结果是一个矩阵，其第 $j$ 列为 $\mathbf{A} b_j$，即：
+  $$
+  \mathbf{A} \mathbf{B} = \begin{pmatrix} \mathbf{A} b_1 & \mathbf{A} b_2 & \cdots & \mathbf{A} b_n \end{pmatrix}
+  $$
+  	\item 右边 $\mathbf{B} \mathbf{D}$ 的结果是一个矩阵，其第 $j$ 列为 $\mathbf{B}$ 的第 $j$ 列乘以 $\mathbf{D}$ 的第 $j$ 个对角元素 $a_j$，即：
+  $$
+  \mathbf{B} \mathbf{D} = \begin{pmatrix} a_1 b_1 & a_2 b_2 & \cdots & a_n b_n \end{pmatrix}
+  $$
+\end{itemize}
+
+因此，等式等价于：
+$$
+\begin{pmatrix} \mathbf{A} b_1 & \mathbf{A} b_2 & \cdots & \mathbf{A} b_n \end{pmatrix} = \begin{pmatrix} a_1 b_1 & a_2 b_2 & \cdots & a_n b_n \end{pmatrix}
+$$
+这表示对应列相等，即对于每个 $j = 1, 2, \ldots, n$：
+$$
+\mathbf{A} b_j = a_j b_j
+$$
+
+该等式化简后表示：每个列向量 $b_i$ 是矩阵 $\mathbf{A}$ 的特征向量，对应的特征值为 $a_i$。即：
+$$
+\mathbf{A} b_i = a_i b_i, \quad \forall i = 1, 2, \ldots, n
+$$
+
+\subsection{Hamilton-Cayley 定理}
+
+根据上述的铺垫我们引入并证明 Hamilton-Cayley 定理
+
+\begin{theorem}{Hamilton-Cayley 定理}
+	多项式$P(\lambda)=\lambda^n+a_1\lambda^{n-1}+a_2\lambda^{n-2}+\cdots+a_n$为$n$阶方阵$\mathbf{A}$的特征方程，那么矩阵运算$$P(\mathbf{A}):=\mathbf{A}^n+a_1\mathbf{A}^{n-1}+a_2\mathbf{A}^{n-2}+\cdots+a_n\mathbf{I}=\mathbf{O}$$成立，$P(\mathbf{A})$为零矩阵$\mathbf{O}$。
+\end{theorem}
+
+这个定理挺奇妙，我们下面尝试一步步证明它。
+
+\begin{proof}
+	特征方程多项式将其可以改写为
+	$$
+   	P(\lambda) = (\lambda - \lambda_1)(\lambda - \lambda_2) \cdots (\lambda - \lambda_n)
+   	$$根据推论\ref{cor:tri2}，存在可逆矩阵$\mathbf{P}$，使得$$\mathbf{P}^{-1} \mathbf{A} \mathbf{P}=\begin{pmatrix}
+ \lambda_1 & * & * & \cdots & *\\
+  & \lambda_2 & * & \cdots & *\\
+  &  & \lambda_3 & \cdots & *\\
+  &  &  & \ddots & \vdots \\ 
+  &  &  &  & \lambda_n
+\end{pmatrix}$$将$\mathbf{P}^{-1} \mathbf{A} \mathbf{P}$代入矩阵运算即$$P(\mathbf{P}^{-1} \mathbf{A} \mathbf{P})=(\mathbf{P}^{-1} \mathbf{A} \mathbf{P} - \lambda_1\mathbf{I})(\mathbf{P}^{-1} \mathbf{A} \mathbf{P} - \lambda_2\mathbf{I}) \cdots (\mathbf{P}^{-1} \mathbf{A} \mathbf{P} - \lambda_n\mathbf{I})$$我们将其写成矩阵乘积的形式即\begin{tiny}
+$$\begin{pmatrix}
+ 0 & * & * & \cdots & *\\
+  & \lambda_2-\lambda_1 & * & \cdots & *\\
+  &  & \lambda_3-\lambda_1 & \cdots & *\\
+  &  &  & \ddots & \vdots \\ 
+  &  &  &  & \lambda_n-\lambda_1
+\end{pmatrix}\begin{pmatrix}
+  \lambda_1-\lambda_2 & * & * & \cdots & *\\
+  & 0 & * & \cdots & *\\
+  &  & \lambda_3-\lambda_2 & \cdots & *\\
+  &  &  & \ddots & \vdots \\ 
+  &  &  &  & \lambda_n-\lambda_2
+\end{pmatrix}\cdots\begin{pmatrix}
+  \lambda_1-\lambda_n & * & * & \cdots & *\\
+  & \lambda_2-\lambda_n & * & \cdots & *\\
+  &  & \lambda_3-\lambda_n & \cdots & *\\
+  &  &  & \ddots & \vdots \\ 
+  &  &  &  & 0
+\end{pmatrix}=\mathbf{O}$$
+\end{tiny}由于单位矩阵$\mathbf{I}=\mathbf{P}\mathbf{P}^{-1}$可得$$P(\mathbf{P}^{-1} \mathbf{A} \mathbf{P})=(\mathbf{P}^{-1} \mathbf{A} \mathbf{P} - \lambda_1\mathbf{P}\mathbf{P}^{-1})(\mathbf{P}^{-1} \mathbf{A} \mathbf{P} - \lambda_2\mathbf{P}\mathbf{P}^{-1}) \cdots (\mathbf{P}^{-1} \mathbf{A} \mathbf{P} - \lambda_n\mathbf{P}\mathbf{P}^{-1})$$提出$\mathbf{P}\mathbf{P}^{-1}$部分可得$\mathbf{P}P(\mathbf{A})\mathbf{P}^{-1}=\mathbf{O}$即$P(\mathbf{A})=\mathbf{O}$
+\begin{flushright}
+		$\square$
+	\end{flushright}
+\end{proof}
