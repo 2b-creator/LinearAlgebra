@@ -497,3 +497,113 @@ $$
 $$
 \mathbf{A} b_i = a_i b_i, \quad \forall i = 1, 2, \ldots, n
 $$
+
+因此我们可以得到矩阵$\mathbf{P}=\begin{pmatrix}
+	b_1 & b_2 & b_3 & \cdots & b_n
+\end{pmatrix}$的所有元素均为$\mathbf{A}$的特征向量排列形成的矩阵。
+
+\begin{example}
+	矩阵$\mathbf{A}=\begin{pmatrix}
+			2 & 1 & 0\\
+			0 & 3 & 0\\
+			0 & 2 & 1
+		\end{pmatrix}$，存在$\mathbf{A}=\mathbf{P}\mathbf{B}	\mathbf{P}^{-1}$且$\mathbf{B}$为对角矩阵，求矩阵$\mathbf{P}$的一个可能值。
+	   	\tcblower
+		\textcolor{purple}{\textbf{解}}： $\mathbf{A}$特征方程为$$\det (\lambda \mathbf{I}-\mathbf{A})=\begin{vmatrix}
+			\lambda-2 & -1 & 0\\
+			0 & \lambda-3 & 0\\
+			0 & -2 & \lambda -1
+		\end{vmatrix}=(\lambda -1)(\lambda -2)(\lambda -3)$$令其等于0可得$\mathbf{A}$有3个不同的特征值，分别为$1,2,3$。接下来分别代入3个特征值求方阵的特征向量：
+		   	\begin{enumerate}
+			\item 当 $\lambda=1$时$$\lambda \mathbf{I}-\mathbf{A}=\begin{pmatrix}
+				-1 & -1 & 0\\
+				0 & -2 & 0\\
+				0 & -2 & 0
+			\end{pmatrix}$$由此$(\lambda \mathbf{I}-\mathbf{A})v=\boldsymbol{0}$通过高斯消元法解线性方程组$$\begin{pmatrix}
+				-1 & -1 & 0\\
+				0 & -2 & 0\\
+				0 & -2 & 0
+			\end{pmatrix}\xrightarrow[r_3/2]{r_2/2} \begin{pmatrix}
+				-1 & -1 & 0\\
+				0 & -1 & 0\\
+				0 & -1 & 0
+			\end{pmatrix}\xrightarrow[r_3-r_2]{r_1-r_2}\begin{pmatrix}
+				-1 & 0 & 0\\
+				0 & -1 & 0\\
+				0 & 0 & 0
+			\end{pmatrix}$$还原为齐次方程为$$\left\{\begin{matrix} 
+				-x_1 = 0 \\  
+				-x_2 = 0
+			\end{matrix}\right. $$ 其中 $x_3$ 为自由变量，所以$\lambda = 1$其一个特征向量为$(0,0,1)$
+			\item 同理我们算出$\lambda =2$时其一个特征向量为$(1,0,0)$
+			\item 同理我们算出$\lambda =3$时其一个特征向量为$(1,1,1)$
+		   	\end{enumerate}
+			以特征向量为列构造 $\mathbf{P}$，按特征值顺序排列：$$\mathbf{P} = \begin{pmatrix} v_1 & v_2 & v_3 \end{pmatrix} = \begin{pmatrix} 0 & 1 & 1 \\ 0 & 0 & 1 \\ 1 & 0 & 1 \end{pmatrix}$$计算行列式：$$\det(\mathbf{P}) = \det \begin{pmatrix} 0 & 1 & 1 \\ 0 & 0 & 1 \\ 1 & 0 & 1 \end{pmatrix} = 1 \cdot \det \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix} = 1 \cdot (1 \cdot 1 - 1 \cdot 0) = 1 \neq 0$$行列式非零，故 $\mathbf{P}$ 可逆。因此，矩阵 $\mathbf{P}$ 的一个可能值为：$$\mathbf{P}=\begin{pmatrix} 0 & 1 & 1 \\ 0 & 0 & 1 \\ 1 & 0 & 1 \end{pmatrix}$$
+\end{example}
+
+事实上，不一定每一个方阵都可以被对角化，下面给出可对角化方阵的充分条件：
+
+\begin{theorem}{方阵可对角化的充分条件}
+	如果$\mathbb{F}$上$n$阶方阵$\mathbf{A}$具有$n$个互不相同的特征值，则$\mathbf{A}$可以对角化。
+\end{theorem}
+
+\begin{proof}
+	对每个特征值 $\lambda_i$，选取对应的特征向量 $v_i$，即 $\mathbf{A} v_i = \lambda_i v_i$，且 $v_i \neq \mathbf{0}$。考虑向量组 $\{v_1, v_2, \dots, v_n\}$。 使用数学归纳法：
+	\begin{enumerate}
+		\item 当 $k=1$ 时，单个特征向量 $v_1 \neq \mathbf{0}$，故线性无关。  
+		\item 假设对 $k-1$ 个不同特征值的特征向量成立。考虑 $k$ 个不同特征值 $\lambda_1, \dots, \lambda_k$ 的特征向量 $v_1, \dots, v_k$。设线性组合：  
+  $$
+  c_1 v_1 + c_2 v_2 + \dots + c_k v_k = \mathbf{0} \quad (1)
+  $$
+  作用 $\mathbf{A}$ 得：  
+  $$
+  c_1 \lambda_1 v_1 + c_2 \lambda_2 v_2 + \dots + c_k \lambda_k v_k = \mathbf{0} \quad (2)
+  $$
+  将 $(1)$ 乘以 $\lambda_k$：  
+  $$
+  \lambda_k c_1 v_1 + \lambda_k c_2 v_2 + \dots + \lambda_k c_k v_k = \mathbf{0} \quad (3)
+  $$
+  $(2)$ 减 $(3)$：  
+  $$
+  c_1 (\lambda_1 - \lambda_k) v_1 + c_2 (\lambda_2 - \lambda_k) v_2 + \dots + c_{k-1} (\lambda_{k-1} - \lambda_k) v_{k-1} = \mathbf{0}
+  $$
+  由归纳假设，$v_1, \dots, v_{k-1}$ 线性无关，且 $\lambda_i \neq \lambda_k$（特征值互异），故 $c_i (\lambda_i - \lambda_k) = 0$ 推出 $c_i = 0$（$i=1,2,\dots,k-1$）。代入 $(1)$ 得 $c_k v_k = \mathbf{0}$，因 $v_k \neq \mathbf{0}$，故 $c_k = 0$。因此，$v_1, \dots, v_k$ 线性无关。
+	\end{enumerate}
+	由归纳假设，$v_1, \dots, v_{k-1}$ 线性无关，且 $\lambda_i \neq \lambda_k$（特征值互异），故 $c_i (\lambda_i - \lambda_k) = 0$ 推出 $c_i = 0$（$i=1,2,\dots,k-1$）。代入 $(1)$ 得 $c_k v_k = \mathbf{0}$，因 $v_k \neq \mathbf{0}$，故 $c_k = 0$。因此，$v_1, \dots, v_k$ 线性无关。
+
+在本问题中，$k = n$，故 $\{v_1, v_2, \dots, v_n\}$ 线性无关。由于 $\mathbf{A}$ 是 $n$ 阶方阵，特征向量组构成 $\mathbb{F}^n$ 的一组基。
+
+令 $\mathbf{P} = (v_1, v_2, \dots, v_n)$，则 $\mathbf{P}$ 可逆。计算：  
+$$
+\mathbf{A} \mathbf{P} = \mathbf{A} (v_1, v_2, \dots, v_n) = (\mathbf{A} v_1, \mathbf{A} v_2, \dots, \mathbf{A} v_n) = (\lambda_1 v_1, \lambda_2 v_2, \dots, \lambda_n v_n)
+$$
+令 $\mathbf{D} = \operatorname{diag}(\lambda_1, \lambda_2, \dots, \lambda_n)$，则：  
+$$
+\mathbf{P} \mathbf{D} = (v_1, v_2, \dots, v_n) \begin{pmatrix} \lambda_1 & & \\ & \ddots & \\ & & \lambda_n \end{pmatrix} = (\lambda_1 v_1, \lambda_2 v_2, \dots, \lambda_n v_n)
+$$
+故 $\mathbf{A} \mathbf{P} = \mathbf{P} \mathbf{D}$，即 $\mathbf{P}^{-1} \mathbf{A} \mathbf{P} = \mathbf{D}$，其中 $\mathbf{D}$ 为对角矩阵。
+
+因此，$\mathbf{A}$ 可对角化。
+
+\begin{flushright}
+	$\square$
+\end{flushright}
+\end{proof}
+
+\section{Jordan 标准型}
+
+% \subsection{幂零变换}
+
+% 首先我们明确一个概念，那就是线性映射算子$T\in \mathcal{L}(V)$可以表示为矩阵$\mathcal{M}(T)$，令$\mathbf{A}=\mathcal{M}(T)$我们可以得到向量$x\in \mathbb{F}^n$可得$T(x)=\mathbf{A}x$，每一次变换相当于在等式中左乘一个$\mathbf{A}$，由此我们可以推断：
+
+% \begin{axiom}{矩阵乘公理}
+% 	线性映射算子$T\in \mathcal{L}(V)$与向量$x\in \mathbb{F}^n$存在正整数$m \in \mathcal{N}^+$使得$T^m$表示$T$的$m$次复合，则$$T^m(x)=A^mx$$
+% \end{axiom}
+
+\subsection{Jordan 块}
+
+在这里我们引入 Jordan\footnote{Jordan 法语读音 {\timesroman /ʒɔʁdɑ̃/} 音译为约旦，若尔当，英语读音 {\timesroman /'dʒɔ:dn/} 音译为乔丹，焦尔丹。实际上两种读法都有，但是由于 Jordan Marie Ennemond Camille 是法国人，所以我们中文常读作：``若尔当块''而非``乔丹块''} 块与 Jordan 标准型的概念，由于不是每一个方阵都可以相似变化为对角矩阵，但是可以相似为一个与之很近的形式。
+
+\begin{definition}{Jordan 块}
+	
+\end{definition}
