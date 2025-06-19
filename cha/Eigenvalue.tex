@@ -603,7 +603,7 @@ $$
 
 在这里我们引入 Jordan\footnote{Jordan 法语读音 {\timesroman /ʒɔʁdɑ̃/} 音译为约旦，若尔当，英语读音 {\timesroman /'dʒɔ:dn/} 音译为乔丹，焦尔丹。实际上两种读法都有，但是由于 Jordan Marie Ennemond Camille 是法国人，所以我们中文常读作：``若尔当块''而非``乔丹块''} 块与 Jordan 标准型的概念，由于不是每一个方阵都可以相似变化为对角矩阵，但是可以相似为一个与之很近的形式。
 
-\begin{definition}{Jordan 块}
+\begin{definition}{Jordan 块(Jordan Block)}
 	除对角线和超对角线外，其他位置均为零，对角线的每个元素均由单个数字 $\lambda$ 组成，对角线上方的每个元素均由 1 组成的$m$阶方阵为 Jordan 块，记作 $J_m(\lambda)$例如：
 	$$
 	J_m(\lambda):=\begin{pmatrix}
@@ -644,17 +644,89 @@ $$
 例如我们刚刚举的例子$J_3(2)$的特征方程多项式为$$\det(J_3(2) - \lambda \mathbf{I}) = (2-\lambda)^3$$那么我们称特征值2的代数重数为3。
 
 \begin{definition}{代数重数}
-	$n$阶方阵特征方程多项式最终可表示为$$P(\lambda)=\prod_{i=1}^{k} (\lambda-\lambda_i)^{t_i},\sum_{i=1}^{k}t_i=n$$且满足$\forall a\neq b\Longrightarrow\lambda_a\neq\lambda_b$则特征值$\lambda_i$的代数重数为$t_i$。
+	$n$阶方阵特征方程多项式最终可表示为$$P(\lambda)=\prod_{i=1}^{k} (\lambda-\lambda_i)^{t_i},\sum_{i=1}^{k}t_i=n$$且满足$\forall a\neq b\Longrightarrow\lambda_a\neq\lambda_b$则特征值$\lambda_i$的代数重数为$t_i$，记为$$m(\lambda_i):=t_i$$
 \end{definition}
 
 \subsection{几何重数与不变子空间}
 
 那么几何重数则表示该特征值的几个特征向量的极大线性无关组的个数，也可以指的是这几个特征向量张成的空间的维数。接下里我们把``几个特征向量张成的空间''称作不变子空间。
 
-\begin{definition}{不变子空间几何重数}
-	设线性映射算子$T\in \mathcal{L}(V)$，$\lambda_0$为$T$的一个特征值，定义集合$V_{\lambda_0}$表示所有特征向量$x$可能值的集合，即：$$V_{\lambda_0}:=\left\{ x\mid T(x)=\lambda_0 x \right\}$$称为特征值$\lambda_0$的不变子空间；其几何重数为$\text{dim}\left( V_{\lambda_0} \right)$。
+\begin{definition}{不变子空间; 几何重数}
+	设线性映射算子$T\in \mathcal{L}(V)$，$\lambda_0$为$T$的一个特征值，定义集合$V_{\lambda_0}$表示所有特征向量$x$可能值的集合，即：$$V_{\lambda_0}:=\left\{ x\mid T(x)=\lambda_0 x \right\}$$称为特征值$\lambda_0$的不变子空间；其几何重数为$\text{dim}\left( V_{\lambda_0} \right)$，记为$$g(\lambda_i):=\text{dim}\left( V_{\lambda_0} \right)$$
 \end{definition}
 
+关于代数重数与几何重数，有以下推论：
+
+\begin{corollary}
+	特征值的几何重数 $\leq$ 代数重数.
+\end{corollary}
+
+\begin{proof}
+	我们不作严格证明，在计算特征方程的时候我们总是会得到一个未知数数量与式子数量均不超过 $n$ 的齐次线性方程组，所以其基础解系的维度不会超过 $n$，所以几何重数小于其代数重数。
+	\begin{flushright}
+		$\square$
+	\end{flushright}
+\end{proof}
+
+接下来是一个重要的定理，它揭示了方阵可对角化的充要条件。
+
 \begin{theorem}{方阵可对角化的充要条件}
-	矩阵可对角化等价于其所有特征值的代数重数等于几何重数
+	\label{the:candiag}
+	矩阵可对角化等价于其所有特征值的代数重数等于几何重数。
 \end{theorem}
+
+\begin{proof}
+	本定理不作严格证明，只做一个简洁的说明；首先可对角化 $\iff$ 存在 $n$ 个线性无关的特征向量，它们是构成 $V$ 的一组基，若所有 $m(\lambda) = g(\lambda)$，则特征向量总数 $\sum g(\lambda) = \sum m(\lambda) = n$，且不同特征值的特征向量线性无关，故它们构成基。并且若存在 $m(\lambda) > g(\lambda)$，则特征向量总数 $\sum g(\lambda) < n$，无法构成基，反映在$\mathbf{A}=\mathbf{P}\mathbf{B}\mathbf{P}^{-1}$中的矩阵$\mathbf{P}$不可逆，矩阵不可对角化。
+	\begin{flushright}
+		$\square$
+	\end{flushright}
+\end{proof}
+
+\subsection{Jordan 标准型}
+
+首先我们给出 Jordan 标准型的定义。
+
+\begin{definition}{Jordan 标准型(Jordan canonical form)}
+	Jordan 标准型是一种特殊类型的分块矩阵，其中每个分块由 Jordan 块组成，且每个 Jordan 分块的常数 $\lambda_i$ 可能不同，我们将其记作$\mathscr{J}$。具体而言，它是如下形式的分块矩阵:
+	$$\mathscr{J}:=\begin{pmatrix}
+		J_{m_1}(\lambda_1) & 0 & \cdots & 0\\
+		0 & J_{m_2}(\lambda_2) & \cdots &0 \\
+		\vdots & \vdots & \ddots & \vdots\\
+		0 & 0 & \cdots &J_{m_i}(\lambda_i)
+		\end{pmatrix}$$
+\end{definition}
+
+例如下面一个矩阵就是 Jordan 标准型(空白处均为0)$$\mathscr{J}=\left( \begin{array}{cccc|ccc|c}
+ 3 & 1 &  &  &  &  &  & \\
+  & 3 & 1 &  &  &  &  & \\
+  &  & 3 & 1 &  &  &  & \\
+  &  &  & 3 &  &  &  & \\ \hline
+  &  &  &  & 4 & 1 &  & \\
+  &  &  &  &  & 4 & 1 & \\
+  &  &  &  &  &  & 4 & \\ \hline
+  &  &  &  &  &  &  & 5
+\end{array} \right)=\begin{pmatrix}
+ J_4(3) & 0 &0 \\
+ 0 & J_3(4) &0 \\
+ 0 & 0 & J_1(5)
+\end{pmatrix}$$
+
+通过 Jordan 标准型我们可以清晰地看出其各个特征值，以及它们的代数重数和几何重数，考虑 Jordan 标准型 $$\mathscr{J}=\begin{pmatrix}
+		J_{m_1}(\lambda_1) & 0 & \cdots & 0\\
+		0 & J_{m_2}(\lambda_2) & \cdots &0 \\
+		\vdots & \vdots & \ddots & \vdots\\
+		0 & 0 & \cdots &J_{m_i}(\lambda_i)
+		\end{pmatrix}$$
+\begin{itemize}
+	\item $\mathscr{J}$ 的特征值由 Jordan 块的对角线元素给出，即 $\lambda_1, \lambda_2, \ldots, \lambda_i$（这些值可能重复）；特征值的总数（考虑代数重数）为 $n = \sum_{k=1}^i m_k$，不同特征值的数量至多为 $i$（当所有 $\lambda_k$ 互异时取等号）。
+	\item 对于每个特征值 $\lambda$，其代数重数为所有满足 $\lambda_k = \lambda$ 的 Jordan 块的大小之和，即 $\sum_{\{k \mid \lambda_k = \lambda\}} m_k$。
+	\item 对于每个特征值 $\lambda$，其几何重数为所有满足 $\lambda_k = \lambda$ 的 Jordan 块的数量（即索引 $k$ 的个数）。
+\end{itemize}
+说的通俗一些就是对角元素的特征值$\lambda$，对角线上有几个相同的$\lambda$对应的特征值$\lambda$就是几重根，即为代数重数；对角元素是$\lambda$的 Jordan 块有几个，对应的线性无关的特征向量就有几个，即为几何重数；例如$\mathscr{J}=\begin{pmatrix}
+ J_4(3) & 0 &0 \\
+ 0 & J_3(4) &0 \\
+ 0 & 0 & J_1(5)
+\end{pmatrix}$，其特征值分别为$3,4,5$其中特征值 3 的几何重数为 1，代数重数为 4；特征值 4 的几何重数为 1，代数重数为 3；特征值 5 的几何重数为 1，代数重数为 1。根据定理\ref{the:candiag}我们可以得出该标准型不能被对角化。
+
+\subsection{Jordan 标准型的 $n$ 次幂与幂零算子}
+
