@@ -193,12 +193,12 @@
 \begin{proof}
 	考虑$\mathbf{A}\mathbf{B}$的迹，其定义为：
 $$
-\text{Tr}(\mathbf{A}\mathbf{B}) = \sum_{i=1}^m [\mathbf{A}\mathbf{B}]_{ii} = \sum_{i=1}^m \sum_{k=1}^n a_{ik} b_{ki}
+\text{Tr}(\mathbf{A}\mathbf{B}) = \sum_{i=1}^m (\mathbf{A}\mathbf{B})_{ii} = \sum_{i=1}^m \sum_{k=1}^n a_{ik} b_{ki}
 $$
 
 同样地，考虑$\mathbf{B}\mathbf{A}$的迹，其定义为：
 $$
-\text{Tr}(\mathbf{B}\mathbf{A}) = \sum_{k=1}^n [\mathbf{B}\mathbf{A}]_{kk} = \sum_{k=1}^n \sum_{i=1}^m b_{ki} a_{ik}
+\text{Tr}(\mathbf{B}\mathbf{A}) = \sum_{k=1}^n (\mathbf{B}\mathbf{A})_{kk} = \sum_{k=1}^n \sum_{i=1}^m b_{ki} a_{ik}
 $$
 
 接下来，我们交换双重求和的顺序。对于$\text{Tr}(\mathbf{A}\mathbf{B})$，我们可以将求和顺序交换为：
@@ -231,9 +231,7 @@ $$
 
 \begin{proof}
 	特征方程多项式可以表示为$P(\lambda) = \det(\lambda \mathbf{I} - \mathbf{A})$，其中$\mathbf{I}$是单位矩阵。设$\mathbf{A}$的特征值为$\lambda_1, \lambda_2, \ldots, \lambda_n$，则特征方程多项式可以分解为：
-   $$
-   P(\lambda) = (\lambda - \lambda_1)(\lambda - \lambda_2) \cdots (\lambda - \lambda_n)
-   $$
+   cc
    根据韦达定理，$\lambda^{n-1}$项的系数由所有特征值的和决定，即：
    $$
    a_1 = -(\lambda_1 + \lambda_2 + \cdots + \lambda_n)
@@ -544,6 +542,7 @@ $$
 事实上，不一定每一个方阵都可以被对角化，下面给出可对角化方阵的充分条件：
 
 \begin{theorem}{方阵可对角化的充分条件}
+	\label{the:cfcon}
 	如果$\mathbb{F}$上$n$阶方阵$\mathbf{A}$具有$n$个互不相同的特征值，则$\mathbf{A}$可以对角化。
 \end{theorem}
 
@@ -605,5 +604,57 @@ $$
 在这里我们引入 Jordan\footnote{Jordan 法语读音 {\timesroman /ʒɔʁdɑ̃/} 音译为约旦，若尔当，英语读音 {\timesroman /'dʒɔ:dn/} 音译为乔丹，焦尔丹。实际上两种读法都有，但是由于 Jordan Marie Ennemond Camille 是法国人，所以我们中文常读作：``若尔当块''而非``乔丹块''} 块与 Jordan 标准型的概念，由于不是每一个方阵都可以相似变化为对角矩阵，但是可以相似为一个与之很近的形式。
 
 \begin{definition}{Jordan 块}
-	
+	除对角线和超对角线外，其他位置均为零，对角线的每个元素均由单个数字 $\lambda$ 组成，对角线上方的每个元素均由 1 组成的$m$阶方阵为 Jordan 块，记作 $J_m(\lambda)$例如：
+	$$
+	J_m(\lambda):=\begin{pmatrix}
+	\lambda & 1 &  &  & \\
+	& \lambda & \ddots &  & \\
+	&  & \ddots & 1 & \\
+	&  &  & \lambda & 1\\
+	&  &  &  &\lambda 
+	\end{pmatrix}
+	$$
+	该矩阵的空余元素均为 0。此外$1\times 1$ 矩阵的退化情况被视为 Jordan 块，即使它缺少可填充 1 的上对角线。
 \end{definition}
+
+\subsection{代数重数}
+
+首先我们举一个最简单的 Jordan 块；
+$$
+J_3(2)=\begin{pmatrix}
+ 2 & 1 & 0\\
+ 0 & 2 & 1\\
+ 0 & 0 & 2
+\end{pmatrix}
+$$
+我们看看是否可以将其对角化，按照我们之前的过程，首先是计算该方阵的特征值，即计算：
+$$
+J_3(2) - \lambda \mathbf{I} = \begin{pmatrix} 2-\lambda & 1 & 0 \\ 0 & 2-\lambda & 1 \\ 0 & 0 & 2-\lambda \end{pmatrix}
+$$
+该矩阵为上三角矩阵，其行列式为对角线元素的乘积：$$\det(J_3(2) - \lambda \mathbf{I}) = (2-\lambda)^3$$最后解出$\lambda_{1,2,3}=2$；其次计算特征向量我们可以得到所有的特征向量均为$(1,0,0)$构成矩阵为$$\mathbf{P}=\begin{pmatrix}
+ 1 & 1 & 1\\
+ 0 & 0 & 0\\
+ 0 & 0 & 0
+\end{pmatrix}$$由此可得$\mathbf{P}$不可逆，我们最后得到$J_3(2)$不可以被对角化。那这个时候读者可能会问，矩阵可对角化的充要条件是什么，我们上面的定理\ref{the:cfcon}只写到了充分条件，接下来我们引入代数重数和几何重数的例子。
+
+首先作为特征方程多项式，展开后一定可以得到一个代数多项式并将其分解为
+$$
+P(\lambda) = (\lambda - \lambda_1)(\lambda - \lambda_2) \cdots (\lambda - \lambda_n)
+$$
+例如我们刚刚举的例子$J_3(2)$的特征方程多项式为$$\det(J_3(2) - \lambda \mathbf{I}) = (2-\lambda)^3$$那么我们称特征值2的代数重数为3。
+
+\begin{definition}{代数重数}
+	$n$阶方阵特征方程多项式最终可表示为$$P(\lambda)=\prod_{i=1}^{k} (\lambda-\lambda_i)^{t_i},\sum_{i=1}^{k}t_i=n$$且满足$\forall a\neq b\Longrightarrow\lambda_a\neq\lambda_b$则特征值$\lambda_i$的代数重数为$t_i$。
+\end{definition}
+
+\subsection{几何重数与不变子空间}
+
+那么几何重数则表示该特征值的几个特征向量的极大线性无关组的个数，也可以指的是这几个特征向量张成的空间的维数。接下里我们把``几个特征向量张成的空间''称作不变子空间。
+
+\begin{definition}{不变子空间几何重数}
+	设线性映射算子$T\in \mathcal{L}(V)$，$\lambda_0$为$T$的一个特征值，定义集合$V_{\lambda_0}$表示所有特征向量$x$可能值的集合，即：$$V_{\lambda_0}:=\left\{ x\mid T(x)=\lambda_0 x \right\}$$称为特征值$\lambda_0$的不变子空间；其几何重数为$\text{dim}\left( V_{\lambda_0} \right)$。
+\end{definition}
+
+\begin{theorem}{方阵可对角化的充要条件}
+	矩阵可对角化等价于其所有特征值的代数重数等于几何重数
+\end{theorem}
