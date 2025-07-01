@@ -682,7 +682,7 @@ $$
 	\end{flushright}
 \end{proof}
 
-\subsection{Jordan 标准型}
+\subsection{Jordan 标准型\footnote{本节选学}}
 
 首先我们给出 Jordan 标准型的定义。
 
@@ -728,5 +728,383 @@ $$
  0 & 0 & J_1(5)
 \end{pmatrix}$，其特征值分别为$3,4,5$其中特征值 3 的几何重数为 1，代数重数为 4；特征值 4 的几何重数为 1，代数重数为 3；特征值 5 的几何重数为 1，代数重数为 1。根据定理\ref{the:candiag}我们可以得出该标准型不能被对角化。
 
-\subsection{Jordan 标准型的 $n$ 次幂与幂零算子}
+\subsection{Jordan 标准型的幂与幂零算子}
 
+首先我们看 Jordan 标准型的幂，由于相似变换不改变矩阵的幂（即若 $A = P\mathscr{J}P^{-1}$，则 $A^k = P\mathscr{J}^kP^{-1}$），研究 Jordan 标准型 $\mathscr{J}$ 的幂 $\mathscr{J}^k$ 等价于研究原矩阵 $A$ 的幂。而 $J$ 是由 Jordan 块 $J_m(\lambda)$ 沿对角线排列的分块对角矩阵：
+$$
+\mathscr{J} = \begin{pmatrix}
+J_{m_1}(\lambda_1) & & \\
+& J_{m_2}(\lambda_2) & \\
+& & \ddots & \\
+& & & J_{m_k}(\lambda_k)
+\end{pmatrix}
+$$因此，$\mathscr{J}^k$ 也是分块对角矩阵，其每个对角块即为对应 Jordan 块的幂：
+$$
+\mathscr{J}^k = \begin{pmatrix}
+J_{m_1}^k(\lambda_1) & & \\
+& J_{m_2}^k(\lambda_2) & \\
+& & \ddots & \\
+& & & J_{m_k}^k(\lambda_k)
+\end{pmatrix}
+$$问题归结为：如何计算一个 Jordan 块 $J_m(\lambda)$ 的 $k$ 次幂。
+
+一个 $m$ 阶 Jordan 块 $J_m(\lambda)$ 可以分解为两部分之和：
+$$
+J_m(\lambda) = \lambda I_m + N_m
+$$其中\footnote{实际上下面的$N_m$就是幂零矩阵}$$
+    N_m = \begin{pmatrix}
+    0 & 1 & & \\
+    & 0 & \ddots & \\
+    & & \ddots & 1 \\
+    & & & 0
+    \end{pmatrix}
+    $$
+利用二项式定理（因为 $\lambda I_m$ 与 $N_m$ 是可交换(见课后习题)的：$(\lambda I_m) N_m = N_m (\lambda I_m)$），我们可以计算 $J_m^k(\lambda)$：
+$$
+(J_m(\lambda))^k = (\lambda I_m + N_m)^k = \sum_{r=0}^{k} C_k^r (\lambda I_m)^{k-r} (N_m)^r = \sum_{r=0}^{k} C_k^r \lambda^{k-r} (N_m)^r
+$$
+其中 $\displaystyle C_k^r = \frac{k!}{r!(k-r)!}$ 是二项式系数。接下来我们先来研究$N_m$的特性，在此之前我们先讲一下幂零算子以及它的矩阵表示。
+
+首先我们明确一个概念，那就是线性映射算子$T\in \mathcal{L}(\mathbb{F}^n)$可以表示为矩阵$\mathcal{M}(T)$，令$\mathbf{A}=\mathcal{M}(T)$我们可以得到向量$x\in \mathbb{F}^n$可得$T(x)=\mathbf{A}x$，每一次变换相当于在等式中左乘一个$\mathbf{A}$，由此我们可以推断：
+
+\begin{axiom}{矩阵乘公理}
+	线性映射算子$T\in \mathcal{L}(\mathbb{F}^n)$与向量$x\in \mathbb{F}^n$存在正整数$m \in \mathcal{N}^+$使得$T^m$表示$T$的$m$次复合，则$$T^m(x)=A^mx$$
+\end{axiom}
+
+接下来我们引入幂零算子的概念。
+
+\begin{definition}{幂零算子(Nilpotent operator)}
+	线性映射算子$T\in \mathcal{L}(\mathbb{F}^n)$存在$m$次复合使得$\forall x\in \mathbb{F}^n,x\neq \boldsymbol{0}$转化为零向量即$T^m(x)=\boldsymbol{0}$，则$T$为幂零算子；而其对应的矩阵$\mathcal{M}(T)$为幂零矩阵。
+\end{definition}
+
+根据上面的定义我们可以得出 $N_m$ 是幂零矩阵，具体来说（请读者计算）：\begin{itemize}
+	\item  $(N_m)^1$：次对角线（紧邻主对角线上方的那条对角线）上的元素为 1，其余位置为 0。
+	\item $(N_m)^2$：次次对角线（主对角线向上数第二条）上的元素为 1，其余位置为 0；
+	\item $\cdots$
+	\item $(N_m)^{m-1}$：仅右上角元素为 1，其余位置为 0。
+	\item $(N_m)^m = 0$：零矩阵。
+\end{itemize}
+
+由于 $N_m$ 是幂零指数为 $m$ 的幂零算子，当 $r \geq m$ 时，$(N_m)^r = 0$。因此，上述求和实际上只需从 $r=0$ 到 $r=\min(k, m-1)$：
+$$
+(J_m(\lambda))^k = \sum_{r=0}^{\min(k, m-1)} C_k^r \lambda^{k-r} (N_m)^r
+$$
+
+\begin{example}
+3 阶 Jordan 块$J_3(\lambda)$与其幂零矩阵 $N_3$ 为
+$$
+J_3(\lambda) = \begin{pmatrix}
+\lambda & 1 & 0 \\
+0 & \lambda & 1 \\
+0 & 0 & \lambda
+\end{pmatrix}, \quad N_3 = \begin{pmatrix}
+0 & 1 & 0 \\
+0 & 0 & 1 \\
+0 & 0 & 0
+\end{pmatrix}
+$$
+计算 $(J_3(\lambda))^k$：
+\tcblower
+\textcolor{purple}{\textbf{解}}： 
+$$
+(J_3(\lambda))^k = \sum_{r=0}^{\min(k, 2)} C_k^r \lambda^{k-r} (N_3)^r
+$$
+其中：
+\begin{itemize}
+	\item $(N_3)^0 = I_3 = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}$
+	\item $(N_3)^1 = N_3 = \begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ 0 & 0 & 0 \end{pmatrix}$
+	\item $(N_3)^2 = \begin{pmatrix} 0 & 0 & 1 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix}$
+	\item $(N_3)^r = 0,\forall r \geq 3$.
+\end{itemize}
+因此：
+$$
+(J_3(\lambda))^k = C_k^0 \lambda^{k} (N_3)^0 + C_k^1 \lambda^{k-1} (N_3)^1 + C_k^2\lambda^{k-2} (N_3)^2
+$$
+$$
+= \lambda^k \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix} + k\lambda^{k-1} \begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ 0 & 0 & 0 \end{pmatrix} + \frac{k(k-1)}{2}\lambda^{k-2} \begin{pmatrix} 0 & 0 & 1 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix}
+$$
+$$
+= \begin{pmatrix}
+\lambda^k & k\lambda^{k-1} & \frac{k(k-1)}{2}\lambda^{k-2} \\
+0 & \lambda^k & k\lambda^{k-1} \\
+0 & 0 & \lambda^k
+\end{pmatrix}
+$$
+\end{example}
+下面做一个总结：主对角线全为 $\lambda^k$，第一条上对角线全为 $k\lambda^{k-1}$，第二条上对角线全为 $\frac{k(k-1)}{2}\lambda^{k-2}$。当 $k \geq 2$ 时，结构稳定；当 $k=1$ 时，最后一项消失，退回到 $J_3(\lambda)$；当 $k=0$ 时，为单位阵。
+
+\subsection{将矩阵相似化为 Jordan 标准型}
+
+虽然有些矩阵很特殊，不能将其化为对角矩阵，但是我们可以将其化为 Jordan 标准型。首先我们先不讲到底哪些矩阵可以化为 Jordan 标准型\footnote{事实上后面会提及所有方阵均可化为 Jordan 标准型}，先讲如何把矩阵化为 Jordan 标准型。
+
+考虑从如下的 Jordan 标准形 $$\mathscr{J}=\left( \begin{array}{cccc|ccc|c}
+ 3 & 1 &  &  &  &  &  & \\
+  & 3 & 1 &  &  &  &  & \\
+  &  & 3 & 1 &  &  &  & \\
+  &  &  & 3 &  &  &  & \\ \hline
+  &  &  &  & 4 & 1 &  & \\
+  &  &  &  &  & 4 & 1 & \\
+  &  &  &  &  &  & 4 & \\ \hline
+  &  &  &  &  &  &  & 5
+\end{array} \right)$$ 出发，即存在矩阵$\mathbf{A}$满足$\mathbf{P}^{-1}\mathbf{A}\mathbf{P}=\mathscr{J}$，通过等式两侧左乘一个矩阵$\mathbf{P}$得到$$\mathbf{A}\mathbf{P}=\mathbf{P}\mathscr{J}$$设矩阵的列向量构成为$\begin{pmatrix}
+ p_1 & p_2 & p_3 & \cdots &p_8
+\end{pmatrix}$，根据每列的值，我们依次得出：\begin{equation}
+	\label{eq:simToJordan}
+	\begin{aligned}
+    \mathbf{A}p_1&= 3p_1\\
+    \mathbf{A}p_2&= p_1+3p_2\\
+    \mathbf{A}p_3&= p_2+3p_3\\
+    \mathbf{A}p_4&= p_3+3p_4\\ \hline
+    \mathbf{A}p_5&= 4p_5\\
+    \mathbf{A}p_6&= p_5+4p_6\\
+    \mathbf{A}p_7&= p_6+4p_7\\ \hline
+    \mathbf{A}p_8&= 5p_8\\
+\end{aligned}\quad \Longrightarrow \quad \begin{aligned}
+    (\mathbf{A}-3\mathbf{I})p_1&= \boldsymbol{0}\\
+    (\mathbf{A}-3\mathbf{I})p_2&= p_1\\
+    (\mathbf{A}-3\mathbf{I})p_3&= p_2\\
+    (\mathbf{A}-3\mathbf{I})p_4&= p_3\\ \hline
+    (\mathbf{A}-4\mathbf{I})p_5&= \boldsymbol{0}\\
+    (\mathbf{A}-4\mathbf{I})p_6&= p_5\\
+    (\mathbf{A}-4\mathbf{I})p_7&= p_6\\ \hline
+    (\mathbf{A}-5\mathbf{I})p_8&= \boldsymbol{0}\\
+\end{aligned}
+\end{equation}
+
+矩阵的列向量$p_1,p_5,p_8$都是矩阵$\mathbf{A}$的特征向量，对应的特征值分别为$3,4,5$，对应的代数重数分别为$4,3,1$，实际上这些关系揭示了 Jordan 标准型的核心结构：每个 Jordan 块对应一个由特征向量和广义特征向量组成的链（称为 \textbf{Jordan 链}）。具体来说就是如下定义：
+
+\begin{definition}{广义特征向量(Generalized Eigenvector)}
+	$n\times n$ 矩阵 $\mathbf{A}$ 的广义特征向量是向量 $v$ 满足$$(\mathbf{A}-\lambda\mathbf{I})^k v=\boldsymbol{0}$$
+\end{definition}
+
+\begin{itemize}
+	\item 对于特征值 $\lambda=3$，存在长度为 4 的 Jordan 链：
+	\begin{itemize}
+		\item $p_1$ 是特征向量（满足 $(\mathbf{A}-3\mathbf{I})p_1=\boldsymbol{0}$）
+		\item $p_2$ 是一阶广义特征向量（满足 $(\mathbf{A}-3\mathbf{I})p_2=p_1$）
+		\item $p_3$ 是二阶广义特征向量（满足 $(\mathbf{A}-3\mathbf{I})p_3=p_2$）
+		\item $p_4$ 是三阶广义特征向量（满足 $(\mathbf{A}-3\mathbf{I})p_4=p_3$）
+	\end{itemize}
+	\item 类似地，$\lambda=4$ 对应长度为 3 的链：$p_5$（特征向量）$\rightarrow$ $p_6$（一阶广义）$\rightarrow$ $p_7$（二阶广义）
+	\item $\lambda=5$ 对应长度为 1 的链：仅特征向量 $p_8$。
+\end{itemize}
+
+给定矩阵 $\mathbf{A}$，求其 Jordan 标准型的步骤如下：
+% \begin{enumerate}
+%   \item \textbf{计算特征值与代数重数}：求解特征方程 $\det(\mathbf{A}-\lambda\mathbf{I})=0$，得到特征值 $\lambda_i$ 及其代数重数 $m_i$。
+%   \item \textbf{对每个特征值 $\lambda_i$ 计算广义特征空间}：
+%     \begin{itemize}
+%       \item 定义广义特征空间：$W_k(\lambda_i) = \text{null}\left((\mathbf{A}-\lambda_i\mathbf{I})^k\right)$
+%       \item 计算幂零指数 $\rho_i$：满足 $W_{\rho_i}(\lambda_i) = W_{\rho_i+1}(\lambda_i)$ 的最小整数（即空间稳定化的最小幂次）
+%     \end{itemize}
+%   \item \textbf{构造 Jordan 链}：
+%     \begin{enumerate}
+%       \item 从最高阶广义特征向量开始：选 $v_{\rho_i} \in W_{\rho_i}(\lambda_i) \setminus W_{\rho_i-1}(\lambda_i)$
+%       \item 逆向生成链：
+%         \begin{align*}
+%           v_{\rho_i-1} &= (\mathbf{A}-\lambda_i\mathbf{I})v_{\rho_i} \\
+%           v_{\rho_i-2} &= (\mathbf{A}-\lambda_i\mathbf{I})v_{\rho_i-1} \\
+%           &\vdots \\
+%           v_1 &= (\mathbf{A}-\lambda_i\mathbf{I})v_2
+%         \end{align*}
+%         其中 $v_1$ 是特征向量，整个链 $\{v_1, v_2, \dots, v_{\rho_i}\}$ 线性无关。
+%       \item 若广义特征空间未满（即 $\dim W_{\rho_i}(\lambda_i) > \rho_i$），重复选取新向量生成新链。
+%     \end{enumerate}
+%   \item \textbf{组合变换矩阵}：将所有 Jordan 链的向量按顺序排列为 $\mathbf{P}$ 的列向量。
+%   \item \textbf{得到 Jordan 标准型}：$\mathscr{J} = \mathbf{P}^{-1}\mathbf{A}\mathbf{P}$。
+% \end{enumerate}
+
+\begin{enumerate}
+	\item 求解特征方程 $\det(\mathbf{A}-\lambda\mathbf{I})=0$，得到特征值 $\lambda_i$ 及其代数重数 $m_i$。
+	\item 对每个特征值 $\lambda_i$ 计算广义特征空间，即
+	\begin{itemize}
+		\item 定义广义特征空间：$W_k(\lambda_i) = \text{null}\left((\mathbf{A}-\lambda_i\mathbf{I})^k\right)$
+		\item 计算幂零指数 $\rho_i$：满足 $W_{\rho_i}(\lambda_i) = W_{\rho_i+1}(\lambda_i)$ 的最小整数（即空间稳定化的最小幂次）
+	\end{itemize}
+	\item 构造 Jordan 链，从最高阶广义特征向量开始：选 $v_{\rho_i} \in W_{\rho_i}(\lambda_i) \setminus W_{\rho_i-1}(\lambda_i)\footnote{符号$A \setminus B$表示减集合，即$\left\{ x \mid x\in A ~ \text{and} ~ x\notin B \right\}$，事实上线性代数还有一种空间集合运算，称为商空间，用的是$A / B$表示。}$
+	\item 逆向生成 Jordan 链
+        \begin{align*}
+          v_{\rho_i-1} &= (\mathbf{A}-\lambda_i\mathbf{I})v_{\rho_i} \\
+          v_{\rho_i-2} &= (\mathbf{A}-\lambda_i\mathbf{I})v_{\rho_i-1} \\
+          &\vdots \\
+          v_1 &= (\mathbf{A}-\lambda_i\mathbf{I})v_2
+        \end{align*}
+        其中 $v_1$ 是特征向量，整个链 $\{v_1, v_2, \dots, v_{\rho_i}\}$ 线性无关。
+	\item 若广义特征空间未满（即 $\dim W_{\rho_i}(\lambda_i) > \rho_i$），重复选取新向量生成新链。
+	\item 组合变换矩阵，将所有 Jordan 链的向量按顺序排列为 $\mathbf{P}$ 的列向量。
+	\item 得到 Jordan 标准型$\mathscr{J} = \mathbf{P}^{-1}\mathbf{A}\mathbf{P}$。
+\end{enumerate}
+
+我们来详细看一个例子：
+
+\begin{example}
+	矩阵$\mathbf{A}=\begin{pmatrix}
+ -12 & 1 & -7 & 8\\
+ -27 & 3 & -11 & 14\\
+ -41 & 2 & -16 & 22\\
+ -56 & 3 & -26 & 33
+\end{pmatrix}$存在矩阵$\mathbf{P}$与Jordan标准形$\mathscr{J}$使得$\mathscr{J}=\mathbf{P}^{-1}\mathbf{A}\mathbf{P}$成立，求$\mathbf{P}$的一个可能值。
+
+\tcblower
+\textcolor{purple}{\textbf{解}}： 
+
+为了保证有序性，使用红色文本代表选取此Jordan链作为$\mathbf{P}$的列向量，且保证列向量线性无关。蓝色文本表示当前条件下可选择另一个基础解系生成的Jordan链，两者取其一即可。
+
+\vspace{1em}
+
+首先根据特征向量 $v$ 对应的特征值 $\lambda$ 的定义，我们有$$(\mathbf{A}-\lambda\mathbf{I})v=\boldsymbol{0}$$仅有行列式$\det (\mathbf{A}-\lambda\mathbf{I})=0$特征多项式$$P(\lambda)=\begin{vmatrix}
+ -12-\lambda  & 1 & -7 & 8\\
+ -27 & 3-\lambda  & -11 & 14\\
+ -41 & 2 & -16-\lambda  & 22\\
+ -56 & 3 & -26 & 33-\lambda 
+\end{vmatrix}=\lambda ^4-8\lambda^3+23\lambda^2-28\lambda+12$$化简为$$P(\lambda)=(\lambda-1)(\lambda-2)(\lambda-2)(\lambda-3)=0$$我们得到三个特征值为$\lambda_1=1,\lambda_{2,3}=2,\lambda_4=3$，接下来为每个特征值求线性独立的广义特征向量，因为$\mathbf{A}-\lambda\mathbf{I}$是幂零矩阵我们需要先确定其最大的秩。
+
+\vspace{1em}
+
+首先考虑$\lambda=1$时其代数重数为$1$；
+\begin{enumerate}
+	\item 确定广义特征向量的最大秩 $$r\left( \left( \begin{pmatrix}
+ -12 & 1 & -7 & 8\\
+ -27 & 3 & -11 & 14\\
+ -41 & 2 & -16 & 22\\
+ -56 & 3 & -26 & 33
+\end{pmatrix}-1\mathbf{I} \right)^1 \right)=3$$
+	\item 求其 Jordan 链，即求每一个矩阵幂下的关于向量$x$的基础解系；当幂为1时，其秩为3，关于$x$矩阵乘$$\left( \begin{pmatrix}
+ -12 & 1 & -7 & 8\\
+ -27 & 3 & -11 & 14\\
+ -41 & 2 & -16 & 22\\
+ -56 & 3 & -26 & 33
+\end{pmatrix}-1\mathbf{I} \right)^1x=\boldsymbol{0}$$的一个基础解系$\mathcal{B}$为$\mathcal{B}=\left\{ (1,2,3,4) \right\}$\footnote{如果读者不知道这一部分是在做什么，请复习章节\ref{sec:solSpace}}，带入此基础解系$\mathcal{B}=\left\{ (1,2,3,4) \right\}$
+	\begin{enumerate}
+	\item 令$x_1=(1,2,3,4)$可得$$\left( \begin{pmatrix}
+ -12 & 1 & -7 & 8\\
+ -27 & 3 & -11 & 14\\
+ -41 & 2 & -16 & 22\\
+ -56 & 3 & -26 & 33
+\end{pmatrix}-1\mathbf{I} \right)^{(1-1)}x_1=\mathbf{I}x_1\neq \boldsymbol{0}$$所以该向量仅为特征向量，为此广义特征向量生成 Jordan 链为$\textcolor{red}{v_1}=(1,2,3,4)$
+	\end{enumerate}
+\end{enumerate}
+
+\vspace{1em}
+
+接下来考虑$\lambda=2$时其代数重数为$2$；
+\begin{enumerate}
+	\item 确定广义特征向量的最大秩 $$r\left( \left( \begin{pmatrix}
+	-12 & 1 & -7 & 8\\
+	-27 & 3 & -11 & 14\\
+	-41 & 2 & -16 & 22\\
+	-56 & 3 & -26 & 33
+	\end{pmatrix}-2\mathbf{I} \right)^1 \right)=3,r\left( \left( \begin{pmatrix}
+	-12 & 1 & -7 & 8\\
+	-27 & 3 & -11 & 14\\
+	-41 & 2 & -16 & 22\\
+	-56 & 3 & -26 & 33
+	\end{pmatrix}-2\mathbf{I} \right)^2 \right)=2$$
+	\item 求其 Jordan 链，当幂为1时其秩为3，当幂为2时其秩为2，从最高次幂构建Jordan链，关于$x$的矩阵乘法$$\left( \begin{pmatrix}
+	-12 & 1 & -7 & 8\\
+	-27 & 3 & -11 & 14\\
+	-41 & 2 & -16 & 22\\
+	-56 & 3 & -26 & 33
+	\end{pmatrix}-2\mathbf{I} \right)^2x=\boldsymbol{0}$$的一个基础解系$\mathcal{B}$为$\mathcal{B}=\left\{ (-1,-1,1,0),(1,4,0,3) \right\}$\begin{enumerate}
+		\item 令$x_1=(-1,-1,1,0)$，$$\left( \begin{pmatrix}
+	-12 & 1 & -7 & 8\\
+	-27 & 3 & -11 & 14\\
+	-41 & 2 & -16 & 22\\
+	-56 & 3 & -26 & 33
+	\end{pmatrix}-2\mathbf{I} \right)^{(2-1)}x_1\neq \boldsymbol{0}$$所以该向量仅为一阶的广义特征向量，为此广义特征向量生成 Jordan 链为$$\textcolor{red}{v_1}=(-1,-1,1,0)\leftarrow \textcolor{red}{v_2}=\left( \begin{pmatrix}
+	-12 & 1 & -7 & 8\\
+	-27 & 3 & -11 & 14\\
+	-41 & 2 & -16 & 22\\
+	-56 & 3 & -26 & 33
+	\end{pmatrix}-2\mathbf{I} \right)^1v_1=(6,15,21,27)$$
+
+		\item 令$x_2=(1,4,0,3)$，$$\left( \begin{pmatrix}
+	-12 & 1 & -7 & 8\\
+	-27 & 3 & -11 & 14\\
+	-41 & 2 & -16 & 22\\
+	-56 & 3 & -26 & 33
+	\end{pmatrix}-2\mathbf{I} \right)^{(2-1)}x_1\neq \boldsymbol{0}$$所以该向量仅为一阶的广义特征向量，为此广义特征向量生成 Jordan 链为$$\textcolor{blue}{v_1}=(1,4,0,3)\leftarrow \textcolor{blue}{v_2}=\left( \begin{pmatrix}
+	-12 & 1 & -7 & 8\\
+	-27 & 3 & -11 & 14\\
+	-41 & 2 & -16 & 22\\
+	-56 & 3 & -26 & 33
+	\end{pmatrix}-2\mathbf{I} \right)^1v_1=(-14,-35,-49,-63)$$
+	\end{enumerate}
+\end{enumerate}
+
+\vspace{1em}
+
+接下来考虑$\lambda=3$时其代数重数为$1$；
+
+\begin{enumerate}
+	\item 确定广义特征向量的最大秩$$r\left( \left( \begin{pmatrix}
+	-12 & 1 & -7 & 8\\
+	-27 & 3 & -11 & 14\\
+	-41 & 2 & -16 & 22\\
+	-56 & 3 & -26 & 33
+	\end{pmatrix}-3\mathbf{I} \right)^1 \right)=3$$当幂为1时，其秩为3，关于$x$矩阵乘$$\left( \begin{pmatrix}
+	-12 & 1 & -7 & 8\\
+	-27 & 3 & -11 & 14\\
+	-41 & 2 & -16 & 22\\
+	-56 & 3 & -26 & 33
+	\end{pmatrix}-3\mathbf{I} \right)^1x=\boldsymbol{0}$$的一个基础解系$\mathcal{B}$为$\mathcal{B}=\left\{ (2,2,4,7) \right\}$
+	\begin{enumerate}
+		\item 令$x_1=(2,2,4,7)$可得$$\left( \begin{pmatrix}
+	-12 & 1 & -7 & 8\\
+	-27 & 3 & -11 & 14\\
+	-41 & 2 & -16 & 22\\
+	-56 & 3 & -26 & 33
+	\end{pmatrix}-3\mathbf{I} \right)^{(1-1)}x_1=\mathbf{I}x_1\neq \boldsymbol{0}$$所以该向量仅为特征向量，为此广义特征向量生成 Jordan 链为$\textcolor{red}{v_1}=(2,2,4,7)$
+	\end{enumerate}
+\end{enumerate}
+\vspace{1em}
+
+最后将选取列的几个 Jordan 链为$$\textcolor{red}{\left( 1,2,3,4 \right),\left( 6,15,21,27 \right) \rightarrow \left( -1,-1,1,0 \right),\left( 2,2,4,7 \right)}$$矩阵列是来自顺序排列所选链的广义特征向量为$$\mathbf{P}=\begin{pmatrix}
+	1 & 6 & -1 & 2\\
+	2 & 15 & -1 & 2\\
+	3 & 21 & 1 & 4\\
+	4 & 27 & 0 & 7
+	\end{pmatrix}$$
+\end{example}
+
+讲完了如何化为 Jordan 标准形，最后我们来看看一个推论：
+
+\begin{corollary}
+	任何$\mathbb{C}^{n\times n}$矩阵$\mathbf{A}$均存在矩阵$\mathbf{P}$和Jordan标准形$\mathscr{J}$使得$$\mathscr{J}=\mathbf{P}^{-1}\mathbf{A}\mathbf{P}$$成立
+\end{corollary}
+
+\begin{proof}
+	我们这里不做严格证明，首先我们选取广义特征向量的时候都会选取一个 Jordan 链，不同于对角矩阵，Jordan标准形扩展了特征向量的意义，使得存在一个广义特征向量使得其能够化为一个个 Jordan 块，保证$\mathbf{P}$线性无关，由此任何方阵均存在一个$\mathscr{J}$与其相似。
+\end{proof}
+
+\section{章节练习}
+
+\subsection{A组}
+
+\begin{reidai}
+	若算子$T\in \mathcal{L}(\mathbb{C}^3)$定义为$T((x,y,z))=(3x+z,y-x,x+y+z)$，求$T$的特征值以及对应的特征向量。
+\end{reidai}
+
+\begin{reidai}
+	已知 12 是矩阵$$\mathbf{A}=\begin{pmatrix}
+	7 & 4 & -1\\
+	4 & 7 & -1\\
+	-4 & a & 4
+	\end{pmatrix}$$的特征值，求$a$与$\text{Tr}\mathbf{A}$。
+\end{reidai}
+
+\begin{reidai}
+	设矩阵$\mathbf{A}=\begin{pmatrix}
+		3 & 1 & 0 \\
+		0 & 2 & 0 \\
+		0 & -1 & 1
+		\end{pmatrix}^{100}$，求$\mathbf{A}^{-1}$和$\mathbf{A}^{100}$。
+\end{reidai}
+
+\begin{reidai}
+	已知矩阵$\mathbf{A}=\begin{pmatrix}
+	-2 & 0 & 0 \\
+	2 & x & 2 \\
+	3 & 1 & 1
+	\end{pmatrix}$相似于对角矩阵$\mathbf{B}=\text{diag}\left( -1,2,y \right)$，求$x,y$的值。
+\end{reidai}

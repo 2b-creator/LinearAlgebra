@@ -20,7 +20,7 @@
 	\begin{itemize}
 		\item $\mathbb{N}$ 表示所有自然数的集合，其元素是所有非负整数。
 		\item $\mathbb{Z}$ 表示所有整数的集合。
-		\item $\mathbb{Q}$ 表示所有有理数的集合，其中有理数被定义为所有能够表示为 $\frac{m}{n},m\in \mathbb{Z},n\in \mathbb{Z}$ 的数。
+		\item $\mathbb{Q}$ 表示所有有理数的集合，其中有理数被定义为所有能够表示为 $\frac{m}{n},m\in \mathbb{Z},n\in \mathbb{Z},n\neq0$ 的数。
 		\item $\mathbb{R}$ 表示所有实数的集合。
 		\item $\mathbb{C}$ 表示所有复数的集合。
 	\end{itemize}
@@ -30,7 +30,7 @@
 由于这门课不是实分析或高等代数，所以不会详细讲解这些数集怎么构造，读者只需要对此有一个简单的认识就可以了。众所周知，数的运算分别有加减乘除四种，如果读者觉得自己小学数学不错的话，一定知道下面的定理。
 
 \begin{axiom}{域公理}
-	对于这些数的基本算数性质有：
+	对于数集$\mathbb{C}$的基本算数性质有：
 	\begin{enumerate}
 		\item \textbf{交换律(communitativity)}：对于所有的$\alpha,\beta \in \mathbb{C}$有$\alpha+\beta=\beta+\alpha,\alpha\beta=\beta\alpha$;
 		\item \textbf{结合律(associativity)}：对于所有的$\alpha,\beta,\gamma \in \mathbb{C}$有$(\alpha+\beta)+\gamma=\alpha+(\beta+\gamma),(\alpha\beta)\gamma=\alpha(\beta\gamma)$;
@@ -247,7 +247,7 @@
 
 根据的定义，线性空间$V$具有如下的性质：
 
-\begin{definition}{线性空间的性质}
+\begin{corollary}{线性空间的性质}
 	\label{linear.space.sit}
 	线性空间就是带有加法和标量乘法的集合$V$，满足如下的性质：
 	\begin{itemize}
@@ -258,7 +258,7 @@
 		\item 乘法单位元(multiplicative identity)：对于所有的$v\in V$都存在$w\in V$使得$v+w=0$;
 		\item 分配性质(distributive properties)：对于所有的$a,b \in \mathbb{F}$和$u,v \in V$都有$a(u+v)=au+av$和$(a+b)v=av+bv$。
 	\end{itemize}
-\end{definition}
+\end{corollary}
 
 \begin{ascolorbox1}{思考}
 	空集可以是线性空间吗？
