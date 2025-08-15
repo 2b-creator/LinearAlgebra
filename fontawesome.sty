@@ -1,0 +1,45 @@
+%% start of file `fontawesome.sty'.
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{fontawesome}[2025/08/09 v7.x custom font awesome icons]
+
+\RequirePackage{ifxetex,ifluatex}
+\newif\iffontawesome@otf\fontawesome@otffalse
+\ifxetex
+\fontawesome@otftrue
+\else
+\ifluatex
+\fontawesome@otftrue
+\fi
+\fi
+
+% Generic command to display an icon by its name
+\newcommand*{\faicon}[1]{%
+	{\csname faicon@#1\endcsname}}
+
+% Load generic symbol definitions
+\input{fontawesomesymbols-generic.tex}
+
+\iffontawesome@otf
+\usepackage{fontspec}
+% IMPORTANT: change to actual installed font name
+% You can choose:
+%   Font Awesome 7 Free Regular
+%   Font Awesome 7 Free Solid
+%   Font Awesome 7 Brands
+\newfontfamily{\FA}{Font Awesome 7 Free Solid}
+
+\input{fontawesomesymbols-xeluatex.tex}
+\else
+\DeclareRobustCommand\FAone{\fontencoding{U}\fontfamily{fontawesomeone}\selectfont}
+\DeclareRobustCommand\FAtwo{\fontencoding{U}\fontfamily{fontawesometwo}\selectfont}
+\DeclareRobustCommand\FAthree{\fontencoding{U}\fontfamily{fontawesomethree}\selectfont}
+\input{fontawesomesymbols-pdftex.tex}
+\fi
+
+% Fix for icon names with numerals
+\renewcommand{\faHourglass}[1][]{%
+	\faicon{hourglass\if\relax\detokenize{#1}\relax\else-#1\fi}}
+\renewcommand{\faBattery}[1][4]{%
+	\faicon{battery-#1}}
+
+\endinput
