@@ -1261,26 +1261,26 @@ shadow=true,shadowsize=2pt,shadowcolor=gray!50,
 
 %%%%%%%%%%%%%%%%%%%%%%%
 \RequirePackage{fancyhdr}
-\RequirePackage{fontawesome}
+\RequirePackage{fontawesome7}
 \RequirePackage{xhfill}
 \fancyhf{}
 
 \fancyfoot[c]{\color{structurecolor} \faGg 第~\color{black}{\thepage}\color{structurecolor}~页 \faGg}
 
 \if@twoside
-\fancyhead[EL]{\color{structurecolor}{\faPaperPlaneO}\cnormal\leftmark} % E表示偶数页
+\fancyhead[EL]{\color{structurecolor}{\faPaperPlane}\cnormal\leftmark} % E表示偶数页
 \fancyhead[ER]{\color{structurecolor}\cnormal\rightmark}
-\fancyhead[OR]{\color{structurecolor}{\faPaperPlaneO}\cnormal\leftmark} % E表示偶数页
+\fancyhead[OR]{\color{structurecolor}{\faPaperPlane}\cnormal\leftmark} % E表示偶数页
 \fancyhead[OL]{\color{structurecolor}\cnormal\rightmark}
 \fancyfoot[EL]{\color{red}{\faLink} }
 \fancyfoot[ER]{\color{red}{\faLink} }
-\fancyfoot[OR]{\color{structurecolor}{\faUnlink}}
-\fancyfoot[OL]{\color{structurecolor}{\faUnlink}}
+\fancyfoot[OR]{\color{structurecolor}{\faLinkSlash}}
+\fancyfoot[OL]{\color{structurecolor}{\faLinkSlash}}
 \else
 \fancyhead[R]{\color{structurecolor}\cnormal\rightmark}
-\fancyhead[L]{\color{structurecolor}{\faPaperPlaneO}\cnormal\leftmark} % E表示偶数页
+\fancyhead[L]{\color{structurecolor}{\faPaperPlane}\cnormal\leftmark} % E表示偶数页
 \fancyfoot[L]{\color{red}{\faLink}}
-\fancyfoot[R]{\color{cyan}{\faUnlink}}
+\fancyfoot[R]{\color{cyan}{\faLinkSlash}}
 \fi
 \renewcommand{\headrule}{\color{orange!90}\hrule width\textwidth}
 \pagestyle{fancy}
